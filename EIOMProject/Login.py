@@ -2,11 +2,8 @@ import pymysql
 from Student import Student
 
 
-
-
-
 def studentLogin(student):
-    conn = pymysql.connect(host='127.0.0.1', user='root', password='hi0310', db='eiom', charset='utf8')
+    conn = pymysql.connect(host='localhost', user='root', password='hi0310', db='eiom', charset='utf8')
     curs = conn.cursor()
 
     sql = "select * from student where ID like '"+student.getID()+"';"

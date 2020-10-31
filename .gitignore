@@ -2,3 +2,5 @@
 EIOMProject/venv/
 
 EIOMProject/.idea/
+
+EIOMProject/__pycache__/
