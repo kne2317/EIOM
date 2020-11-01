@@ -1,5 +1,6 @@
 import pymysql
 from Student import Student
+import StudentDB
 
 
 def studentLogin(student):
@@ -22,22 +23,24 @@ def studentLogin(student):
 
             rows2 = curs.fetchall()
 
-            sql = "DESCRIBE languages;"
+            '''sql = "DESCRIBE languages;"
             curs.execute(sql)
             rows3 = curs.fetchall()
 
-            Languages = []
+            languages = []
             for i in range(1, len(rows3)):
-                Languages.append(rows3[i][0])
+                languages.append(rows3[i][0])'''
+
+            languages = StudentDB.getLanguages()
 
             useLanguages = {}
-            for i in range(len(Languages)):
+            for i in range(len(languages)):
                 if rows2[0][i+1] == 1:
-                    useLanguages[Languages[i]] = True
+                    useLanguages[languages[i]] = True
                 elif rows2[0][i+1] == 0:
-                    useLanguages[Languages[i]] = False
+                    useLanguages[languages[i]] = False
                 elif rows2[0][i+1] != None:
-                    useLanguages[Languages[i]] = rows2[0][i+1].split(';')
+                    useLanguages[languages[i]] = rows2[0][i+1].split(';')
             student.setUseLanguage(useLanguages)
 
             student.printStudent()

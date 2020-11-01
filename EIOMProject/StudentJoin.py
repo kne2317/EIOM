@@ -1,7 +1,6 @@
 import pymysql
 from Student import Student
-
-
+import StudentDB
 
 
 def studentJoin(s):
@@ -22,21 +21,60 @@ def studentJoin(s):
     conn.close()
 
 #####
-s = Student()
+student = Student()
 
 print("이름: ", end="")
-s.setName(input())
-print("아이디: ", end="")
-s.setID(input())
-print("비밀번호: ", end="")
-s.setPassword(input())
-print("생년월일")
-print("년도: ", end="")
-birth_year = input()
-print("월: ", end="")
-birth_month = input()
-print("일: ", end="")
-birth_day = input()
+student.setName(input())
 
-s.setBirth(birth_year, birth_month, birth_day)
-studentJoin(s)
+print("아이디: ", end="")
+student.setID(input())
+
+print("비밀번호: ", end="")
+student.setPassword(input())
+
+while(True):
+    print("생년월일(ex: 2000-01-01): ", end="")
+    birth = input()
+    if len(birth) == 10:
+        if birth[4] == "-" and birth[7] == "-":
+            birth = birth.split("-")
+            break
+    print("잘못된 입력입니다")
+student.setBirth(birth[0], birth[1], birth[2])
+
+print("사용 가능 언어(true/false)")
+languages = StudentDB.getLanguages()
+
+useLanguages = {}
+for i in range(len(languages)-1):
+    while(True):
+        print(languages[i] + ": ", end="")
+        answer = input()
+        if answer == "true":
+            useLanguages[languages[i]] = True
+            break;
+        elif answer == "false":
+            useLanguages[languages[i]] = False
+            break;
+        else:
+            print("잘못된 입력입니다.")
+
+print("제시된 언어 이외에도 사용 가능한 언어(있으면 ;으로 구분하여 입력(ex: visual vasic;ruby;R), 없으면 false)")
+answer = input()
+if answer != "false" and answer != None:
+    useLanguages[languages[-1]] = answer.split(';')
+else:
+    useLanguages[languages[-1]] = None
+
+student.setUseLanguage(useLanguages)
+
+print("관심 있는 회사(있으면 ;으로 구분하여 입력(ex: Naver;Google;Kakao), 없으면 false): ")
+answer = input()
+if answer != "false" and answer != None:
+    student.setLikeCompany(answer.split(";"))
+
+print("----------------------")
+student.printStudent()
+
+
+studentJoin(Student)
