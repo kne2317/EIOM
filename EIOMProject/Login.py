@@ -4,7 +4,7 @@ import StudentDB
 
 
 def studentLogin(student):
-    conn = pymysql.connect(host='localhost', user='root', password='hi0310', db='eiom', charset='utf8')
+    conn = pymysql.connect(host='localhost', user='eiom', password='1111', db='eiom_db', charset='utf8')
     curs = conn.cursor()
 
     sql = "select * from student where ID like '"+student.getID()+"';"
