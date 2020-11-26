@@ -13,16 +13,26 @@ class Login(QWidget):
     def initUI(self):
         w = QWidget(self)
         layout = QVBoxLayout()
-        self.setWindowTitle('EIOM')
-        self.move(350, 150)
-        self.resize(1200, 700)
+        w.setWindowTitle('EIOM')
+        w.resize(1200, 700)
         palette = QPalette()
         palette.setBrush(QPalette.Background, QBrush(QPixmap("img/login_background.png")))
         self.setPalette(palette)
 
-        title = QLabel("EIOM")
+        title = QLabel("EIOM", w)
+        title.setFont(QFont('Bauhaus 93', 25))
+        title.setAlignment(QtCore.Qt.AlignCenter)
         layout.addWidget(title)
-        w.setLayout(layout)
+        title.setGeometry(100, 100, 1000, 400)
+
+        title2 = QLabel("Employment Information Of Mirim", w)
+        title2.setFont(QFont('Bauhaus 93', 20))
+        title2.setAlignment(QtCore.Qt.AlignCenter)
+        layout.addWidget(title2)
+        title2.setGeometry(100, 100, 1000, 500)
+
+
+        #w.setLayout(layout)
         self.show()
 
 
