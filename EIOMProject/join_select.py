@@ -29,13 +29,37 @@ class JoinSelect(QWidget):
         title.setGeometry(100, 50, 1000, 200)
 
         studentBtn = QPushButton(w)
-        '''
-        s = QIcon("img/student.png")
-        s= s.scaled(QSize(500,500))
         studentBtn.setStyleSheet('background-color: rgb(0,0,0,0); ')
-        studentBtn.setIcon(s)
-        '''
-        studentBtn.setGeometry(100,100,200,200)
+        studentBtn.setIcon(QIcon('img/student.png'))
+        studentBtn.setIconSize(QSize(180,180))
+        studentBtn.setGeometry(200,320,200,200)
+
+        companyBtn = QPushButton(w)
+        companyBtn.setStyleSheet('background-color: rgb(0,0,0,0); ')
+        companyBtn.setIcon(QIcon('img/company.png'))
+        companyBtn.setIconSize(QSize(180, 180))
+        companyBtn.setGeometry(500, 320, 200, 200)
+
+        teacherBtn = QPushButton(w)
+        teacherBtn.setStyleSheet('background-color: rgb(0,0,0,0); ')
+        teacherBtn.setIcon(QIcon('img/teacher.png'))
+        teacherBtn.setIconSize(QSize(180, 180))
+        teacherBtn.setGeometry(800, 320, 200, 200)
+
+        sL = QLabel("학생", w)
+        sL.setFont(QFont('맑은 고딕', 18))
+        sL.setAlignment(QtCore.Qt.AlignCenter)
+        sL.setGeometry(250, 500, 100, 100)
+
+        cL = QLabel("회사", w)
+        cL.setFont(QFont('맑은 고딕', 18))
+        cL.setAlignment(QtCore.Qt.AlignCenter)
+        cL.setGeometry(550, 500, 100, 100)
+
+        tL = QLabel("교사", w)
+        tL.setFont(QFont('맑은 고딕', 18))
+        tL.setAlignment(QtCore.Qt.AlignCenter)
+        tL.setGeometry(850, 500, 100, 100)
 
         self.show()
 
