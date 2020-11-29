@@ -12,7 +12,7 @@ class JoinS(QWidget):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
-        
+
         self.initUI()
 
     def initUI(self):

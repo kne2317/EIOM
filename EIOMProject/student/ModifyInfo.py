@@ -10,32 +10,32 @@ class ModifyInfo(QWidget):
 
     def __init__(self):
         super().__init__()
+        self.basicInfo = BasicInfo()
+        self.w = QWidget(self)
         self.initUI()
 
     def initUI(self):
-        self.basicInfo = BasicInfo()
 
-        w = QWidget(self)
         layout = QVBoxLayout(self)
 
         self.setWindowTitle('EIOM')
-        w.resize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
+        self.w.resize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
         self.move(self.basicInfo.WindowX, self.basicInfo.WindowY)
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
 
         palette = QPalette()
         palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/background.png")))
-        w.setPalette(palette)
+        self.w.setPalette(palette)
 
-        w.setLayout(layout)
+        self.w.setLayout(layout)
 
-        nameL = QLabel("이름", w)
-        nameL.setFont(QFont('맑은 고딕', 15))
+        nameL = QLabel("이름", self.w)
+        nameL.setFont(QFont(self.basicInfo.font1, 15))
         nameL.setGeometry(100, 150, 100, 50)
 
-        name = QLineEdit('김나은', w)
+        name = QLineEdit('김나은', self.w)
 
-        major = QComboBox(w)
+        major = QComboBox(self.w)
         major.move(280, 200)
         major.setFixedHeight(50)
         major.setFixedWidth(330)
@@ -44,7 +44,7 @@ class ModifyInfo(QWidget):
         major.addItem('뉴미디어 웹솔루션과')
         major.addItem('뉴미디어 디자인과')
 
-        grade = QComboBox(w)
+        grade = QComboBox(self.w)
         grade.move(630, 200)
         grade.setFixedHeight(50)
         grade.setFixedWidth(130)
@@ -53,7 +53,7 @@ class ModifyInfo(QWidget):
         grade.addItem('2학년')
         grade.addItem('3학년')
 
-        ban = QComboBox(w)
+        ban = QComboBox(self.w)
         ban.move(780, 200)
         ban.setFixedHeight(50)
         ban.setFixedWidth(130)
@@ -70,7 +70,7 @@ class ModifyInfo(QWidget):
         scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         scroll.setWidgetResizable(False)
-        scroll.setWidget(w)
+        scroll.setWidget(self.w)
 
         vLayout = QVBoxLayout(self)
         vLayout.addWidget(scroll)
