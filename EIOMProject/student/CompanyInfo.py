@@ -3,6 +3,8 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore
 
+from BasicInfo import BasicInfo
+
 
 class CompanyInfo(QWidget):
 
@@ -12,11 +14,12 @@ class CompanyInfo(QWidget):
         self.initUI()
 
     def initUI(self):
+        self.basicInfo = BasicInfo()
         w = QWidget(self)
         layout = QVBoxLayout(self)
 
         self.setWindowTitle('EIOM')
-        self.w.resize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
+        w.resize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
         self.move(self.basicInfo.WindowX, self.basicInfo.WindowY)
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
 
