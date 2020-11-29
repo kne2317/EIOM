@@ -4,8 +4,10 @@ from PySide2.QtGui import *
 from PySide2 import QtCore, QtGui
 from JoinSelect import JoinSelect
 from BasicInfo import BasicInfo
+import Login
 
-class Login(QWidget):
+
+class Main(QWidget):
 
     def __init__(self):
         super().__init__()
@@ -13,7 +15,6 @@ class Login(QWidget):
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
         self.initUI()
-
 
     def initUI(self):
         layout = QVBoxLayout(self)
@@ -37,29 +38,32 @@ class Login(QWidget):
         title2.setAlignment(QtCore.Qt.AlignCenter)
         title2.setGeometry(100, 80, 1000, 500)
 
-        idInput = QLineEdit(self.w)
-        idInput.setGeometry(350,420,350,50)
-        idInput.setFont(QFont('맑은 고딕',12))
-        idInput.setPlaceholderText('아이디를 입력하시오')
+        self.idInput = QLineEdit(self.w)
+        self.idInput.setGeometry(350, 420, 350, 50)
+        self.idInput.setFont(QFont('맑은 고딕', 12))
+        self.idInput.setPlaceholderText('아이디를 입력하시오')
 
-        pwInput = QLineEdit(self.w)
-        pwInput.setEchoMode(QLineEdit.Password)
-        pwInput.setGeometry(350, 490, 350, 50)
-        pwInput.setFont(QFont('맑은 고딕', 12))
-        pwInput.setPlaceholderText('패스워드를 입력하시오')
-
+        self.pwInput = QLineEdit(self.w)
+        self.pwInput.setEchoMode(QLineEdit.Password)
+        self.pwInput.setGeometry(350, 490, 350, 50)
+        self.pwInput.setFont(QFont('맑은 고딕', 12))
+        self.pwInput.setPlaceholderText('패스워드를 입력하시오')
 
         loginBtn = QPushButton('LOGIN', self.w)
-        loginBtn.setFont(QFont('맑은 고딕',15))
-        loginBtn.setGeometry(720,418,130,125)
+        loginBtn.setFont(QFont('맑은 고딕', 15))
+        loginBtn.setGeometry(720, 418, 130, 125)
+        loginBtn.clicked.connect(self.login)
 
-        self.student = QRadioButton('학생',self.w)
-        self.teacher = QRadioButton('선생님',self.w)
-        self.company = QRadioButton('회사',self.w)
+        self.role = '학생'
 
-        self.student.setGeometry(350,520,100,100)
-        self.teacher.setGeometry(450,520,100,100)
-        self.company.setGeometry(580,520,100,100)
+        self.student = QRadioButton('학생', self.w)
+        self.student.setChecked(True)
+        self.teacher = QRadioButton('선생님', self.w)
+        self.company = QRadioButton('회사', self.w)
+
+        self.student.setGeometry(350, 520, 100, 100)
+        self.teacher.setGeometry(450, 520, 100, 100)
+        self.company.setGeometry(580, 520, 100, 100)
 
         self.student.setFont(QFont('맑은 고딕', 12))
         self.teacher.setFont(QFont('맑은 고딕', 12))
@@ -87,6 +91,30 @@ class Login(QWidget):
 
         self.show()
 
+    def login(self):
+        if self.role == '학생':
+            if Login.studentLogin(self.idInput.text(), self.pwInput.text()) == True:
+                print("로그인 성공")
+            else:
+                msgBox = QMessageBox()
+                msgBox.setText("로그인 실패! \n아이디와 비밀번호를 다시 확인해 주세요")
+                msgBox.exec_()
+
+        elif self.role == '선생님':
+            if Login.teacherLogin(self.idInput.text(), self.pwInput.text()) == True:
+                print("로그인 성공")
+            else:
+                msgBox = QMessageBox()
+                msgBox.setText("로그인 실패! \n아이디와 비밀번호를 다시 확인해 주세요")
+                msgBox.exec_()
+        else:
+            if Login.companyLogin(self.idInput.text(), self.pwInput.text()) == True:
+                print("로그인 성공")
+            else:
+                msgBox = QMessageBox()
+                msgBox.setText("로그인 실패! \n아이디와 비밀번호를 다시 확인해 주세요")
+                msgBox.exec_()
+
     def join(self):
         # 위치 지정
         geo = self.geometry()
@@ -97,15 +125,15 @@ class Login(QWidget):
 
     def groupboxRadFunction(self):
         if self.student.isChecked():
-            print("학생")
+            self.role = '학생'
         elif self.teacher.isChecked():
-            print("선생님")
+            self.role = '선생님'
         elif self.company.isChecked():
-            print("회사")
+            self.role = '회사'
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = Login()
+    ex = Main()
     ex.show()
     app.exec_()

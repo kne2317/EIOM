@@ -1,60 +1,40 @@
+import StudentDB
 import pymysql
 from Student import Student
-import StudentDB
 
+def studentLogin(id,pw):
+    student=Student()
 
-def studentLogin(student):
     conn = pymysql.connect(host='localhost', user='eiom', password='1111', db='eiom_db', charset='utf8')
     curs = conn.cursor()
 
-    sql = "select * from student where ID like '"+student.getID()+"';"
+    sql = "select * from student where ID = '"+id+"';"
     curs.execute(sql)
 
-    rows1 = curs.fetchall()
-    if len(rows1) > 0:
-        student.setName(rows1[0][2])
-        if rows1[0][5] != None:
-            student.setLikeCompany(rows1[0][5].split(';'))
-
-        if rows1[0][1] == student.getPassword():
-            sql = "select * from languages where ID like '"+student.getID()+"';"
-            curs.execute(sql)
-
-            rows2 = curs.fetchall()
-
-            '''sql = "DESCRIBE languages;"
-            curs.execute(sql)
-            rows3 = curs.fetchall()
-
-            languages = []
-            for i in range(1, len(rows3)):
-                languages.append(rows3[i][0])'''
-
-            languages = StudentDB.getLanguages()
-
-            useLanguages = {}
-            for i in range(len(languages)):
-                if rows2[0][i+1] == 1:
-                    useLanguages[languages[i]] = True
-                elif rows2[0][i+1] == 0:
-                    useLanguages[languages[i]] = False
-                elif rows2[0][i+1] != None:
-                    useLanguages[languages[i]] = rows2[0][i+1].split(';')
-            student.setUseLanguage(useLanguages)
-
-            student.printStudent()
-            print("로그인 성공! 어서오세요 " + s.getName() + "님!")
-
+    rows = curs.fetchall()
+    if len(rows) > 0:
+        if rows[0][1] == pw:
+            student.setID(rows[0][0])
+            student.setPassword(rows[0][1])
+            return True
+        else:
+            return False
+    else:
+        return False
 
     conn.close()
 
+def teacherLogin(id,pw):
+    conn = pymysql.connect(host='localhost', user='eiom', password='1111', db='eiom_db', charset='utf8')
+    curs = conn.cursor()
+
+    conn.close()
+
+def companyLogin(id,pw):
+    conn = pymysql.connect(host='localhost', user='eiom', password='1111', db='eiom_db', charset='utf8')
+    curs = conn.cursor()
 
 
-s = Student()
 
-print("아이디: ", end="")
-s.setID(input())
-print("비밀번호: ", end="")
-s.setPassword(input())
 
-studentLogin(s)
+    conn.close()
