@@ -1,11 +1,14 @@
 import pymysql
-from Student import Student
-import StudentDB
+
+from BasicInfo import BasicDB
+from student.Student import Student
+from student import StudentDB
 
 
 def studentJoin(s):
 
-    conn = pymysql.connect(host='127.0.0.1', user='root', password='hi0310', db='eiom', charset='utf8')
+    basicDB = BasicDB()
+    conn = basicDB.conn
     curs = conn.cursor()
 
     sql = "INSERT INTO student (`ID`, `password`, `name`, `birth`) values('"+s.getID()+"','"+s.getPassword()+"','"+s.getName()+"','"+s.getBirth().year+"-"+s.getBirth().month+"-"+s.getBirth().day+"');"

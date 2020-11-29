@@ -1,10 +1,13 @@
 import pymysql
-from Student import Student
-import StudentDB
+
+from BasicInfo import BasicDB
+from student.Student import Student
+from student import StudentDB
 
 
 def studentLogin(student):
-    conn = pymysql.connect(host='localhost', user='eiom', password='1111', db='eiom_db', charset='utf8')
+    basicDB = BasicDB()
+    conn = basicDB.conn
     curs = conn.cursor()
 
     sql = "select * from student where ID like '"+student.getID()+"';"

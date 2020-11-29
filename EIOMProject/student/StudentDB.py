@@ -1,9 +1,10 @@
 import pymysql
-from Student import Student
-
+from BasicInfo import BasicDB
+from student.Student import Student
 
 def getLanguages():
-    conn = pymysql.connect(host='localhost', user='eiom', password='1111', db='eiom_db', charset='utf8')
+    basicDB = BasicDB()
+    conn = basicDB.conn
     curs = conn.cursor()
 
     sql = "DESCRIBE languages;"
