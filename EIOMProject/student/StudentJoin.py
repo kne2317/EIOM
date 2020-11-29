@@ -1,29 +1,47 @@
+
 import pymysql
 
 from BasicInfo import BasicDB
-from student.Student import Student
+from student.Student import Student, Languages
 from student import StudentDB
 
 
-def studentJoin(s):
+def studentJoin(student, languages=Languages()):
 
     basicDB = BasicDB()
     conn = basicDB.conn
     curs = conn.cursor()
 
-    sql = "INSERT INTO student (`ID`, `password`, `name`, `birth`) values('"+s.getID()+"','"+s.getPassword()+"','"+s.getName()+"','"+s.getBirth().year+"-"+s.getBirth().month+"-"+s.getBirth().day+"');"
+    if not(len(student.getPortfolio())>0 and len(student.getIntroduce())>0):
+            sql = "INSERT INTO `eiom_db`.`student` (`id`, `password`, `name`, `major`, `grade`, `class`, `email`) VALUES ('"+student.getID()+"', '"+student.getPassword()+"', '"+student.getName()+"', '"+student.getMajor()+"', "+str(student.getGrade())+", "+str(student.getClass())+", '"+student.getEmail()+"');"
+    elif len(student.getPortfolio())>0:
+        # 포폴 추가
+        pass
+    elif len(student.getIntroduce())>0:
+        # 자소서 추가
+        pass
+    else:
+        # 포폴, 자소서 추가
+        pass
 
-    #sql = "INSERT INTO student (`ID`, `password`, `name`, `birth`) values('%s','%s','%s','%s-%s-%s');"
-    #data = [[s.getID(), 1], [s.getPassword(), 1], [s.getName(), 1], [s.getBirth().year, 1], [s.getBirth().month, 1], [s.getBirth().day, 1]]
-    #conn.cursor().executemany(sql, data)
-    #print(sql)
+    curs.execute(sql)
+    conn.commit()
+
+    sql = "INSERT INTO `eiom_db`.`languages` (`id`, `java`, `c`, `cpp`, `cs`, `html`, `css`, `javascript`, `jquery`, `nodejs`, `react`, `python`, `php`, `jsp`, `msql`, `servlet`, `adroid`, `linux`, `oracle`, `spring`, `kotlin`, `etc`) VALUES ('"+student.getID()+"', "+getBool(languages.java)+", "+getBool(languages.c)+", "+getBool(languages.cpp)+", "+getBool(languages.cs)+", "+getBool(languages.html)+", "+getBool(languages.css)+", "+getBool(languages.js)+", "+getBool(languages.jq)+", "+getBool(languages.node)+", "+getBool(languages.react)+", "+getBool(languages.py)+", "+getBool(languages.php)+", "+getBool(languages.jsp)+", "+getBool(languages.mysql)+", "+getBool(languages.servlet)+", "+getBool(languages.android)+", "+getBool(languages.linux)+", "+getBool(languages.oracle)+", "+getBool(languages.spring)+", "+getBool(languages.kotlin)+", '"+languages.etc+"');"
 
     curs.execute(sql)
     conn.commit()
 
     conn.close()
 
+
+def getBool(a):
+    if(a):
+        return '1'
+    else:
+        return '0'
 #####
+'''
 student = Student()
 
 print("이름: ", end="")
@@ -80,4 +98,4 @@ print("----------------------")
 student.printStudent()
 
 
-studentJoin(Student)
+studentJoin(Student)'''

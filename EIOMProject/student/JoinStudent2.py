@@ -99,8 +99,8 @@ class JoinS2(QWidget):
     def goNextPage(self):
         # 위치 지정
         self.student.setMajor(self.major.currentText())
-        self.student.setGrade(self.grade.currentText())
-        self.student.setClass(self.ban.currentText())
+        self.student.setGrade((int)(self.grade.currentText()[0]))
+        self.student.setClass((int)(self.ban.currentText()[0]))
 
         self.nextPage = JoinS3(self.student)
 
