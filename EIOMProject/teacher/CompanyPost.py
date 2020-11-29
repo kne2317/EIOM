@@ -2,11 +2,10 @@ import sys
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore
-
 from BasicInfo import BasicInfo
 
 
-class CompanyPost(QWidget):
+class noticeList(QWidget):
 
     def __init__(self):
         super().__init__()
@@ -16,11 +15,10 @@ class CompanyPost(QWidget):
         self.initUI()
 
     def initUI(self):
-
         layout = QVBoxLayout(self)
 
         self.setWindowTitle('EIOM')
-        self.w.resize(self.basicInfo.WindowWidth, 1200)
+        self.w.resize(self.basicInfo.WindowWidth, 1300)
         self.move(self.basicInfo.WindowX, self.basicInfo.WindowY)
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
 
@@ -37,49 +35,44 @@ class CompanyPost(QWidget):
 
         stateBtn = QPushButton('통계', self.w)
         stateBtn.setFont(QFont(self.basicInfo.font1, 13))
-        stateBtn.setGeometry(0, 70, 200, 50)
+        stateBtn.setGeometry(0, 70, self.basicInfo.WindowWidth / 5, 50)
         stateBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
         noticeBtn = QPushButton('공지', self.w)
         noticeBtn.setFont(QFont(self.basicInfo.font1, 13))
-        noticeBtn.setGeometry(200, 70, 200, 50)
+        noticeBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 1, 70, self.basicInfo.WindowWidth / 5, 50)
         noticeBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        companyBtn = QPushButton('회사', self.w)
+        companyBtn = QPushButton('취업의뢰', self.w)
         companyBtn.setFont(QFont(self.basicInfo.font1, 13))
-        companyBtn.setGeometry(400, 70, 200, 50)
+        companyBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 2, 70, self.basicInfo.WindowWidth / 5, 50)
         companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        postBtn = QPushButton('취업의뢰', self.w)
+        postBtn = QPushButton('포트폴리오', self.w)
         postBtn.setFont(QFont(self.basicInfo.font1, 13))
-        postBtn.setGeometry(600, 70, 200, 50)
+        postBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 3, 70, self.basicInfo.WindowWidth / 5, 50)
         postBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        pfBtn = QPushButton('포트폴리오', self.w)
+        pfBtn = QPushButton('내 정보', self.w)
         pfBtn.setFont(QFont(self.basicInfo.font1, 13))
-        pfBtn.setGeometry(800, 70, 200, 50)
+        pfBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 4, 70, self.basicInfo.WindowWidth / 5, 50)
         pfBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        infoBtn = QPushButton('내 정보', self.w)
-        infoBtn.setFont(QFont(self.basicInfo.font1, 13))
-        infoBtn.setGeometry(1000, 70, 200, 50)
-        infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        contTitle=QLabel('@@@ soft \n',self.w)
-        contTitle.setFont(QFont(self.basicInfo.font1,13))
-        contTitle.setGeometry(100,150,1000,90)
+        contTitle = QLabel('@@@ soft \n', self.w)
+        contTitle.setFont(QFont(self.basicInfo.font1, 13))
+        contTitle.setGeometry(100, 150, 1000, 90)
         contTitle.setStyleSheet('border-top:1px solid black; border-bottom:1px solid black; ')
         contTitle.setAlignment(QtCore.Qt.AlignCenter)
 
-        writer=QLabel('@@@ soft | 2020.12.01',contTitle)
+        writer = QLabel('@@@ soft | 2020.12.01', contTitle)
         writer.setFont(QFont(self.basicInfo.font1, 10))
-        writer.setGeometry(0,60,1000,20)
+        writer.setGeometry(0, 60, 1000, 20)
         writer.setStyleSheet('color:gray; border:0px;')
         writer.setAlignment(QtCore.Qt.AlignCenter)
 
-        t1 = QLabel('회사 정보',self.w)
-        t1.setFont(QFont(self.basicInfo.font1,15))
-        t1.setGeometry(100,260,500,40)
+        t1 = QLabel('회사 정보', self.w)
+        t1.setFont(QFont(self.basicInfo.font1, 15))
+        t1.setGeometry(100, 260, 500, 40)
 
         t2 = QLabel('담당자 정보', self.w)
         t2.setFont(QFont(self.basicInfo.font1, 15))
@@ -153,9 +146,9 @@ class CompanyPost(QWidget):
         webL2.setFont(QFont(self.basicInfo.font1, 13))
         webL2.setGeometry(230, 830, 500, 40)
 
-        personEL1=QLabel("e-mail",self.w)
+        personEL1 = QLabel("e-mail", self.w)
         personEL1.setFont(QFont(self.basicInfo.font1, 13))
-        personEL1.setGeometry(630,320,500,40)
+        personEL1.setGeometry(630, 320, 500, 40)
 
         personEL2 = QLabel("s2019s17@e-mirim.hs.kr", self.w)
         personEL2.setFont(QFont(self.basicInfo.font1, 13))
@@ -233,7 +226,7 @@ class CompanyPost(QWidget):
         useLangL2.setFont(QFont(self.basicInfo.font1, 13))
         useLangL2.setGeometry(730, 700, 500, 40)
 
-        employmentL1= QLabel("고용 형태", self.w)
+        employmentL1 = QLabel("고용 형태", self.w)
         employmentL1.setFont(QFont(self.basicInfo.font1, 13))
         employmentL1.setGeometry(630, 750, 500, 40)
 
@@ -245,7 +238,7 @@ class CompanyPost(QWidget):
         workL1.setFont(QFont(self.basicInfo.font1, 13))
         workL1.setGeometry(630, 800, 500, 40)
 
-        workL2= QLabel("c++을 이용한 개발", self.w)
+        workL2 = QLabel("c++을 이용한 개발", self.w)
         workL2.setFont(QFont(self.basicInfo.font1, 13))
         workL2.setGeometry(730, 800, 500, 40)
 
@@ -273,6 +266,21 @@ class CompanyPost(QWidget):
         benefitL2.setFont(QFont(self.basicInfo.font1, 12))
         benefitL2.setGeometry(630, 1000, 400, 200)
 
+        allowBtn = QPushButton('승인', self.w)
+        allowBtn.setFont(QFont(self.basicInfo.font1, 12))
+        allowBtn.setGeometry(610, 1250, 130, 30)
+        allowBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
+
+        refusalBtn = QPushButton('거절', self.w)
+        refusalBtn.setFont(QFont(self.basicInfo.font1, 12))
+        refusalBtn.setGeometry(755, 1250, 130, 30)
+        refusalBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
+
+        backBtn = QPushButton('뒤로가기', self.w)
+        backBtn.setFont(QFont(self.basicInfo.font1, 12))
+        backBtn.setGeometry(900, 1250, 130, 30)
+        backBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
+
         scroll = QScrollArea()
         scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -289,5 +297,5 @@ class CompanyPost(QWidget):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
 
-    ex = CompanyPost()
+    ex = noticeList()
     sys.exit(app.exec_())
