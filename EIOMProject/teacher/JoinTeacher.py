@@ -63,7 +63,7 @@ class JoinS(QWidget):
         codeInput.setFont(QFont('맑은 고딕', 12))
         codeInput.setPlaceholderText('가입코드 입력')
 
-        nextBtn = QPushButton('NEXT>>', self.w)
+        nextBtn = QPushButton('JOIN', self.w)
         nextBtn.setFont(QFont('맑은 고딕', 15))
         nextBtn.setGeometry(350, 600, 500, 50)
         self.show()
