@@ -57,9 +57,9 @@ class JoinS(QWidget):
         phInput.setFont(QFont('맑은 고딕', 12))
         phInput.setPlaceholderText('담당자 연락처 입력')
 
-        nextBtn = QPushButton('JOIN', self.w)
-        nextBtn.setFont(QFont('맑은 고딕', 15))
-        nextBtn.setGeometry(350, 600, 500, 50)
+        joinBtn = QPushButton('JOIN', self.w)
+        joinBtn.setFont(QFont('맑은 고딕', 15))
+        joinBtn.setGeometry(350, 600, 500, 50)
         self.show()
 
 

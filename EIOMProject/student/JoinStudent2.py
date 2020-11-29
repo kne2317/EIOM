@@ -1,7 +1,7 @@
 import sys
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
-from PySide2 import QtCore
+from PySide2 import QtCore, QtGui
 
 
 class JoinS2(QWidget):
@@ -56,7 +56,45 @@ class JoinS2(QWidget):
         ban.addItem('5반')
         ban.addItem('6반')
 
+        pfL= QLabel('포트폴리오',w)
+        pfL.setFont(QFont('맑은 고딕',15))
+        pfL.move(280,300)
+
+        self.pfInput = QLineEdit(w)
+        self.pfInput.setFont(QFont('맑은 고딕',10))
+        self.pfInput.setGeometry(280,350,500,50)
+
+        pfBtn = QPushButton('Browse', w)
+        pfBtn.setFont(QFont('맑은 고딕', 12))
+        pfBtn.setGeometry(800, 350, 110, 50)
+        pfBtn.clicked.connect(self.show_file_open_p)
+
+        introduceL = QLabel('자기소개서', w)
+        introduceL.setFont(QFont('맑은 고딕', 15))
+        introduceL.move(280, 450)
+
+        self.introduceInput = QLineEdit(w)
+        self.introduceInput.setFont(QFont('맑은 고딕', 10))
+        self.introduceInput.setGeometry(280, 500, 500, 50)
+
+        introduceBtn = QPushButton('Browse', w)
+        introduceBtn.setFont(QFont('맑은 고딕', 12))
+        introduceBtn.setGeometry(800, 500, 110, 50)
+        introduceBtn.clicked.connect(self.show_file_open_i)
+
+        joinBtn = QPushButton('JOIN', w)
+        joinBtn.setFont(QFont('맑은 고딕', 15))
+        joinBtn.setGeometry(280, 600, 630, 50)
+
         self.show()
+
+    def show_file_open_p(self):
+        fname = QFileDialog.getOpenFileName()
+        self.pfInput.setText(fname[0])
+
+    def show_file_open_i(self):
+        fname = QFileDialog.getOpenFileName()
+        self.introduceInput.setText(fname[0])
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
