@@ -213,6 +213,7 @@ class MyPage(QWidget):
 
         vLayout = QVBoxLayout(self)
         vLayout.addWidget(scroll)
+        vLayout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(vLayout)
 
 
