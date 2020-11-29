@@ -20,7 +20,7 @@ class CompanyPost(QWidget):
         layout = QVBoxLayout(self)
 
         self.setWindowTitle('EIOM')
-        self.w.resize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
+        w.resize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
         self.move(self.basicInfo.WindowX, self.basicInfo.WindowY)
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
 

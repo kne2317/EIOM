@@ -34,7 +34,7 @@ class JoinC(QWidget):
 
         nameInput = QLineEdit(self.w)
         nameInput.setGeometry(350, 230, 380, 50)
-        nameInput.setFont(QFont(self.basicInfo.font, 12))
+        nameInput.setFont(QFont(self.basicInfo.font1, 12))
         nameInput.setPlaceholderText('회사명 입력')
 
         nameCheck = QPushButton('중복체크', self.w)
