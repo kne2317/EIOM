@@ -11,12 +11,12 @@ class JoinC(QWidget):
     def __init__(self):
         super().__init__()
 
+        self.basicInfo = BasicInfo()
+        self.w = QWidget(self)
+
         self.initUI()
 
     def initUI(self):
-        self.basicInfo = BasicInfo()
-
-        self.w = QWidget(self)
         layout = QVBoxLayout()
         self.setWindowTitle('EIOM')
         self.w.resize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)

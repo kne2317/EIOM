@@ -10,26 +10,26 @@ class JoinS2(QWidget):
 
     def __init__(self):
         super().__init__()
+        self.basicInfo = BasicInfo()
+        self.w = QWidget(self)
+
         self.initUI()
 
     def initUI(self):
-        self.basicInfo = BasicInfo()
-
-        w = QWidget(self)
         self.setWindowTitle('EIOM')
-        w.resize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
+        self.w.resize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
         self.move(self.basicInfo.WindowX, self.basicInfo.WindowY)
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
         palette = QPalette()
         palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/join_background.png")))
         self.setPalette(palette)
 
-        title = QLabel("EIOM - JOIN [ Student ]", w)
+        title = QLabel("EIOM - JOIN [ Student ]", self.w)
         title.setFont(QFont(self.basicInfo.titleFont, 25))
         title.setAlignment(QtCore.Qt.AlignCenter)
         title.setGeometry(100, 45, 1000, 50)
 
-        major = QComboBox(w)
+        major = QComboBox(self.w)
         major.move(280,200)
         major.setFixedHeight(50)
         major.setFixedWidth(330)
@@ -38,7 +38,7 @@ class JoinS2(QWidget):
         major.addItem('뉴미디어 웹솔루션과')
         major.addItem('뉴미디어 디자인과')
 
-        grade = QComboBox(w)
+        grade = QComboBox(self.w)
         grade.move(630, 200)
         grade.setFixedHeight(50)
         grade.setFixedWidth(130)
@@ -47,7 +47,7 @@ class JoinS2(QWidget):
         grade.addItem('2학년')
         grade.addItem('3학년')
 
-        ban = QComboBox(w)
+        ban = QComboBox(self.w)
         ban.move(780, 200)
         ban.setFixedHeight(50)
         ban.setFixedWidth(130)
@@ -60,33 +60,33 @@ class JoinS2(QWidget):
         ban.addItem('5반')
         ban.addItem('6반')
 
-        pfL= QLabel('포트폴리오',w)
+        pfL= QLabel('포트폴리오',self.w)
         pfL.setFont(QFont(self.basicInfo.font1,15))
         pfL.move(280,300)
 
-        self.pfInput = QLineEdit(w)
+        self.pfInput = QLineEdit(self.w)
         self.pfInput.setFont(QFont(self.basicInfo.font1,10))
         self.pfInput.setGeometry(280,350,500,50)
 
-        pfBtn = QPushButton('Browse', w)
+        pfBtn = QPushButton('Browse', self.w)
         pfBtn.setFont(QFont(self.basicInfo.font1, 12))
         pfBtn.setGeometry(800, 350, 110, 50)
         pfBtn.clicked.connect(self.show_file_open_p)
 
-        introduceL = QLabel('자기소개서', w)
+        introduceL = QLabel('자기소개서', self.w)
         introduceL.setFont(QFont(self.basicInfo.font1, 15))
         introduceL.move(280, 450)
 
-        self.introduceInput = QLineEdit(w)
+        self.introduceInput = QLineEdit(self.w)
         self.introduceInput.setFont(QFont(self.basicInfo.font1, 10))
         self.introduceInput.setGeometry(280, 500, 500, 50)
 
-        introduceBtn = QPushButton('Browse', w)
+        introduceBtn = QPushButton('Browse', self.w)
         introduceBtn.setFont(QFont(self.basicInfo.font1, 12))
         introduceBtn.setGeometry(800, 500, 110, 50)
         introduceBtn.clicked.connect(self.show_file_open_i)
 
-        joinBtn = QPushButton('JOIN', w)
+        joinBtn = QPushButton('JOIN', self.w)
         joinBtn.setFont(QFont(self.basicInfo.font1, 15))
         joinBtn.setGeometry(280, 600, 630, 50)
 

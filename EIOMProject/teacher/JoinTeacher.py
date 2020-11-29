@@ -10,11 +10,12 @@ class JoinS(QWidget):
 
     def __init__(self):
         super().__init__()
+        self.basicInfo = BasicInfo()
         self.w = QWidget(self)
+        
         self.initUI()
 
     def initUI(self):
-        self.basicInfo = BasicInfo()
 
         layout = QVBoxLayout()
         self.w.setWindowTitle('EIOM')
