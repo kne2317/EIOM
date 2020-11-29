@@ -16,7 +16,6 @@ def studentLogin(student):
     rows1 = curs.fetchall()
     if len(rows1) > 0:
         student.setName(rows1[0][2])
-        student.setBirth(rows1[0][3].year, rows1[0][3].month, rows1[0][3].day)
         if rows1[0][5] != None:
             student.setLikeCompany(rows1[0][5].split(';'))
 

@@ -2,22 +2,27 @@ import sys
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore, QtGui
-import join_select
-
+from JoinSelect import JoinSelect
+from BasicInfo import BasicInfo
 
 class Login(QWidget):
 
     def __init__(self):
         super().__init__()
+        self.joinpage = JoinSelect()
+        self.basicInfo = BasicInfo()
+        self.w = QWidget(self)
         self.initUI()
 
+
     def initUI(self):
-        self.w = QWidget(self)
-        layout = QVBoxLayout()
+        layout = QVBoxLayout(self)
+
         self.setWindowTitle('EIOM')
-        self.w.resize(1200, 700)
-        self.move(400,100)
-        self.setFixedSize(1200,700)
+        self.w.resize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
+        self.move(self.basicInfo.WindowX, self.basicInfo.WindowY)
+        self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
+
         palette = QPalette()
         palette.setBrush(QPalette.Background, QBrush(QPixmap("img/login_background.png")))
         self.setPalette(palette)
@@ -25,13 +30,11 @@ class Login(QWidget):
         title = QLabel("EIOM", self.w)
         title.setFont(QFont('impact', 25))
         title.setAlignment(QtCore.Qt.AlignCenter)
-        layout.addWidget(title)
         title.setGeometry(100, 80, 1000, 400)
 
         title2 = QLabel("Employment Information Of Mirim", self.w)
         title2.setFont(QFont('impact', 25))
         title2.setAlignment(QtCore.Qt.AlignCenter)
-        layout.addWidget(title2)
         title2.setGeometry(100, 80, 1000, 500)
 
         idInput = QLineEdit(self.w)
@@ -73,6 +76,7 @@ class Login(QWidget):
         joinBtn.setFont(QFont('맑은 고딕', 13))
         joinBtn.setGeometry(735, 540, 100, 50)
         joinBtn.setStyleSheet('background-color: rgb(0,0,0,0); ')
+        joinBtn.clicked.connect(self.join)
 
         '''
         searchBtn = QPushButton('ID / PW 찾기', w)
@@ -82,6 +86,14 @@ class Login(QWidget):
         '''
 
         self.show()
+
+    def join(self):
+        # 위치 지정
+        geo = self.geometry()
+        titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
+        self.joinpage.move(geo.x(), geo.y() - titlebar_height)
+        self.hide()
+        self.joinpage.show()
 
     def groupboxRadFunction(self):
         if self.student.isChecked():
@@ -94,6 +106,6 @@ class Login(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-
     ex = Login()
-    sys.exit(app.exec_())
+    ex.show()
+    app.exec_()
