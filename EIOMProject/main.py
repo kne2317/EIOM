@@ -23,13 +23,13 @@ class Login(QWidget):
         self.setPalette(palette)
 
         title = QLabel("EIOM", self.w)
-        title.setFont(QFont('Candara', 25))
+        title.setFont(QFont('impact', 25))
         title.setAlignment(QtCore.Qt.AlignCenter)
         layout.addWidget(title)
         title.setGeometry(100, 80, 1000, 400)
 
         title2 = QLabel("Employment Information Of Mirim", self.w)
-        title2.setFont(QFont('Candara', 25))
+        title2.setFont(QFont('impact', 25))
         title2.setAlignment(QtCore.Qt.AlignCenter)
         layout.addWidget(title2)
         title2.setGeometry(100, 80, 1000, 500)
@@ -73,7 +73,6 @@ class Login(QWidget):
         joinBtn.setFont(QFont('맑은 고딕', 13))
         joinBtn.setGeometry(735, 540, 100, 50)
         joinBtn.setStyleSheet('background-color: rgb(0,0,0,0); ')
-        joinBtn.clicked.connect(self.join)
 
         '''
         searchBtn = QPushButton('ID / PW 찾기', w)
@@ -83,10 +82,6 @@ class Login(QWidget):
         '''
 
         self.show()
-
-    def join(self):
-        app = join_select.JoinSelect()
-        jt = QApplication(sys.argv)
 
     def groupboxRadFunction(self):
         if self.student.isChecked():

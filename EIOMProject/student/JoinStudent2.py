@@ -21,7 +21,7 @@ class JoinS2(QWidget):
         self.setPalette(palette)
 
         title = QLabel("EIOM - JOIN [ Student ]", w)
-        title.setFont(QFont('Candara', 25))
+        title.setFont(QFont('impact', 25))
         title.setAlignment(QtCore.Qt.AlignCenter)
         title.setGeometry(100, 45, 1000, 50)
 
