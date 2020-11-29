@@ -4,15 +4,17 @@ from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
+from student.Student import Student
 
 
-class JoinS(QWidget):
+class JoinS3(QWidget):
 
-    def __init__(self):
+    def __init__(self, student=Student()):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
-
+        self.student = student
+        self.student.print()
         self.initUI()
 
     def initUI(self):

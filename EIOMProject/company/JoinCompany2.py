@@ -64,6 +64,9 @@ class JoinS(QWidget):
         joinBtn = QPushButton('JOIN', self.w)
         joinBtn.setFont(QFont(self.basicInfo.font1, 15))
         joinBtn.setGeometry(350, 600, 500, 50)
+
+
+
         self.show()
 
 
