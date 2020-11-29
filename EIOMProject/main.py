@@ -14,7 +14,7 @@ class Login(QWidget):
     def initUI(self):
         self.w = QWidget(self)
         layout = QVBoxLayout()
-        self.w.setWindowTitle('EIOM')
+        self.setWindowTitle('EIOM')
         self.w.resize(1200, 700)
         self.move(400,100)
         self.setFixedSize(1200,700)

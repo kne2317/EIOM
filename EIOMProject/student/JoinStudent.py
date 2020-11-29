@@ -1,24 +1,24 @@
 import sys
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
-from PySide2 import QtCore, QtGui
+from PySide2 import QtCore
 
 
 class JoinS(QWidget):
 
     def __init__(self):
         super().__init__()
+        self.w = QWidget(self)
         self.initUI()
 
     def initUI(self):
-        self.w = QWidget(self)
         layout = QVBoxLayout()
         self.w.setWindowTitle('EIOM')
         self.w.resize(1200, 700)
-        self.move(400,100)
-        self.setFixedSize(1200,700)
+        self.move(400, 100)
+        self.setFixedSize(1200, 700)
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("img/join_background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/join_background.png")))
         self.setPalette(palette)
 
         title = QLabel("EIOM - JOIN [ Student ]", self.w)
@@ -27,10 +27,9 @@ class JoinS(QWidget):
         layout.addWidget(title)
         title.setGeometry(100, 45, 1000, 50)
 
-
         nameInput = QLineEdit(self.w)
-        nameInput.setGeometry(350,200,500,50)
-        nameInput.setFont(QFont('맑은 고딕',12))
+        nameInput.setGeometry(350, 200, 500, 50)
+        nameInput.setFont(QFont('맑은 고딕', 12))
         nameInput.setPlaceholderText('이름 입력')
 
         idInput = QLineEdit(self.w)
@@ -59,14 +58,10 @@ class JoinS(QWidget):
         mailInput.setFont(QFont('맑은 고딕', 12))
         mailInput.setPlaceholderText('e-mail 입력')
 
-        loginBtn = QPushButton('NEXT>>', self.w)
-        loginBtn.setFont(QFont('맑은 고딕',15))
-        loginBtn.setGeometry(350,550,500,50)
-
-
-
+        nextBtn = QPushButton('NEXT>>', self.w)
+        nextBtn.setFont(QFont('맑은 고딕', 15))
+        nextBtn.setGeometry(350, 550, 500, 50)
         self.show()
-
 
 
 if __name__ == '__main__':
