@@ -3,6 +3,8 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore
 
+from BasicInfo import BasicInfo
+
 
 class noticeList(QWidget):
 
@@ -16,7 +18,8 @@ class noticeList(QWidget):
         layout = QVBoxLayout(self)
 
         self.setWindowTitle('EIOM')
-        w.resize(1200, 1200)
+        self.basicInfo = BasicInfo()
+        self.w.resize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
         self.move(400, 100)
         self.setFixedSize(1200, 700)
 

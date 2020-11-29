@@ -3,6 +3,8 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore
 
+from BasicInfo import BasicInfo
+
 
 class JoinS(QWidget):
 
@@ -14,7 +16,8 @@ class JoinS(QWidget):
     def initUI(self):
         layout = QVBoxLayout()
         self.w.setWindowTitle('EIOM')
-        self.w.resize(1200, 700)
+        self.basicInfo = BasicInfo()
+        self.w.resize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
         self.move(400, 100)
         self.setFixedSize(1200, 700)
         palette = QPalette()
