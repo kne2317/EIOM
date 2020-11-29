@@ -6,7 +6,7 @@ from PySide2 import QtCore
 from BasicInfo import BasicInfo
 
 
-class noticeList(QWidget):
+class CompanyPost(QWidget):
 
     def __init__(self):
         super().__init__()
@@ -288,5 +288,5 @@ class noticeList(QWidget):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
 
-    ex = noticeList()
+    ex = CompanyPost()
     sys.exit(app.exec_())
