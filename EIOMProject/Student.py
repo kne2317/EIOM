@@ -1,25 +1,14 @@
-class Birth:
-    def __init__(self, year, month, day):
-        self.year = year
-        self.month = month
-        self.day = day
-
-    def setYear(self, year):
-        self.year = year
-
-    def setMonth(self, month):
-        self.month = month
-
-    def setDay(self, day):
-        self.day = day
 
 class Student:
     def __init__(self):
         self.__ID = ''
         self.__password = ''
         self.__name = ''
-        self.__birth = Birth(0, 0, 0)
         self.__portfolio = ''
+        self.__major=''
+        self.__grade=0
+        self.__class_=0
+        self.__introduce = ''
         self.__useLanguage = []
         self.__likeCompany = []
 
@@ -30,23 +19,20 @@ class Student:
         print(self.getID())
         print("비밀번호: ", end="")
         print(self.getPassword())
-        print("생년월일: ", end="")
-        print(self.getBirth().year, end="-")
-        print(self.getBirth().month, end="-")
-        print(self.getBirth().day)
         print("사용언어: ", end="")
         print(self.getUseLanguage())
         print("관심회사: ", end="")
         print(self.getLikeCompany())
 
 
-    def setStudent(self, id, password, name, birth_year, birth_month, birth_day, portfolio, useLanguage, likeCompany):
+    def setStudent(self, id, password, name, major, grade, class_,  introduce, portfolio, useLanguage, likeCompany):
         self.__ID = id
         self.__password = password
         self.__name = name
-        self.__birth.year = birth_year
-        self.__birth.month = birth_month
-        self.__birth.day = birth_day
+        self.__major = major
+        self.__grade = grade
+        self.__class_=class_
+        self.__introduce=introduce
         self.__portfolio = portfolio
         self.__useLanguage = useLanguage
         self.__likeCompany = likeCompany
