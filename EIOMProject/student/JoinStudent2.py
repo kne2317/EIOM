@@ -8,10 +8,12 @@ from BasicInfo import BasicInfo
 
 class JoinS2(QWidget):
 
-    def __init__(self):
+    def __init__(self, student):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
+        self.student = student
+        self.student.print()
 
         self.initUI()
 
