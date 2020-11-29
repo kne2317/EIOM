@@ -34,7 +34,7 @@ class CompanyInfo(QWidget):
         title.setAlignment(QtCore.Qt.AlignCenter)
         title.setGeometry(100, 10, 1000, 50)
 
-        stateBtn = QPushButton('통계', self.w)
+        stateBtn = QPushButton('취업의뢰', self.w)
         stateBtn.setFont(QFont(self.basicInfo.font1, 13))
         stateBtn.setGeometry(0, 70, self.basicInfo.WindowWidth / 3, 50)
         stateBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')

@@ -12,14 +12,12 @@ def studentLogin(id,pw):
     conn = basicDB.conn
     curs = conn.cursor()
 
-    sql = "select * from student where ID = '"+id+"';"
+    sql = "select * from student where id = '"+id+"';"
     curs.execute(sql)
 
     rows = curs.fetchall()
     if len(rows) > 0:
         if rows[0][1] == pw:
-            student.setID(rows[0][0])
-            student.setPassword(rows[0][1])
             return True
         else:
             return False
@@ -33,6 +31,20 @@ def teacherLogin(id,pw):
     conn = basicDB.conn
     curs = conn.cursor()
 
+    sql = "select * from teacher where id = '" + id + "';"
+    curs.execute(sql)
+
+    rows = curs.fetchall()
+    if len(rows) > 0:
+        print(rows)
+        if rows[0][2] == pw:
+
+            return True
+        else:
+            return False
+    else:
+        return False
+
     conn.close()
 
 def companyLogin(id,pw):
@@ -40,7 +52,16 @@ def companyLogin(id,pw):
     conn = basicDB.conn
     curs = conn.cursor()
 
+    sql = "select * from company where id = '" + id + "';"
+    curs.execute(sql)
 
-
+    rows = curs.fetchall()
+    if len(rows) > 0:
+        if rows[0][2] == pw:
+            return True
+        else:
+            return False
+    else:
+        return False
 
     conn.close()

@@ -3,9 +3,13 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore, QtGui
 from JoinSelect import JoinSelect
-from BasicInfo import BasicInfo
+from BasicInfo import BasicInfo, BasicDB
 import Login
-
+from student.Rate import sRate
+from teacher.Rate import tRate
+from company.Company import Company
+from company.NoneEmployementRequest import NoneEmployementRequest
+from company.CompanyEmploymentRequest import CompanyEmploymentRequest
 
 class Main(QWidget):
 
@@ -13,6 +17,15 @@ class Main(QWidget):
         super().__init__()
         self.joinpage = JoinSelect()
         self.basicInfo = BasicInfo()
+        self.company=Company()
+
+        self.sLogin = sRate()
+        self.tLogin = tRate()
+        if self.company.getRequest_authority==0:
+            self.cLogin = NoneEmployementRequest()
+        else:
+            self.cLogin=CompanyEmploymentRequest()
+
         self.w = QWidget(self)
         self.initUI()
 
@@ -54,8 +67,6 @@ class Main(QWidget):
         loginBtn.setGeometry(720, 418, 130, 125)
         loginBtn.clicked.connect(self.login)
 
-        self.role = '학생'
-
         self.student = QRadioButton('학생', self.w)
         self.student.setChecked(True)
         self.teacher = QRadioButton('선생님', self.w)
@@ -68,10 +79,6 @@ class Main(QWidget):
         self.student.setFont(QFont('맑은 고딕', 12))
         self.teacher.setFont(QFont('맑은 고딕', 12))
         self.company.setFont(QFont('맑은 고딕', 12))
-
-        self.student.clicked.connect(self.groupboxRadFunction)
-        self.teacher.clicked.connect(self.groupboxRadFunction)
-        self.company.clicked.connect(self.groupboxRadFunction)
 
         palette = QtGui.QPalette()
         palette.setColor(QtGui.QPalette.Background, QtGui.QColor(144, 112, 144))
@@ -92,24 +99,27 @@ class Main(QWidget):
         self.show()
 
     def login(self):
-        if self.role == '학생':
+        if self.student.isChecked():
             if Login.studentLogin(self.idInput.text(), self.pwInput.text()) == True:
-                print("로그인 성공")
+                self.close()
+                self.sLogin.show()
             else:
                 msgBox = QMessageBox()
                 msgBox.setText("로그인 실패! \n아이디와 비밀번호를 다시 확인해 주세요")
                 msgBox.exec_()
 
-        elif self.role == '선생님':
+        if self.teacher.isChecked():
             if Login.teacherLogin(self.idInput.text(), self.pwInput.text()) == True:
-                print("로그인 성공")
+                self.close()
+                self.tLogin.show()
             else:
                 msgBox = QMessageBox()
                 msgBox.setText("로그인 실패! \n아이디와 비밀번호를 다시 확인해 주세요")
                 msgBox.exec_()
-        else:
+        if self.company.isChecked():
             if Login.companyLogin(self.idInput.text(), self.pwInput.text()) == True:
-                print("로그인 성공")
+                self.close()
+                self.cLogin.show()
             else:
                 msgBox = QMessageBox()
                 msgBox.setText("로그인 실패! \n아이디와 비밀번호를 다시 확인해 주세요")
@@ -122,14 +132,6 @@ class Main(QWidget):
         self.joinpage.move(geo.x(), geo.y() - titlebar_height)
         self.hide()
         self.joinpage.show()
-
-    def groupboxRadFunction(self):
-        if self.student.isChecked():
-            self.role = '학생'
-        elif self.teacher.isChecked():
-            self.role = '선생님'
-        elif self.company.isChecked():
-            self.role = '회사'
 
 
 if __name__ == '__main__':
