@@ -6,6 +6,7 @@ from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
+from main import Main
 from student.Student import Student, Languages
 from student.StudentJoin import studentJoin
 
