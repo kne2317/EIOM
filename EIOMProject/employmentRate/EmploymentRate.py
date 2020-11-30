@@ -64,5 +64,19 @@ def updateRate(y1,y2,y3):
     conn = basicDB.conn
     curs = conn.cursor()
 
-    sql = "update ;"
+    sql = "update employee_rate set grade3_people_num = "+str(y1['grade3'])+", eiom="+str(y1['eiom'])+\
+          ", self="+str(y1['self'])+", scene="+str(y1['scene'])+", request_cnt="+str(y1['request_cnt'])+" where year='"+y1['year']+"';"
     curs.execute(sql)
+    conn.commit()
+
+    sql = "update employee_rate set grade3_people_num = " + str(y2['grade3']) + ", eiom=" + str(y2['eiom']) + \
+          ", self=" + str(y2['self']) + ", scene=" + str(y2['scene']) + ", request_cnt=" + str(y2['request_cnt']) + " where year='"+y2['year']+"';"
+    curs.execute(sql)
+    conn.commit()
+
+    sql = "update employee_rate set grade3_people_num = " + str(y3['grade3']) + ", eiom=" + str(y3['eiom']) + \
+          ", self=" + str(y3['self']) + ", scene=" + str(y3['scene']) + ", request_cnt=" + str(y3['request_cnt']) + " where year='"+y3['year']+"';"
+    curs.execute(sql)
+    conn.commit()
+
+    print("업데이트")
