@@ -6,7 +6,7 @@ from PySide2 import QtCore
 from BasicInfo import BasicInfo
 from Join import CompanyJoin
 from company.Company import Company
-
+import main
 
 class JoinC2(QWidget):
 
@@ -90,10 +90,7 @@ class JoinC2(QWidget):
 
                 print("회원가입에 성공하였습니다.")
 
-                self.nextPage = tRate()
-                geo = self.geometry()
-                titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
-                self.nextPage.move(geo.x(), geo.y() - titlebar_height)
+                self.nextPage = main()
                 self.hide()
 
                 self.nextPage.show()

@@ -5,7 +5,7 @@ from PySide2 import QtCore
 
 from BasicInfo import BasicInfo, BasicDB
 from Join import TeacherJoin
-from teacher.Rate import tRate
+import main
 from teacher.Teacher import Teacher
 
 
@@ -100,7 +100,7 @@ class JoinT(QWidget):
 
                         print("회원가입에 성공하였습니다.")
 
-                        self.nextPage = tRate()
+                        self.nextPage = main()
                         geo = self.geometry()
                         titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
                         self.nextPage.move(geo.x(), geo.y() - titlebar_height)

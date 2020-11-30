@@ -5,7 +5,8 @@ from PySide2 import QtCore
 from BasicInfo import BasicInfo, BasicDB
 import company.NoneEmployementRequest
 import company.Company
-
+import company.EmployeeRequestDB
+import company.CompanyEmploymentRequest
 class Post(QWidget):
 
     def __init__(self):
@@ -242,9 +243,16 @@ class Post(QWidget):
         vLayout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(vLayout)
     def requestBtn(self):
-        insertPost(company.Company.Company.ID, self.period, self.hopePerson, self.right, self.royalty,self.document,
+        EmployeeRequestDB.insertRequest(company.Company.Company.ID, self.recruit, self.hopePerson, self.right, self.royalty,self.document,
                    self.useLang,self.employment,self.work,self.money,self.workTime,self.benefit,self.period,
                    self.pmoney,self.email,self.ph)
+
+        self.c=company.CompanyEmploymentRequest.CompanyEmploymentRequest()
+        self.c.show()
+        self.close()
+
+
+
         
     def cancle(self):
         self.none=company.NoneEmployementRequest.NoneEmployementRequest()
@@ -257,7 +265,7 @@ if __name__ == '__main__':
     ex = Post()
     ex.show()
     app.exec_()
-
+'''
 def insertPost(company_id, recruit, hopeperson, apply, royalty, document,
                uselang, employment, work, money, worktime, benefit,period,
                pmoney, manager_email, manager_ph):
@@ -271,3 +279,4 @@ def insertPost(company_id, recruit, hopeperson, apply, royalty, document,
           apply+"','"+royalty+"', '"+document+"', '"+uselang+"', '"+employment+"', '"+work+"', '"+money+"', '"+\
           worktime+"', '"+benefit+"', '"+period+"','"+ pmoney+"', '"+manager_email+"', '"+manager_ph+"');"
     curs.execute(sql)
+'''

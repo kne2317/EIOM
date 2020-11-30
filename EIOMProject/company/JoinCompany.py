@@ -6,7 +6,7 @@ from PySide2 import QtCore
 from BasicInfo import BasicInfo, BasicDB
 from Join import CompanyJoin
 from company.Company import Company
-from company.JoinCompany2 import JoinC2
+import company.JoinCompany2
 
 
 class JoinC(QWidget):
@@ -88,10 +88,7 @@ class JoinC(QWidget):
                     Company.ID = self.idInput.text()
                     Company.password = self.pwInput.text()
 
-                    self.nextPage = JoinC2()
-                    geo = self.geometry()
-                    titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
-                    self.nextPage.move(geo.x(), geo.y() - titlebar_height)
+                    self.nextPage = company.JoinCompany2.JoinC2()
                     self.hide()
 
                     self.nextPage.show()
@@ -149,10 +146,3 @@ class JoinC(QWidget):
             print("회사명을 입력하십시오.")
             self.CompanyNameOverlapChecked = False
 
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = JoinC()
-    ex.show()
-    app.exec_()
