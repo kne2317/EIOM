@@ -9,6 +9,7 @@ import company.NoneEmployementRequest
 import company.CompanyEmploymentRequest
 import company.CompanyInfo
 import company.NonePofol
+import company.ModifyInfo
 
 class CompanyInfo(QWidget):
 
@@ -60,14 +61,17 @@ class CompanyInfo(QWidget):
         cNameL2 = QLabel("연지 소프트", self.w)
         cNameL2.setFont(QFont(self.basicInfo.font1, 15))
         cNameL2.setGeometry(350, 160, 500, 50)
+        cNameL2.setText(Company.companyname)
 
         employeeL1 = QLabel("사원수", self.w)
         employeeL1.setFont(QFont(self.basicInfo.font1, 15))
         employeeL1.setGeometry(650, 160, 500, 50)
 
+
         employeeL2 = QLabel("10", self.w)
         employeeL2.setFont(QFont(self.basicInfo.font1, 15))
         employeeL2.setGeometry(850, 160, 500, 50)
+        employeeL2.setText(Company.employees_num)
 
         majorL1 = QLabel("분야", self.w)
         majorL1.setFont(QFont(self.basicInfo.font1, 15))
@@ -76,6 +80,7 @@ class CompanyInfo(QWidget):
         majorL2 = QLabel("개발", self.w)
         majorL2.setFont(QFont(self.basicInfo.font1, 15))
         majorL2.setGeometry(350, 240, 500, 50)
+        majorL2.setText(Company.major)
 
         salesL1 = QLabel("연매출", self.w)
         salesL1.setFont(QFont(self.basicInfo.font1, 15))
@@ -84,6 +89,7 @@ class CompanyInfo(QWidget):
         salesL2 = QLabel("10억", self.w)
         salesL2.setFont(QFont(self.basicInfo.font1, 15))
         salesL2.setGeometry(850, 240, 500, 50)
+        salesL2.setText(Company.annualsale)
 
         companyIntroL = QLabel("기업소개", self.w)
         companyIntroL.setFont(QFont(self.basicInfo.font1, 15))
@@ -92,6 +98,7 @@ class CompanyInfo(QWidget):
         companyIntro = QTextBrowser(self.w)
         companyIntro.setFont(QFont(self.basicInfo.font1, 12))
         companyIntro.setGeometry(270, 330, 800, 130)
+        companyIntro.setText(Company.introduce)
 
         webL1 = QLabel("웹사이트 ", self.w)
         webL1.setFont(QFont(self.basicInfo.font1, 15))
@@ -100,6 +107,7 @@ class CompanyInfo(QWidget):
         webL2 = QLabel("www.e-mirim.hs.kr", self.w)
         webL2.setFont(QFont(self.basicInfo.font1, 15))
         webL2.setGeometry(350, 490, 500, 50)
+        webL2.setText(Company.web)
 
         addressL1 = QLabel("주소", self.w)
         addressL1.setFont(QFont(self.basicInfo.font1, 15))
@@ -108,17 +116,21 @@ class CompanyInfo(QWidget):
         addressL2 = QLabel("남양주시 화도읍", self.w)
         addressL2.setFont(QFont(self.basicInfo.font1, 15))
         addressL2.setGeometry(350, 570, 1000, 50)
-
+        addressL2.setText(Company.address)
 
         modifyBtn = QPushButton('수정', self.w)
         modifyBtn.setFont(QFont(self.basicInfo.font1, 12))
         modifyBtn.setGeometry(950, 630, 120, 40)
         modifyBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
+        modifyBtn.clicked.connect(self.modify)
 
         stateBtn.clicked.connect(self.state)
         pfBtn.clicked.connect(self.pf)
         infoBtn.clicked.connect(self.info)
-
+    def modify(self):
+        self.mi=company.ModifyInfo.ModifyInfo()
+        self.mi.show()
+        self.hide()
     def state(self):
         if Company.request_authority == 0:
             self.ncr = company.NoneEmployementRequest.NoneEmployementRequest()
