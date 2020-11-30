@@ -18,7 +18,6 @@ class JoinT(QWidget):
         self.initUI()
         self.teacher = Teacher()
         self.idOverlapChecked = False
-        self.basicDB = BasicDB()
 
     def initUI(self):
 
@@ -121,7 +120,8 @@ class JoinT(QWidget):
     def idOverlapCheck(self):
 
             if len(self.idInput.text()) > 0:
-                conn = self.basicDB.conn
+                basicDB = BasicDB()
+                conn = basicDB.conn
                 curs = conn.cursor()
 
                 sql = "select EXISTS (select * from teacher where id='" + self.idInput.text() + "') as success;"
