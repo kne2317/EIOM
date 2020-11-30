@@ -130,7 +130,7 @@ class JoinC(QWidget):
             conn = basicDB.conn
             curs = conn.cursor()
 
-            sql = "select EXISTS (select * from company where companyname='" + self.idInput.text() + "') as success;"
+            sql = "select EXISTS (select * from company where companyname='" + self.nameInput.text() + "') as success;"
             curs.execute(sql)
 
             result = curs.fetchall()

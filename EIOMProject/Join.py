@@ -1,4 +1,5 @@
 from BasicInfo import BasicDB
+from company.Company import Company
 from student.Student import Student, Languages
 import shutil
 import os
@@ -103,13 +104,14 @@ def TeacherJoin(teacher):
         return False
 
 
-def CompanyJoin(company):
+def CompanyJoin():
     try:
         basicDB = BasicDB()
         conn = basicDB.conn
         curs = conn.cursor()
 
-        sql = "INSERT INTO `eiom_db`.`company` (`companyname`, `id`, `password`, `address`, `annualsales`, `web`, `email`, `manager_name`, `manager_ph`) VALUES ('"+Company.companyname()+"', '"+Company.ID()+"', '"+Company.getPassword()+"', '"+Company.getAddress()+"', '"+Company.getAnnualsale()+"', '"+Company.getWeb()+"', '"+Company.getEmail()+"', '"+Company.getManager_name()+"', '"+Company.getManager_ph()+"');"
+        print(Company)
+        sql = "INSERT INTO `eiom_db`.`company` (`companyname`, `id`, `password`, `address`, `annualsales`, `web`, `email`, `manager_name`, `manager_ph`) VALUES ('"+Company.companyname+"', '"+Company.ID+"', '"+Company.password +"', '"+Company.address+"', '"+Company.annualsale+"', '"+Company.web+"', '"+Company.email+"', '"+Company.manager_name+"', '"+Company.manager_ph+"');"
 
         curs.execute(sql)
         conn.commit()
