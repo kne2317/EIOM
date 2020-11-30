@@ -2,7 +2,7 @@ import sys
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore
-from company.Post import Post
+import company.Post
 from BasicInfo import BasicInfo
 
 
@@ -12,7 +12,7 @@ class NoneEmployementRequest(QWidget):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
-        self.post=Post()
+        self.post=company.Post.Post()
         self.initUI()
 
 
