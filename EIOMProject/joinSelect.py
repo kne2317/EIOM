@@ -13,9 +13,6 @@ class JoinSelect(QWidget):
     def __init__(self):
         super().__init__()
         self.initUI()
-        self.sjoin = JoinS()
-        self.cjoin = JoinC()
-        self.tjoin = JoinT()
 
     def initUI(self):
         w = QWidget(self)
@@ -71,12 +68,18 @@ class JoinSelect(QWidget):
         tL.setGeometry(850, 500, 100, 100)
 
     def joinStudent(self):
-        self.sjoin.show()
+        self.sjoin = JoinS()
+        self.tjoin = JoinT()
         self.close()
     def joinCompany(self):
+        self.cjoin = JoinC()
         self.cjoin.show()
         self.close()
+        self.sjoin = JoinS()
+        self.cjoin = JoinC()
+        self.tjoin = JoinT()
     def joinTeacher(self):
+        self.sjoin.show()
         self.tjoin.show()
         self.close()
 
