@@ -1,19 +1,17 @@
 import sys
+import importlib
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore
-from datetime import datetime
 from BasicInfo import BasicInfo
 from employmentRate.EmploymentRate import eRateDB, updateRate
-from teacher.Rate import tRate
-
-class MyPage(QWidget):
+import teacher.Rate
+class Detail(QWidget):
 
     def __init__(self):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
-        self.trate=tRate()
         self.initUI()
 
     def initUI(self):
@@ -29,7 +27,7 @@ class MyPage(QWidget):
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
 
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/background.png")))
         self.w.setPalette(palette)
 
         self.w.setLayout(layout)
@@ -38,31 +36,6 @@ class MyPage(QWidget):
         title.setFont(QFont(self.basicInfo.font1, 20))
         title.setAlignment(QtCore.Qt.AlignCenter)
         title.setGeometry(100, 10, 1000, 50)
-
-        stateBtn = QPushButton('통계', self.w)
-        stateBtn.setFont(QFont(self.basicInfo.font1, 13))
-        stateBtn.setGeometry(0, 70, self.basicInfo.WindowWidth/5, 50)
-        stateBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        noticeBtn = QPushButton('공지', self.w)
-        noticeBtn.setFont(QFont(self.basicInfo.font1, 13))
-        noticeBtn.setGeometry(self.basicInfo.WindowWidth/5*1, 70, self.basicInfo.WindowWidth/5, 50)
-        noticeBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        companyBtn = QPushButton('취업의뢰', self.w)
-        companyBtn.setFont(QFont(self.basicInfo.font1, 13))
-        companyBtn.setGeometry(self.basicInfo.WindowWidth/5*2, 70, self.basicInfo.WindowWidth/5, 50)
-        companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        postBtn = QPushButton('포트폴리오', self.w)
-        postBtn.setFont(QFont(self.basicInfo.font1, 13))
-        postBtn.setGeometry(self.basicInfo.WindowWidth/5*3, 70, self.basicInfo.WindowWidth/5, 50)
-        postBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        pfBtn = QPushButton('내 정보', self.w)
-        pfBtn.setFont(QFont(self.basicInfo.font1, 13))
-        pfBtn.setGeometry(self.basicInfo.WindowWidth/5*4, 70, self.basicInfo.WindowWidth/5, 50)
-        pfBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
         la1 = QLabel("3학년 인원 수",self.w)
         la1.setFont(QFont(self.basicInfo.font1,13))
@@ -224,8 +197,10 @@ class MyPage(QWidget):
         vLayout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(vLayout)
     def cancle(self):
+        self.go_trate=teacher.Rate.tRate()
+        self.go_trate.show()
         self.close()
-        self.trate.show()
+        #self.trate.show()
 
     def okay(self):
         self.y1['grade3']=self.s1_3.value()
@@ -259,12 +234,11 @@ class MyPage(QWidget):
         else:
             updateRate(self.y1,self.y2,self.y3)
             self.close()
-            self.trate.show()
 
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = MyPage()
+    ex = Detail()
     ex.show()
     app.exec_()
