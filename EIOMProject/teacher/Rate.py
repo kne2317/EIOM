@@ -48,33 +48,6 @@ class tRate(QWidget):
         title.setAlignment(QtCore.Qt.AlignCenter)
         title.setGeometry(100, 10, 1000, 50)
 
-
-
-        stateBtn = QPushButton('통계', self.w)
-        stateBtn.setFont(QFont(self.basicInfo.font1, 13))
-        stateBtn.setGeometry(0, 70, self.basicInfo.WindowWidth / 5, 50)
-        stateBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        noticeBtn = QPushButton('공지', self.w)
-        noticeBtn.setFont(QFont(self.basicInfo.font1, 13))
-        noticeBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 1, 70, self.basicInfo.WindowWidth / 5, 50)
-        noticeBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        companyBtn = QPushButton('취업의뢰', self.w)
-        companyBtn.setFont(QFont(self.basicInfo.font1, 13))
-        companyBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 2, 70, self.basicInfo.WindowWidth / 5, 50)
-        companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        pfBtn = QPushButton('포트폴리오', self.w)
-        pfBtn.setFont(QFont(self.basicInfo.font1, 13))
-        pfBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 3, 70, self.basicInfo.WindowWidth / 5, 50)
-        pfBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        infoBtn = QPushButton('내 정보', self.w)
-        infoBtn.setFont(QFont(self.basicInfo.font1, 13))
-        infoBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 4, 70, self.basicInfo.WindowWidth / 5, 50)
-        infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
         contentLayout = QVBoxLayout()
 
         emptyLabel = QLabel("\n\n\n\n\n\n\n\n\n\n\n\n")
@@ -156,11 +129,7 @@ class tRate(QWidget):
         label_6.setGeometry(150 + 300 * 2, 580, 300, 50)
         label_6.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        stateBtn.clicked.connect(self.state)
-        noticeBtn.clicked.connect(self.notice)
-        companyBtn.clicked.connect(self.company)
-        pfBtn.clicked.connect(self.post)
-        infoBtn.clicked.connect(self.info)
+
 
         label_employment_rate = QPushButton('취업 의뢰 언어 비율', self.w)
         label_employment_rate.setFont(QFont(self.basicInfo.font1, 18))
@@ -217,7 +186,35 @@ class tRate(QWidget):
         basicLayout.addWidget(scroll)
         basicLayout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(basicLayout)
+        stateBtn = QPushButton('통계', self.w)
+        stateBtn.setFont(QFont(self.basicInfo.font1, 13))
+        stateBtn.setGeometry(0, 70, self.basicInfo.WindowWidth / 5, 50)
+        stateBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        stateBtn.clicked.connect(self.state)
 
+        noticeBtn = QPushButton('공지', self.w)
+        noticeBtn.setFont(QFont(self.basicInfo.font1, 13))
+        noticeBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 1, 70, self.basicInfo.WindowWidth / 5, 50)
+        noticeBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        noticeBtn.clicked.connect(self.notice)
+
+        companyBtn = QPushButton('취업의뢰', self.w)
+        companyBtn.setFont(QFont(self.basicInfo.font1, 13))
+        companyBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 2, 70, self.basicInfo.WindowWidth / 5, 50)
+        companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        companyBtn.clicked.connect(self.company)
+
+        pfBtn = QPushButton('포트폴리오', self.w)
+        pfBtn.setFont(QFont(self.basicInfo.font1, 13))
+        pfBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 3, 70, self.basicInfo.WindowWidth / 5, 50)
+        pfBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        pfBtn.clicked.connect(self.post)
+
+        infoBtn = QPushButton('내 정보', self.w)
+        infoBtn.setFont(QFont(self.basicInfo.font1, 13))
+        infoBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 4, 70, self.basicInfo.WindowWidth / 5, 50)
+        infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        infoBtn.clicked.connect(self.info)
 
 
     def state(self):
