@@ -4,9 +4,9 @@ from PySide2.QtCore import QSize
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore, QtGui
-from student.JoinStudent import JoinS
-from company.JoinCompany import JoinC
-from teacher.JoinTeacher import JoinT
+import student.JoinStudent
+import company.JoinCompany
+import teacher.JoinTeacher
 
 class JoinSelect(QWidget):
 
@@ -68,15 +68,15 @@ class JoinSelect(QWidget):
         tL.setGeometry(850, 500, 100, 100)
 
     def joinStudent(self):
-        self.sjoin = JoinS()
+        self.sjoin = student.JoinStudent.JoinS()
         self.sjoin.show()
         self.close()
     def joinCompany(self):
-        self.cjoin = JoinC()
+        self.cjoin = company.JoinCompany.JoinC()
         self.cjoin.show()
         self.close()
     def joinTeacher(self):
-        self.sjoin = JoinT()
+        self.sjoin = teacher.JoinTeacher.JoinT()
         self.sjoin.show()
         self.close()
 
