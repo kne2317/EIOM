@@ -13,7 +13,9 @@ from BasicInfo import BasicInfo
 from company.EmployeeRequestDB import orderByBestLang
 from employmentRate.EmploymentRate import eRateDB, employRate
 import teacher.EmploymentRateDetail
-
+import teacher.Rate
+import teacher.MyPage
+import teacher.NoticeContent
 
 class tRate(QWidget):
 
@@ -234,7 +236,7 @@ class tRate(QWidget):
         print('아직')
 
     def info(self):
-        self.i = teacher.MyPage.MyPage(self)
+        self.i = teacher.MyPage.MyPage()
         self.i.show()
         self.hide()
 
