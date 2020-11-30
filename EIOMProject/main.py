@@ -4,7 +4,7 @@ from PySide2.QtGui import *
 from PySide2 import QtCore, QtGui
 from BasicInfo import BasicInfo, BasicDB
 import Login
-from joinSelect import JoinSelect
+from JoinSelect import JoinSelect
 from student.Rate import sRate
 from teacher.Rate import tRate
 from company.Company import Company
