@@ -90,7 +90,7 @@ class JoinC2(QWidget):
 
                 print("회원가입에 성공하였습니다.")
 
-                self.nextPage = main()
+                self.nextPage = main.Main()
                 self.hide()
 
                 self.nextPage.show()

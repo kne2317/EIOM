@@ -204,7 +204,7 @@ class JoinS3(QWidget):
             # 회원가입 성공
             print("회원가입에 성공하였습니다.")
 
-            self.nextPage = sRate()
+            self.nextPage = main.Main()
             geo = self.geometry()
             titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
             self.nextPage.move(geo.x(), geo.y() - titlebar_height)
