@@ -18,6 +18,18 @@ def studentLogin(id,pw):
     rows = curs.fetchall()
     if len(rows) > 0:
         if rows[0][1] == pw:
+
+            student.setID(rows[0][0])
+            student.setPassword(rows[0][1])
+            student.setName(rows[0][2])
+            student.setMajor(rows[0][3])
+            student.setGrade(rows[0][4])
+            student.setClass(rows[0][5])
+            student.setPortfolio(rows[0][6])
+            student.setIntroduce(rows[0][7])
+            student.setLikeCompany(rows[0][7])
+            student.setEmail(rows[0][8])
+
             return True
         else:
             return False

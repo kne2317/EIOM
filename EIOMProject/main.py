@@ -96,8 +96,6 @@ class Main(QWidget):
         searchBtn.setStyleSheet('background-color: rgb(0,0,0,0); ')
         '''
 
-        self.show()
-
     def login(self):
         if self.student.isChecked():
             if Login.studentLogin(self.idInput.text(), self.pwInput.text()) == True:
@@ -126,11 +124,7 @@ class Main(QWidget):
                 msgBox.exec_()
 
     def join(self):
-        # 위치 지정
-        geo = self.geometry()
-        titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
-        self.joinpage.move(geo.x(), geo.y() - titlebar_height)
-        self.hide()
+        self.close()
         self.joinpage.show()
 
 

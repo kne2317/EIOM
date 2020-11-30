@@ -101,6 +101,6 @@ class NoticePost(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-
     ex = NoticePost()
-    sys.exit(app.exec_())
+    ex.show()
+    app.exec_()
