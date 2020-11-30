@@ -4,12 +4,12 @@ from PySide2.QtGui import *
 from PySide2 import QtCore, QtGui
 from BasicInfo import BasicInfo, BasicDB
 import Login
-from JoinSelect import JoinSelect
-from student.Rate import sRate
-from teacher.Rate import tRate
-from company.Company import Company
-from company.NoneEmployementRequest import NoneEmployementRequest
-from company.CompanyEmploymentRequest import CompanyEmploymentRequest
+import JoinSelect
+import student.Rate
+import teacher.Rate
+import company.Company
+import company.NoneEmployementRequest
+import company.CompanyEmploymentRequest
 
 class Main(QWidget):
 
@@ -91,7 +91,7 @@ class Main(QWidget):
         # 학생 로그인
         if self.student.isChecked():
             if Login.studentLogin(self.idInput.text(), self.pwInput.text()) == True:
-                self.sLogin = sRate()
+                self.sLogin = student.Rate.sRate()
                 self.close()
                 self.sLogin.show()
             else:
@@ -102,7 +102,7 @@ class Main(QWidget):
         # 교사 로그인
         if self.teacher.isChecked():
             if Login.teacherLogin(self.idInput.text(), self.pwInput.text()) == True:
-                self.tLogin = tRate()
+                self.tLogin = teacher.Rate.tRate()
                 self.close()
                 self.tLogin.show()
             else:
@@ -114,11 +114,11 @@ class Main(QWidget):
         # 로그인 후에 정보 반환환
         if self.company.isChecked():
             if Login.companyLogin(self.idInput.text(), self.pwInput.text()) == True:
-                self.company = Company()
+                self.company = company.Company.Company()
                 if self.company.request_authority==0:
-                    self.cLogin = NoneEmployementRequest()
+                    self.cLogin = company.NoneEmployementRequest.NoneEmployementRequest()
                 else:
-                    self.cLogin=CompanyEmploymentRequest()
+                    self.cLogin=company.CompanyEmploymentRequest.CompanyEmploymentRequest()
                 self.close()
                 self.cLogin.show()
             else:
@@ -127,7 +127,7 @@ class Main(QWidget):
                 msgBox.exec_()
 
     def join(self):
-        self.joinpage = JoinSelect()
+        self.joinpage = JoinSelect.JoinSelect()
         self.close()
         self.joinpage.show()
 
