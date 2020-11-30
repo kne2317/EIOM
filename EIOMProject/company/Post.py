@@ -7,6 +7,7 @@ import company.NoneEmployementRequest
 import company.Company
 import company.EmployeeRequestDB
 import company.CompanyEmploymentRequest
+
 class Post(QWidget):
 
     def __init__(self):
@@ -187,7 +188,7 @@ class Post(QWidget):
 
         self.period = QLineEdit(self.w)
         self.period.setFont(QFont(self.basicInfo.font1, 13))
-        self.period.setGeometry(250, 810, 800, 40)
+        self.period.setGeometry(250, 1050, 800, 40)
         self.period.setPlaceholderText('ex) 2개월')
 
         la17 = QLabel('현장 실습 수당', self.w)
