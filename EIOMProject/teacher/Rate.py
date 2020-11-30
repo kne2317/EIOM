@@ -234,7 +234,7 @@ class tRate(QWidget):
         print('아직')
 
     def info(self):
-        self.i = teacher.MyPage.MyPage()
+        self.i = teacher.MyPage.MyPage(self)
         self.i.show()
         self.hide()
 
