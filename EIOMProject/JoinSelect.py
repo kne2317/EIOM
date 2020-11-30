@@ -69,18 +69,15 @@ class JoinSelect(QWidget):
 
     def joinStudent(self):
         self.sjoin = JoinS()
-        self.tjoin = JoinT()
+        self.sjoin.show()
         self.close()
     def joinCompany(self):
         self.cjoin = JoinC()
         self.cjoin.show()
         self.close()
-        self.sjoin = JoinS()
-        self.cjoin = JoinC()
-        self.tjoin = JoinT()
     def joinTeacher(self):
+        self.sjoin = JoinT()
         self.sjoin.show()
-        self.tjoin.show()
         self.close()
 
 

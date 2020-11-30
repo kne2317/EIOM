@@ -44,7 +44,8 @@ def studentJoin(student, languages=Languages()):
 
         conn.close()
         return True
-    except:
+    except Exception  as ex:
+        print(ex)
         return False
 
 

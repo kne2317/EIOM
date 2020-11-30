@@ -1,6 +1,7 @@
 import pymysql
 
 
+
 class BasicInfo:
     def __init__(self):
         self.WindowWidth = 1200

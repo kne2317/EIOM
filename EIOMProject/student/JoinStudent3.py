@@ -6,6 +6,7 @@ from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
+from student.Rate import sRate
 from student.Student import Student, Languages
 from student.StudentJoin import studentJoin
 
@@ -204,7 +205,7 @@ class JoinS3(QWidget):
             # 회원가입 성공
             print("회원가입에 성공하였습니다.")
 
-            self.nextPage = Main()
+            self.nextPage = sRate()
             geo = self.geometry()
             titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
             self.nextPage.move(geo.x(), geo.y() - titlebar_height)
