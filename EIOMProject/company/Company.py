@@ -13,4 +13,4 @@ class Company:
     major = ''
     pfauthority = ''
     pfperiod = ''
-    request_authority = 0
+    request_authority = -1

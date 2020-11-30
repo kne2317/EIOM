@@ -110,7 +110,10 @@ def CompanyJoin():
         conn = basicDB.conn
         curs = conn.cursor()
 
-        sql = "INSERT INTO `eiom_db`.`company` (`companyname`, `id`, `password`, `address`, `annualsales`, `web`, `email`, `manager_name`, `manager_ph`) VALUES ('"+Company.companyname+"', '"+Company.ID+"', '"+Company.password +"', '"+Company.address+"', '"+Company.annualsale+"', '"+Company.web+"', '"+Company.email+"', '"+Company.manager_name+"', '"+Company.manager_ph+"');"
+        sql = "INSERT INTO `eiom_db`.`company` (`companyname`, `id`, `password`, `address`, `annualsales`," \
+              " `web`, `email`, `manager_name`, `manager_ph`,request_authority) " \
+              "VALUES ('"+Company.companyname+"', '"+Company.ID+"', '"+Company.password +"', '"+Company.address+"', '"+\
+              Company.annualsale+"', '"+Company.web+"', '"+Company.email+"', '"+Company.manager_name+"', '"+Company.manager_ph+"',"+0+");"
 
         curs.execute(sql)
         conn.commit()

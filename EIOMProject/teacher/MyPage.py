@@ -14,7 +14,6 @@ class MyPage(QWidget):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
-        self.teacher = Teacher()
         self.initUI()
 
     def initUI(self):
@@ -70,7 +69,7 @@ class MyPage(QWidget):
         nameL2 = QLabel("유병석", self.w)
         nameL2.setFont(QFont(self.basicInfo.font1, 15))
         nameL2.setGeometry(350, 140, 500, 50)
-        nameL2.setText(self.teacher.name)
+        nameL2.setText(Teacher.name)
 
         majorL1 = QLabel("아이디", self.w)
         majorL1.setFont(QFont(self.basicInfo.font1, 15))
@@ -79,7 +78,7 @@ class MyPage(QWidget):
         majorL2 = QLabel("akaz", self.w)
         majorL2.setFont(QFont(self.basicInfo.font1, 15))
         majorL2.setGeometry(850, 140, 500, 50)
-        majorL2.setText(self.teacher.ID)
+        majorL2.setText(Teacher.ID)
 
         emailL1 = QLabel("이메일", self.w)
         emailL1.setFont(QFont(self.basicInfo.font1, 15))
@@ -88,7 +87,7 @@ class MyPage(QWidget):
         emailL2 = QLabel("yubs87@e-mirim.hs.kr", self.w)
         emailL2.setFont(QFont(self.basicInfo.font1, 15))
         emailL2.setGeometry(350, 220, 500, 50)
-        emailL2.setText(self.teacher.email)
+        emailL2.setText(Teacher.email)
 
         stateBtn.clicked.connect(self.state)
         noticeBtn.clicked.connect(self.notice)
