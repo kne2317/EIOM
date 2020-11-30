@@ -22,7 +22,7 @@ class JoinS(QWidget):
         self.move(self.basicInfo.WindowX, self.basicInfo.WindowY)
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/join_background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/join_background.png")))
         self.setPalette(palette)
 
         title = QLabel("EIOM - JOIN [ Company ]", self.w)
@@ -64,10 +64,6 @@ class JoinS(QWidget):
         joinBtn = QPushButton('JOIN', self.w)
         joinBtn.setFont(QFont(self.basicInfo.font1, 15))
         joinBtn.setGeometry(350, 600, 500, 50)
-
-
-
-        self.show()
 
 
 if __name__ == '__main__':

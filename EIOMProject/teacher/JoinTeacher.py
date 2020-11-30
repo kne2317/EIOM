@@ -6,13 +6,12 @@ from PySide2 import QtCore
 from BasicInfo import BasicInfo
 
 
-class JoinS(QWidget):
+class JoinT(QWidget):
 
     def __init__(self):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
-
         self.initUI()
 
     def initUI(self):
@@ -23,7 +22,7 @@ class JoinS(QWidget):
         self.move(self.basicInfo.WindowX, self.basicInfo.WindowY)
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/join_background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/join_background.png")))
         self.setPalette(palette)
 
         title = QLabel("EIOM - JOIN [ Teacher ]", self.w)
@@ -71,11 +70,10 @@ class JoinS(QWidget):
         nextBtn = QPushButton('JOIN', self.w)
         nextBtn.setFont(QFont(self.basicInfo.font1, 15))
         nextBtn.setGeometry(350, 600, 500, 50)
-        self.show()
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-
-    ex = JoinS()
-    sys.exit(app.exec_())
+    ex = JoinT()
+    ex.show()
+    app.exec_()

@@ -25,7 +25,7 @@ class JoinS(QWidget):
         self.move(self.basicInfo.WindowX, self.basicInfo.WindowY)
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/join_background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/join_background.png")))
         self.setPalette(palette)
 
         title = QLabel("EIOM - JOIN [ Student ]", self.w)
@@ -72,7 +72,6 @@ class JoinS(QWidget):
         nextBtn.clicked.connect(self.goNextPage)
 
 
-        self.show()
 
     def goNextPage(self):
         # 위치 지정
@@ -100,6 +99,6 @@ class JoinS(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-
     ex = JoinS()
-    sys.exit(app.exec_())
+    ex.show()
+    app.exec_()
