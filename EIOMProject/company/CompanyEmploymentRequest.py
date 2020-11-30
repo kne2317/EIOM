@@ -23,7 +23,7 @@ class CompanyEmploymentRequest(QWidget):
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
 
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/background.png")))
         self.w.setPalette(palette)
 
         self.w.setLayout(layout)
@@ -277,4 +277,5 @@ class CompanyEmploymentRequest(QWidget):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = CompanyEmploymentRequest()
+    ex.show()
     app.exec_()
