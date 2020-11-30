@@ -4,6 +4,8 @@ import pymysql
 from BasicInfo import BasicDB
 from student.Student import Student, Languages
 from student import StudentDB
+import shutil
+import os
 
 
 def studentJoin(student, languages=Languages()):
@@ -14,18 +16,54 @@ def studentJoin(student, languages=Languages()):
         conn = basicDB.conn
         curs = conn.cursor()
 
-        if not (len(student.getPortfolio()) > 0 and len(student.getIntroduce()) > 0):
-            sql = "INSERT INTO `eiom_db`.`student` (`id`, `password`, `name`, `major`, `grade`, `class`, `email`) VALUES ('" + student.getID() + "', '" + student.getPassword() + "', '" + student.getName() + "', '" + student.getMajor() + "', " + str(
-                student.getGrade()) + ", " + str(student.getClass()) + ", '" + student.getEmail() + "');"
+
+
+        if len(student.getPortfolio()) > 0 and len(student.getIntroduce()) > 0:
+            # 포폴, 자소서 추가
+
+            pfile_name = student.getPortfolio().split('/')[-1]
+            poriginal_path = student.getPortfolio().replace('/'+pfile_name, '')
+            pdestination_path = os.path.dirname(os.path.realpath(__file__))+"\\..\\portfolio"
+            student.setPortfolio(str(student.getGrade())+"학년"+str(student.getClass())+"반"+student.getName()+"_포트폴리오." + student.getPortfolio().split('.')[-1])
+            shutil.copyfile(os.path.join(poriginal_path, pfile_name), os.path.join(pdestination_path, student.getPortfolio()))
+
+            ifile_name = student.getIntroduce().split('/')[-1]
+            ioriginal_path = student.getIntroduce().replace('/'+ifile_name, '')
+            idestination_path = os.path.dirname(os.path.realpath(__file__))+"\\..\\introduce"
+            student.setIntroduce(str(student.getGrade())+"학년"+str(student.getClass())+"반"+student.getName()+"_자기소개서." + student.getPortfolio().split('.')[-1])
+            shutil.copyfile(os.path.join(ioriginal_path, ifile_name), os.path.join(idestination_path, student.getIntroduce()))
+
+            sql = "INSERT INTO `eiom_db`.`student` (`id`, `password`, `name`, `major`, `grade`, `class`, `portfolio`, `introduce`, `email`) VALUES ('" + student.getID() + "', '" + student.getPassword() + "', '" + student.getName() + "', '" + student.getMajor() + "', " + str(
+                student.getGrade()) + ", " + str(
+                student.getClass()) + ", '" + student.getPortfolio() + "', '" + student.getIntroduce() + "', '" + student.getEmail() + "');"
+
         elif len(student.getPortfolio()) > 0:
             # 포폴 추가
-            pass
+            pfile_name = student.getPortfolio().split('/')[-1]
+            poriginal_path = student.getPortfolio().replace('/'+pfile_name, '')
+            pdestination_path = os.path.dirname(os.path.realpath(__file__))+"\\..\\portfolio"
+            student.setPortfolio(str(student.getGrade())+"학년"+str(student.getClass())+"반"+student.getName()+"_포트폴리오." + student.getPortfolio().split('.')[-1])
+            shutil.copyfile(os.path.join(poriginal_path, pfile_name), os.path.join(pdestination_path, student.getPortfolio()))
+
+            sql = "INSERT INTO `eiom_db`.`student` (`id`, `password`, `name`, `major`, `grade`, `class`, `portfolio`, `email`) VALUES ('" + student.getID() + "', '" + student.getPassword() + "', '" + student.getName() + "', '" + student.getMajor() + "', " + str(
+                student.getGrade()) + ", " + str(student.getClass()) + ", '" + student.getPortfolio() + "', '" + student.getEmail() + "');"
+
         elif len(student.getIntroduce()) > 0:
             # 자소서 추가
-            pass
+            ifile_name = student.getIntroduce().split('/')[-1]
+            ioriginal_path = student.getIntroduce().replace('/' + ifile_name, '')
+            idestination_path = os.path.dirname(os.path.realpath(__file__)) + "\\..\\introduce"
+            student.setIntroduce(str(student.getGrade())+"학년"+str(student.getClass())+"반" + student.getName() + "_자기소개서." + student.getPortfolio().split('.')[-1])
+            shutil.copyfile(os.path.join(ioriginal_path, ifile_name),
+                            os.path.join(idestination_path, student.getIntroduce()))
+
+            sql = "INSERT INTO `eiom_db`.`student` (`id`, `password`, `name`, `major`, `grade`, `class`, `introduce`, `email`) VALUES ('" + student.getID() + "', '" + student.getPassword() + "', '" + student.getName() + "', '" + student.getMajor() + "', " + str(
+                student.getGrade()) + ", " + str(student.getClass()) + ", '" + student.getIntroduce() + "', '" + student.getEmail() + "');"
+
         else:
-            # 포폴, 자소서 추가
-            pass
+            sql = "INSERT INTO `eiom_db`.`student` (`id`, `password`, `name`, `major`, `grade`, `class`, `email`) VALUES ('" + student.getID() + "', '" + student.getPassword() + "', '" + student.getName() + "', '" + student.getMajor() + "', " + str(
+                student.getGrade()) + ", " + str(student.getClass()) + ", '" + student.getEmail() + "');"
+
 
         curs.execute(sql)
         conn.commit()
@@ -44,8 +82,8 @@ def studentJoin(student, languages=Languages()):
 
         conn.close()
         return True
-    except Exception  as ex:
-        print(ex)
+    except Exception as e:
+        print(e)
         return False
 
 
