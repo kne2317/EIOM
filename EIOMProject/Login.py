@@ -3,6 +3,7 @@ import pymysql
 
 from BasicInfo import BasicDB
 from student.Student import Student
+from company.Company import Company
 
 
 def studentLogin(id,pw):
@@ -64,12 +65,28 @@ def companyLogin(id,pw):
     conn = basicDB.conn
     curs = conn.cursor()
 
+    company=Company()
+
     sql = "select * from company where id = '" + id + "';"
     curs.execute(sql)
 
-    rows = curs.fetchall()
-    if len(rows) > 0:
-        if rows[0][2] == pw:
+    row = curs.fetchall()
+    if len(row) > 0:
+        if row[0][2] == pw:
+            company.companyname=row[0][0]
+            company.id=row[0][1]
+            company.password=row[0][2]
+            company.address=row[0][3]
+            company.annualsales=row[0][4]
+            company.web=row[0][5]
+            company.email=row[0][6]
+            company.managername=row[0][7]
+            company.managerph=row[0][8]
+            company.introduce=row[0][9]
+            company.major=row[0][10]
+            company.pfauthority=row[0][11]
+            company.pfperiod=row[0][12]
+            company.request_authority=row[0][13]
             return True
         else:
             return False

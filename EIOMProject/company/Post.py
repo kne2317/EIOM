@@ -23,7 +23,7 @@ class Post(QWidget):
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
 
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/background.png")))
         self.w.setPalette(palette)
 
         self.w.setLayout(layout)
@@ -243,7 +243,6 @@ class Post(QWidget):
         vLayout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(vLayout)
 
-        self.show()
 
 
 if __name__ == '__main__':

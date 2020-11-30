@@ -2,7 +2,7 @@ import sys
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore
-
+from company.Post import Post
 from BasicInfo import BasicInfo
 
 
@@ -12,8 +12,9 @@ class NoneEmployementRequest(QWidget):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
-
+        self.post=Post()
         self.initUI()
+
 
     def initUI(self):
         layout = QVBoxLayout(self)
@@ -24,7 +25,7 @@ class NoneEmployementRequest(QWidget):
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
 
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/background.png")))
         self.setPalette(palette)
 
         self.w.setLayout(layout)
@@ -58,11 +59,15 @@ class NoneEmployementRequest(QWidget):
         requestBtn = QPushButton('취업 의뢰하기', self.w)
         requestBtn.setFont(QFont(self.basicInfo.font1, 15))
         requestBtn.setGeometry(100, 600, 1000, 50)
+        requestBtn.clicked.connect(self.request)
 
-        self.show()
+    def request(self):
+        self.close()
+        self.post.show()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-
     ex = NoneEmployementRequest()
-    sys.exit(app.exec_())
+    ex.show()
+    app.exec_()

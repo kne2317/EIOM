@@ -115,7 +115,7 @@ class Main(QWidget):
         if self.company.isChecked():
             if Login.companyLogin(self.idInput.text(), self.pwInput.text()) == True:
                 self.company = Company()
-                if self.company.getRequest_authority==0:
+                if self.company.request_authority==0:
                     self.cLogin = NoneEmployementRequest()
                 else:
                     self.cLogin=CompanyEmploymentRequest()
