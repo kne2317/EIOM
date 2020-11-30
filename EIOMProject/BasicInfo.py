@@ -11,8 +11,10 @@ class BasicInfo:
         #self.titleFont = 'Candara'
         self.titleFont = 'impact'
         self.font1 = '맑은 고딕'
+        self.managerCode = "manager"
 
 
 class BasicDB:
     def __init__(self):
         self.conn = pymysql.connect(host='localhost', user='eiom', password='1111', db='eiom_db', charset='utf8')
+

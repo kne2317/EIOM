@@ -1,14 +1,10 @@
-
-import pymysql
-
 from BasicInfo import BasicDB
 from student.Student import Student, Languages
-from student import StudentDB
 import shutil
 import os
 
 
-def studentJoin(student, languages=Languages()):
+def StudentJoin(student, languages=Languages()):
     try:
         student.print()
 
@@ -87,6 +83,27 @@ def studentJoin(student, languages=Languages()):
         return False
 
 
+def TeacherJoin(teacher):
+    try:
+        teacher.print()
+
+        basicDB = BasicDB()
+        conn = basicDB.conn
+        curs = conn.cursor()
+
+        sql = "INSERT INTO `eiom_db`.`teacher` (`id`, `name`, `password`, `email`) VALUES ('" + teacher.getID() + "', '" + teacher.getName() + "', '" + teacher.getPassword() + "', '" + teacher.getEmail() + "');"
+
+        curs.execute(sql)
+        conn.commit()
+
+        conn.close()
+        return True
+    except Exception as e:
+        print(e)
+        return False
+
+
+
 
 
 def getBool(a):
@@ -94,62 +111,3 @@ def getBool(a):
         return '1'
     else:
         return '0'
-#####
-'''
-student = Student()
-
-print("이름: ", end="")
-student.setName(input())
-
-print("아이디: ", end="")
-student.setID(input())
-
-print("비밀번호: ", end="")
-student.setPassword(input())
-
-while(True):
-    print("생년월일(ex: 2000-01-01): ", end="")
-    birth = input()
-    if len(birth) == 10:
-        if birth[4] == "-" and birth[7] == "-":
-            birth = birth.split("-")
-            break
-    print("잘못된 입력입니다")
-student.setBirth(birth[0], birth[1], birth[2])
-
-print("사용 가능 언어(true/false)")
-languages = StudentDB.getLanguages()
-
-useLanguages = {}
-for i in range(len(languages)-1):
-    while(True):
-        print(languages[i] + ": ", end="")
-        answer = input()
-        if answer == "true":
-            useLanguages[languages[i]] = True
-            break;
-        elif answer == "false":
-            useLanguages[languages[i]] = False
-            break;
-        else:
-            print("잘못된 입력입니다.")
-
-print("제시된 언어 이외에도 사용 가능한 언어(있으면 ;으로 구분하여 입력(ex: visual vasic;ruby;R), 없으면 false)")
-answer = input()
-if answer != "false" and answer != None:
-    useLanguages[languages[-1]] = answer.split(';')
-else:
-    useLanguages[languages[-1]] = None
-
-student.setUseLanguage(useLanguages)
-
-print("관심 있는 회사(있으면 ;으로 구분하여 입력(ex: Naver;Google;Kakao), 없으면 false): ")
-answer = input()
-if answer != "false" and answer != None:
-    student.setLikeCompany(answer.split(";"))
-
-print("----------------------")
-student.printStudent()
-
-
-studentJoin(Student)'''

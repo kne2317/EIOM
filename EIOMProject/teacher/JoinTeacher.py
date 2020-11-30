@@ -3,7 +3,10 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore
 
-from BasicInfo import BasicInfo
+from BasicInfo import BasicInfo, BasicDB
+from Join import TeacherJoin
+from teacher.Rate import tRate
+from teacher.Teacher import Teacher
 
 
 class JoinT(QWidget):
@@ -13,6 +16,9 @@ class JoinT(QWidget):
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
         self.initUI()
+        self.teacher = Teacher()
+        self.idOverlapChecked = False
+        self.basicDB = BasicDB()
 
     def initUI(self):
 
@@ -31,45 +37,108 @@ class JoinT(QWidget):
         layout.addWidget(title)
         title.setGeometry(100, 45, 1000, 50)
 
-        nameInput = QLineEdit(self.w)
-        nameInput.setGeometry(350, 180, 500, 50)
-        nameInput.setFont(QFont(self.basicInfo.font1, 12))
-        nameInput.setPlaceholderText('이름 입력')
+        self.nameInput = QLineEdit(self.w)
+        self.nameInput.setGeometry(350, 180, 500, 50)
+        self.nameInput.setFont(QFont(self.basicInfo.font1, 12))
+        self.nameInput.setPlaceholderText('이름 입력')
 
-        idInput = QLineEdit(self.w)
-        idInput.setGeometry(350, 250, 380, 50)
-        idInput.setFont(QFont(self.basicInfo.font1, 12))
-        idInput.setPlaceholderText('아이디 입력')
+        self.idInput = QLineEdit(self.w)
+        self.idInput.setGeometry(350, 250, 380, 50)
+        self.idInput.setFont(QFont(self.basicInfo.font1, 12))
+        self.idInput.setPlaceholderText('아이디 입력')
 
         idCheck = QPushButton('중복체크', self.w)
         idCheck.setFont(QFont(self.basicInfo.font1, 12))
         idCheck.setGeometry(750, 250, 100, 50)
+        idCheck.clicked.connect(self.idOverlapCheck)
 
-        pwInput = QLineEdit(self.w)
-        pwInput.setEchoMode(QLineEdit.Password)
-        pwInput.setGeometry(350, 320, 500, 50)
-        pwInput.setFont(QFont(self.basicInfo.font1, 12))
-        pwInput.setPlaceholderText('비밀번호 입력')
+        self.pwInput = QLineEdit(self.w)
+        self.pwInput.setEchoMode(QLineEdit.Password)
+        self.pwInput.setGeometry(350, 320, 500, 50)
+        self.pwInput.setFont(QFont(self.basicInfo.font1, 12))
+        self.pwInput.setPlaceholderText('비밀번호 입력')
 
-        pwInput = QLineEdit(self.w)
-        pwInput.setEchoMode(QLineEdit.Password)
-        pwInput.setGeometry(350, 390, 500, 50)
-        pwInput.setFont(QFont(self.basicInfo.font1, 12))
-        pwInput.setPlaceholderText('비밀번호 확인')
+        self.pwCheck = QLineEdit(self.w)
+        self.pwCheck.setEchoMode(QLineEdit.Password)
+        self.pwCheck.setGeometry(350, 390, 500, 50)
+        self.pwCheck.setFont(QFont(self.basicInfo.font1, 12))
+        self.pwCheck.setPlaceholderText('비밀번호 확인')
 
-        mailInput = QLineEdit(self.w)
-        mailInput.setGeometry(350, 460, 500, 50)
-        mailInput.setFont(QFont(self.basicInfo.font1, 12))
-        mailInput.setPlaceholderText('e-mail 입력')
+        self.mailInput = QLineEdit(self.w)
+        self.mailInput.setGeometry(350, 460, 500, 50)
+        self.mailInput.setFont(QFont(self.basicInfo.font1, 12))
+        self.mailInput.setPlaceholderText('e-mail 입력')
 
-        codeInput = QLineEdit(self.w)
-        codeInput.setGeometry(350, 530, 500, 50)
-        codeInput.setFont(QFont(self.basicInfo.font1, 12))
-        codeInput.setPlaceholderText('가입코드 입력')
+        self.codeInput = QLineEdit(self.w)
+        self.codeInput.setGeometry(350, 530, 500, 50)
+        self.codeInput.setFont(QFont(self.basicInfo.font1, 12))
+        self.codeInput.setPlaceholderText('가입코드 입력')
 
         nextBtn = QPushButton('JOIN', self.w)
         nextBtn.setFont(QFont(self.basicInfo.font1, 15))
         nextBtn.setGeometry(350, 600, 500, 50)
+        nextBtn.clicked.connect(self.goNextPage)
+
+    def goNextPage(self):
+        # 위치 지정
+        if (len(self.nameInput.text()) > 0 \
+                and len(self.idInput.text()) > 0 \
+                and len(self.pwInput.text()) > 0 \
+                and len(self.mailInput.text()) > 0 \
+                and len(self.codeInput.text()) > 0):
+
+            if self.idOverlapChecked:
+
+                if self.codeInput.text() == self.basicInfo.managerCode:
+
+                    self.teacher.setName(self.nameInput.text())
+                    self.teacher.setID(self.idInput.text())
+                    self.teacher.setPassword(self.pwInput.text())
+                    self.teacher.setEmail(self.mailInput.text())
+
+                    print(self.teacher)
+                    if TeacherJoin(self.teacher):
+
+                        print("회원가입에 성공하였습니다.")
+
+                        self.nextPage = tRate()
+                        geo = self.geometry()
+                        titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
+                        self.nextPage.move(geo.x(), geo.y() - titlebar_height)
+                        self.hide()
+
+                        self.nextPage.show()
+                    else:
+                        print("회원가입이 실패하였습니다.")
+
+                else:
+                    print("가입 코드가 일치하지 않습니다.")
+            else:
+                print("아이디 중복 체크를 해주시기 바랍니다.")
+        else:
+            print("입력되지 않은 항목이 존재합니다")
+
+    def idOverlapCheck(self):
+
+            if len(self.idInput.text()) > 0:
+                conn = self.basicDB.conn
+                curs = conn.cursor()
+
+                sql = "select EXISTS (select * from teacher where id='" + self.idInput.text() + "') as success;"
+                curs.execute(sql)
+
+                result = curs.fetchall()
+                conn.close()
+                if result[0][0] == 1:
+                    print("중복되는 아이디입니다.")
+                    self.idOverlapChecked = False
+                elif result[0][0] == 0:
+                    print("사용 가능한 아이디입니다.")
+                    self.idOverlapChecked = True
+
+            else:
+                print("아이디를 입력하십시오.")
+
 
 
 if __name__ == '__main__':

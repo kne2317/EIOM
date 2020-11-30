@@ -6,9 +6,9 @@ from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
+from Join import StudentJoin
 from student.Rate import sRate
 from student.Student import Student, Languages
-from student.StudentJoin import studentJoin
 
 
 class JoinS3(QWidget):
@@ -201,7 +201,7 @@ class JoinS3(QWidget):
 
 
 
-        if studentJoin(self.student, languages):
+        if StudentJoin(self.student, languages):
             # 회원가입 성공
             print("회원가입에 성공하였습니다.")
 
@@ -212,7 +212,8 @@ class JoinS3(QWidget):
             self.close()
 
             self.nextPage.show()
-
+        else:
+            print("회원가입이 실패하였습니다.")
         # Join
 
 

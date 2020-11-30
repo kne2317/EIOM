@@ -56,11 +56,11 @@ class JoinS(QWidget):
         self.pwInput.setFont(QFont(self.basicInfo.font1, 12))
         self.pwInput.setPlaceholderText('비밀번호 입력')
 
-        self.pwInput = QLineEdit(self.w)
-        self.pwInput.setEchoMode(QLineEdit.Password)
-        self.pwInput.setGeometry(350, 410, 500, 50)
-        self.pwInput.setFont(QFont(self.basicInfo.font1, 12))
-        self.pwInput.setPlaceholderText('비밀번호 확인')
+        self.pwCheck = QLineEdit(self.w)
+        self.pwCheck.setEchoMode(QLineEdit.Password)
+        self.pwCheck.setGeometry(350, 410, 500, 50)
+        self.pwCheck.setFont(QFont(self.basicInfo.font1, 12))
+        self.pwCheck.setPlaceholderText('비밀번호 확인')
 
         self.mailInput = QLineEdit(self.w)
         self.mailInput.setGeometry(350, 480, 500, 50)
