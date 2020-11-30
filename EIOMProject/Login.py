@@ -75,23 +75,8 @@ def companyLogin(id,pw):
     row = curs.fetchall()
     if len(row) > 0:
         if row[0][2] == pw:
-            Company.companyname=row[0][0]
-            Company.ID=row[0][1]
-            Company.password=row[0][2]
-            Company.address=row[0][3]
-            Company.annualsales=row[0][4]
-            Company.web=row[0][5]
-            Company.email=row[0][6]
-            Company.manager_name=row[0][7]
-            Company.manager_ph=row[0][8]
-            Company.introduce=row[0][9]
-            Company.major=row[0][10]
-            Company.pfauthority=row[0][11]
-            Company.pfperiod=row[0][12]
-            Company.request_authority=row[0][13]
-            Company.employees_num=row[0][14]
-            company.EmployeeRequestDB.callRequest()
-
+            Company.ID = row[0][1]
+            saveCompanyInfo()
             return True
         else:
             return False
@@ -99,3 +84,30 @@ def companyLogin(id,pw):
         return False
 
     conn.close()
+
+
+def saveCompanyInfo():
+    basicDB = BasicDB()
+    conn = basicDB.conn
+    curs = conn.cursor()
+
+    sql = "select * from company where id = '" + Company.ID + "';"
+    curs.execute(sql)
+
+    row = curs.fetchall()
+    Company.companyname = row[0][0]
+    Company.ID = row[0][1]
+    Company.password = row[0][2]
+    Company.address = row[0][3]
+    Company.annualsales = row[0][4]
+    Company.web = row[0][5]
+    Company.email = row[0][6]
+    Company.manager_name = row[0][7]
+    Company.manager_ph = row[0][8]
+    Company.introduce = row[0][9]
+    Company.major = row[0][10]
+    Company.pfauthority = row[0][11]
+    Company.pfperiod = row[0][12]
+    Company.request_authority = row[0][13]
+    Company.employees_num = row[0][14]
+    company.EmployeeRequestDB.callRequest()

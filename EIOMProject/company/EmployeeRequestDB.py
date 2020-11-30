@@ -1,7 +1,20 @@
 from BasicInfo import BasicDB
 from company.Company import Company
 from company.Company import Request
+import Login
 
+def updateCompanyInfo(companyname,employees_num,major,annualsale,introduce,web,address):
+    basicDB = BasicDB()
+    conn = basicDB.conn
+    curs = conn.cursor()
+
+    sql="update company set companyname='"+companyname+"', employees_num="+employees_num+", major='"+major+\
+        "', annualsales='"+annualsale+"', introduce='"+introduce+"', web='"+web+"',address='"+address+\
+        "' where id='"+Company.ID+"';"
+    curs.execute(sql)
+    conn.commit()
+
+    Login.saveCompanyInfo();
 
 def insertRequest(cid, recruit, hopeperson, apply, royalty, document, uselang, employemnt, work, money, worktime,
                   benefit, period, pmoney, manager_email, manager_ph):
@@ -22,15 +35,6 @@ def insertRequest(cid, recruit, hopeperson, apply, royalty, document, uselang, e
     Company.request_authority=1
 
     callRequest()
-
-
-def saveRequest(cid, recruit, hopeperson, apply, royalty, document, uselang, employemnt, work, money, worktime,
-                  benefit, period, pmoney, manager_email, manager_ph):
-    basicDB = BasicDB()
-    conn = basicDB.conn
-    curs = conn.cursor()
-
-
 
 def callRequest():
     basicDB = BasicDB()

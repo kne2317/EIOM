@@ -10,6 +10,7 @@ import company.NoneEmployementRequest
 import company.CompanyEmploymentRequest
 import company.CompanyInfo
 import company.NonePofol
+import company.EmployeeRequestDB
 
 class ModifyInfo(QWidget):
 
@@ -58,67 +59,80 @@ class ModifyInfo(QWidget):
         cNameL1.setFont(QFont(self.basicInfo.font1,15))
         cNameL1.setGeometry(150,160,500,40)
 
-        cNameL2 = QLineEdit("연지 소프트", self.w)
-        cNameL2.setFont(QFont(self.basicInfo.font1, 13))
-        cNameL2.setGeometry(350, 160, 250, 40)
+        self.cNameL2 = QLineEdit("연지 소프트", self.w)
+        self.cNameL2.setFont(QFont(self.basicInfo.font1, 13))
+        self.cNameL2.setGeometry(350, 160, 250, 40)
+        self.cNameL2.setText(Company.companyname)
 
         employeeL1 = QLabel("사원수", self.w)
         employeeL1.setFont(QFont(self.basicInfo.font1, 15))
         employeeL1.setGeometry(650, 160, 500, 40)
 
-        employeeL2 = QLineEdit("10", self.w)
-        employeeL2.setFont(QFont(self.basicInfo.font1, 13))
-        employeeL2.setGeometry(850, 160, 250, 40)
+        self.employeeL2 = QLineEdit("10", self.w)
+        self.employeeL2.setFont(QFont(self.basicInfo.font1, 13))
+        self.employeeL2.setGeometry(850, 160, 250, 40)
+        self.employeeL2.setText(str(Company.employees_num))
 
         majorL1 = QLabel("분야", self.w)
         majorL1.setFont(QFont(self.basicInfo.font1, 15))
         majorL1.setGeometry(150, 240, 500, 40)
 
-        majorL2 = QLineEdit("개발", self.w)
-        majorL2.setFont(QFont(self.basicInfo.font1, 13))
-        majorL2.setGeometry(350, 240, 250, 40)
+        self.majorL2 = QLineEdit("개발", self.w)
+        self.majorL2.setFont(QFont(self.basicInfo.font1, 13))
+        self.majorL2.setGeometry(350, 240, 250, 40)
+        self.majorL2.setText(Company.major)
 
         salesL1 = QLabel("연매출", self.w)
         salesL1.setFont(QFont(self.basicInfo.font1, 15))
         salesL1.setGeometry(650, 240, 500, 40)
 
-        salesL2 = QLineEdit("10억", self.w)
-        salesL2.setFont(QFont(self.basicInfo.font1, 13))
-        salesL2.setGeometry(850, 240, 250, 40)
+        self.salesL2 = QLineEdit("10억", self.w)
+        self.salesL2.setFont(QFont(self.basicInfo.font1, 13))
+        self.salesL2.setGeometry(850, 240, 250, 40)
+        self.salesL2.setText(Company.annualsale)
 
         companyIntroL = QLabel("기업소개", self.w)
         companyIntroL.setFont(QFont(self.basicInfo.font1, 15))
         companyIntroL.setGeometry(150, 320, 500, 50)
 
-        companyIntro = QTextEdit(self.w)
-        companyIntro.setFont(QFont(self.basicInfo.font1, 12))
-        companyIntro.setGeometry(350, 330, 750, 130)
+        self.companyIntro = QTextEdit(self.w)
+        self.companyIntro.setFont(QFont(self.basicInfo.font1, 12))
+        self.companyIntro.setGeometry(350, 330, 750, 130)
+        self.companyIntro.setText(Company.introduce)
 
         webL1 = QLabel("웹사이트 ", self.w)
         webL1.setFont(QFont(self.basicInfo.font1, 15))
         webL1.setGeometry(150, 490, 500, 50)
 
-        webL2 = QLineEdit("www.e-mirim.hs.kr", self.w)
-        webL2.setFont(QFont(self.basicInfo.font1, 15))
-        webL2.setGeometry(350, 490, 750, 50)
+        self.webL2 = QLineEdit("www.e-mirim.hs.kr", self.w)
+        self.webL2.setFont(QFont(self.basicInfo.font1, 15))
+        self.webL2.setGeometry(350, 490, 750, 50)
+        self.webL2.setText(Company.web)
 
         addressL1 = QLabel("주소", self.w)
         addressL1.setFont(QFont(self.basicInfo.font1, 15))
         addressL1.setGeometry(150, 570, 500, 50)
 
-        addressL2 = QLineEdit("남양주시 화도읍", self.w)
-        addressL2.setFont(QFont(self.basicInfo.font1, 15))
-        addressL2.setGeometry(350, 570, 750, 50)
+        self.addressL2 = QLineEdit("남양주시 화도읍", self.w)
+        self.addressL2.setFont(QFont(self.basicInfo.font1, 15))
+        self.addressL2.setGeometry(350, 570, 750, 50)
+        self.addressL2.setText(Company.address)
 
 
         modifyBtn = QPushButton('확인', self.w)
         modifyBtn.setFont(QFont(self.basicInfo.font1, 12))
         modifyBtn.setGeometry(980, 630, 120, 40)
         modifyBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
+        modifyBtn.clicked.connect(self.modify)
 
         stateBtn.clicked.connect(self.state)
         pfBtn.clicked.connect(self.pf)
         infoBtn.clicked.connect(self.info)
+
+    def modify(self):
+        company.EmployeeRequestDB.updateCompanyInfo(self.cNameL2.text(),self.employeeL2.text(),self.majorL2.text(),self.salesL2.text(),
+                                                    self.companyIntro.toPlainText(),self.webL2.text(),self.addressL2.text())
+        self.info()
 
     def state(self):
         if Company.request_authority == 0:

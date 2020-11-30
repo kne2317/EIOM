@@ -71,7 +71,7 @@ class CompanyInfo(QWidget):
         employeeL2 = QLabel("10", self.w)
         employeeL2.setFont(QFont(self.basicInfo.font1, 15))
         employeeL2.setGeometry(850, 160, 500, 50)
-        employeeL2.setText(Company.employees_num)
+        employeeL2.setText(str(Company.employees_num))
 
         majorL1 = QLabel("분야", self.w)
         majorL1.setFont(QFont(self.basicInfo.font1, 15))
@@ -97,7 +97,8 @@ class CompanyInfo(QWidget):
 
         companyIntro = QTextBrowser(self.w)
         companyIntro.setFont(QFont(self.basicInfo.font1, 12))
-        companyIntro.setGeometry(270, 330, 800, 130)
+        companyIntro.setGeometry(350, 330, 720, 130)
+        companyIntro.setStyleSheet('border:0px;')
         companyIntro.setText(Company.introduce)
 
         webL1 = QLabel("웹사이트 ", self.w)
