@@ -1,9 +1,12 @@
+
 import sys
+
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
+from main import Main
 from student.Student import Student, Languages
 from student.StudentJoin import studentJoin
 
@@ -15,7 +18,6 @@ class JoinS3(QWidget):
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
         self.student = student
-        self.student.print()
         self.initUI()
 
     def initUI(self):
@@ -26,7 +28,7 @@ class JoinS3(QWidget):
         self.move(self.basicInfo.WindowX, self.basicInfo.WindowY)
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/join_background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/join_background.png")))
         self.setPalette(palette)
 
         title = QLabel("EIOM - JOIN [ Student ]", self.w)
@@ -199,7 +201,18 @@ class JoinS3(QWidget):
 
 
 
-        studentJoin(self.student, languages)
+        if studentJoin(self.student, languages):
+            # 회원가입 성공
+            print("회원가입에 성공하였습니다.")
+
+            self.nextPage = Main()
+            geo = self.geometry()
+            titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
+            self.nextPage.move(geo.x(), geo.y() - titlebar_height)
+            self.close()
+
+            self.nextPage.show()
+
         # Join
 
 

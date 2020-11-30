@@ -7,32 +7,47 @@ from student import StudentDB
 
 
 def studentJoin(student, languages=Languages()):
+    try:
+        student.print()
 
-    basicDB = BasicDB()
-    conn = basicDB.conn
-    curs = conn.cursor()
+        basicDB = BasicDB()
+        conn = basicDB.conn
+        curs = conn.cursor()
 
-    if not(len(student.getPortfolio())>0 and len(student.getIntroduce())>0):
-            sql = "INSERT INTO `eiom_db`.`student` (`id`, `password`, `name`, `major`, `grade`, `class`, `email`) VALUES ('"+student.getID()+"', '"+student.getPassword()+"', '"+student.getName()+"', '"+student.getMajor()+"', "+str(student.getGrade())+", "+str(student.getClass())+", '"+student.getEmail()+"');"
-    elif len(student.getPortfolio())>0:
-        # 포폴 추가
-        pass
-    elif len(student.getIntroduce())>0:
-        # 자소서 추가
-        pass
-    else:
-        # 포폴, 자소서 추가
-        pass
+        if not (len(student.getPortfolio()) > 0 and len(student.getIntroduce()) > 0):
+            sql = "INSERT INTO `eiom_db`.`student` (`id`, `password`, `name`, `major`, `grade`, `class`, `email`) VALUES ('" + student.getID() + "', '" + student.getPassword() + "', '" + student.getName() + "', '" + student.getMajor() + "', " + str(
+                student.getGrade()) + ", " + str(student.getClass()) + ", '" + student.getEmail() + "');"
+        elif len(student.getPortfolio()) > 0:
+            # 포폴 추가
+            pass
+        elif len(student.getIntroduce()) > 0:
+            # 자소서 추가
+            pass
+        else:
+            # 포폴, 자소서 추가
+            pass
 
-    curs.execute(sql)
-    conn.commit()
+        curs.execute(sql)
+        conn.commit()
 
-    sql = "INSERT INTO `eiom_db`.`languages` (`id`, `java`, `c`, `cpp`, `cs`, `html`, `css`, `javascript`, `jquery`, `nodejs`, `react`, `python`, `php`, `jsp`, `msql`, `servlet`, `adroid`, `linux`, `oracle`, `spring`, `kotlin`, `etc`) VALUES ('"+student.getID()+"', "+getBool(languages.java)+", "+getBool(languages.c)+", "+getBool(languages.cpp)+", "+getBool(languages.cs)+", "+getBool(languages.html)+", "+getBool(languages.css)+", "+getBool(languages.js)+", "+getBool(languages.jq)+", "+getBool(languages.node)+", "+getBool(languages.react)+", "+getBool(languages.py)+", "+getBool(languages.php)+", "+getBool(languages.jsp)+", "+getBool(languages.mysql)+", "+getBool(languages.servlet)+", "+getBool(languages.android)+", "+getBool(languages.linux)+", "+getBool(languages.oracle)+", "+getBool(languages.spring)+", "+getBool(languages.kotlin)+", '"+languages.etc+"');"
+        sql = "INSERT INTO `eiom_db`.`languages` (`id`, `java`, `c`, `cpp`, `cs`, `html`, `css`, `javascript`, `jquery`, `nodejs`, `react`, `python`, `php`, `jsp`, `msql`, `servlet`, `adroid`, `linux`, `oracle`, `spring`, `kotlin`, `etc`) VALUES ('" + student.getID() + "', " + getBool(
+            languages.java) + ", " + getBool(languages.c) + ", " + getBool(languages.cpp) + ", " + getBool(
+            languages.cs) + ", " + getBool(languages.html) + ", " + getBool(languages.css) + ", " + getBool(
+            languages.js) + ", " + getBool(languages.jq) + ", " + getBool(languages.node) + ", " + getBool(
+            languages.react) + ", " + getBool(languages.py) + ", " + getBool(languages.php) + ", " + getBool(
+            languages.jsp) + ", " + getBool(languages.mysql) + ", " + getBool(languages.servlet) + ", " + getBool(
+            languages.android) + ", " + getBool(languages.linux) + ", " + getBool(languages.oracle) + ", " + getBool(
+            languages.spring) + ", " + getBool(languages.kotlin) + ", '" + languages.etc + "');"
 
-    curs.execute(sql)
-    conn.commit()
+        curs.execute(sql)
+        conn.commit()
 
-    conn.close()
+        conn.close()
+        return True
+    except:
+        return False
+
+
 
 
 def getBool(a):

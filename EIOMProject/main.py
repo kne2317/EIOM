@@ -2,9 +2,9 @@ import sys
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore, QtGui
-from JoinSelect import JoinSelect
 from BasicInfo import BasicInfo, BasicDB
 import Login
+from joinSelect import JoinSelect
 from student.Rate import sRate
 from teacher.Rate import tRate
 from company.Company import Company
@@ -15,16 +15,7 @@ class Main(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.joinpage = JoinSelect()
         self.basicInfo = BasicInfo()
-        self.company=Company()
-
-        self.sLogin = sRate()
-        self.tLogin = tRate()
-        if self.company.getRequest_authority==0:
-            self.cLogin = NoneEmployementRequest()
-        else:
-            self.cLogin=CompanyEmploymentRequest()
 
         self.w = QWidget(self)
         self.initUI()
@@ -97,8 +88,10 @@ class Main(QWidget):
         '''
 
     def login(self):
+        # 학생 로그인
         if self.student.isChecked():
             if Login.studentLogin(self.idInput.text(), self.pwInput.text()) == True:
+                self.sLogin = sRate()
                 self.close()
                 self.sLogin.show()
             else:
@@ -106,16 +99,26 @@ class Main(QWidget):
                 msgBox.setText("로그인 실패! \n아이디와 비밀번호를 다시 확인해 주세요")
                 msgBox.exec_()
 
+        # 교사 로그인
         if self.teacher.isChecked():
             if Login.teacherLogin(self.idInput.text(), self.pwInput.text()) == True:
+                self.tLogin = tRate()
                 self.close()
                 self.tLogin.show()
             else:
                 msgBox = QMessageBox()
                 msgBox.setText("로그인 실패! \n아이디와 비밀번호를 다시 확인해 주세요")
                 msgBox.exec_()
+
+        # 회사 로그인
+        # 로그인 후에 정보 반환환
         if self.company.isChecked():
             if Login.companyLogin(self.idInput.text(), self.pwInput.text()) == True:
+                self.company = Company()
+                if self.company.getRequest_authority==0:
+                    self.cLogin = NoneEmployementRequest()
+                else:
+                    self.cLogin=CompanyEmploymentRequest()
                 self.close()
                 self.cLogin.show()
             else:
@@ -124,6 +127,7 @@ class Main(QWidget):
                 msgBox.exec_()
 
     def join(self):
+        self.joinpage = JoinSelect()
         self.close()
         self.joinpage.show()
 
