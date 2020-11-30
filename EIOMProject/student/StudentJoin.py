@@ -68,7 +68,7 @@ def studentJoin(student, languages=Languages()):
         curs.execute(sql)
         conn.commit()
 
-        sql = "INSERT INTO `eiom_db`.`languages` (`id`, `java`, `c`, `cpp`, `cs`, `html`, `css`, `javascript`, `jquery`, `nodejs`, `react`, `python`, `php`, `jsp`, `msql`, `servlet`, `adroid`, `linux`, `oracle`, `spring`, `kotlin`, `etc`) VALUES ('" + student.getID() + "', " + getBool(
+        sql = "INSERT INTO `eiom_db`.`languages` (`id`, `java`, `c`, `cpp`, `cs`, `html`, `css`, `javascript`, `jquery`, `nodejs`, `react`, `python`, `php`, `jsp`, `msql`, `servlet`, `android`, `linux`, `oracle`, `spring`, `kotlin`, `etc`) VALUES ('" + student.getID() + "', " + getBool(
             languages.java) + ", " + getBool(languages.c) + ", " + getBool(languages.cpp) + ", " + getBool(
             languages.cs) + ", " + getBool(languages.html) + ", " + getBool(languages.css) + ", " + getBool(
             languages.js) + ", " + getBool(languages.jq) + ", " + getBool(languages.node) + ", " + getBool(
