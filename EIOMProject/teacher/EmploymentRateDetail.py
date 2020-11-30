@@ -1,10 +1,9 @@
 import sys
-import importlib
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore
 from BasicInfo import BasicInfo
-from employmentRate.EmploymentRate import eRateDB, updateRate
+import employmentRate.EmploymentRate
 import teacher.Rate
 class Detail(QWidget):
 
@@ -15,9 +14,9 @@ class Detail(QWidget):
         self.initUI()
 
     def initUI(self):
-        self.y1 = eRateDB(1)
-        self.y2 = eRateDB(2)
-        self.y3 = eRateDB(3)
+        self.y1 = employmentRate.EmploymentRate.eRateDB(1)
+        self.y2 = employmentRate.EmploymentRate.eRateDB(2)
+        self.y3 = employmentRate.EmploymentRate.eRateDB(3)
 
         layout = QVBoxLayout(self)
 
@@ -232,7 +231,7 @@ class Detail(QWidget):
             msgBox.setText("값을 다시 확인해 주세요")
             msgBox.exec_()
         else:
-            updateRate(self.y1,self.y2,self.y3)
+            employmentRate.EmploymentRate.updateRate(self.y1,self.y2,self.y3)
             self.close()
 
 
