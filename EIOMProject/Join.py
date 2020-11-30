@@ -103,6 +103,24 @@ def TeacherJoin(teacher):
         return False
 
 
+def CompanyJoin(company):
+    try:
+        teacher.print()
+
+        basicDB = BasicDB()
+        conn = basicDB.conn
+        curs = conn.cursor()
+
+        sql = "INSERT INTO `eiom_db`.`teacher` (`id`, `name`, `password`, `email`) VALUES ('" + teacher.getID() + "', '" + teacher.getName() + "', '" + teacher.getPassword() + "', '" + teacher.getEmail() + "');"
+
+        curs.execute(sql)
+        conn.commit()
+
+        conn.close()
+        return True
+    except Exception as e:
+        print(e)
+        return False
 
 
 
