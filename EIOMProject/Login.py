@@ -4,7 +4,7 @@ import pymysql
 from BasicInfo import BasicDB
 from student.Student import Student
 from company.Company import Company
-
+from teacher.Teacher import Teacher
 
 def studentLogin(id,pw):
     student=Student()
@@ -19,17 +19,16 @@ def studentLogin(id,pw):
     rows = curs.fetchall()
     if len(rows) > 0:
         if rows[0][1] == pw:
-
-            student.setID(rows[0][0])
-            student.setPassword(rows[0][1])
-            student.setName(rows[0][2])
-            student.setMajor(rows[0][3])
-            student.setGrade(rows[0][4])
-            student.setClass(rows[0][5])
-            student.setPortfolio(rows[0][6])
-            student.setIntroduce(rows[0][7])
-            student.setLikeCompany(rows[0][7])
-            student.setEmail(rows[0][8])
+            student.ID=rows[0][0]
+            student.password[0][1]
+            student.name[0][2]
+            student.major[0][3]
+            student.grade[0][4]
+            student.class_[0][5]
+            student.portfolio[0][6]
+            student.introduce[0][7]
+            student.likeCompany[0][8]
+            student.email[0][9]
 
             return True
         else:
@@ -44,6 +43,8 @@ def teacherLogin(id,pw):
     conn = basicDB.conn
     curs = conn.cursor()
 
+    teacher = Teacher()
+
     sql = "select * from teacher where id = '" + id + "';"
     curs.execute(sql)
 
@@ -51,7 +52,10 @@ def teacherLogin(id,pw):
     if len(rows) > 0:
         print(rows)
         if rows[0][2] == pw:
-
+            teacher.ID=rows[0][0]
+            teacher.namerows[0][1]
+            teacher.password[0][2]
+            teacher.email[0][3]
             return True
         else:
             return False
