@@ -62,6 +62,9 @@ class noticeList(QWidget):
         infoBtn.setGeometry(1000, 70, 200, 50)
         infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
+        stateBtn.clicked.connect(self.state)
+        
+
         contTitle=QLabel('제목 \n',self.w)
         contTitle.setFont(QFont(self.basicInfo.font1,13))
         contTitle.setGeometry(100,150,1000,90)
