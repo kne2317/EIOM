@@ -10,6 +10,17 @@ class Student:
     portfolio = ''
     introduce = ''
     likeCompany = ''
+    def print(self):
+        print("id: " + self.ID)
+        print("password: " + self.password)
+        print("name: " + self.name)
+        print("email: " + self.email)
+        print("major: " + self.major)
+        print("grade: " + str(self.grade))
+        print("class_: " + str(self.class_))
+        print("portfolio: " + self.portfolio)
+        print("introduce: " + self.introduce)
+        print("likeCompany: " + self.likeCompany)
 
 class Languages:
     def __init__(self):

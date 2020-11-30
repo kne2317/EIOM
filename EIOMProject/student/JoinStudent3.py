@@ -13,11 +13,10 @@ from student.Student import Student, Languages
 
 class JoinS3(QWidget):
 
-    def __init__(self, student=Student()):
+    def __init__(self):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
-        self.student = student
         self.initUI()
 
     def initUI(self):
@@ -201,7 +200,7 @@ class JoinS3(QWidget):
 
 
 
-        if StudentJoin(self.student, languages):
+        if StudentJoin(languages):
             # 회원가입 성공
             print("회원가입에 성공하였습니다.")
 

@@ -10,11 +10,10 @@ from student.Student import Student
 
 class JoinS2(QWidget):
 
-    def __init__(self, student=Student()):
+    def __init__(self):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
-        self.student = student
 
         self.initUI()
 
@@ -98,11 +97,11 @@ class JoinS2(QWidget):
 
     def goNextPage(self):
         # 위치 지정
-        self.student.setMajor(self.major.currentText())
-        self.student.setGrade((int)(self.grade.currentText()[0]))
-        self.student.setClass((int)(self.ban.currentText()[0]))
+        Student.major = self.major.currentText()
+        Student.grade = int(self.grade.currentText()[0])
+        Student.class_ = int(self.ban.currentText()[0])
 
-        self.nextPage = JoinS3(self.student)
+        self.nextPage = JoinS3()
 
         geo = self.geometry()
         titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
@@ -115,13 +114,13 @@ class JoinS2(QWidget):
     def show_file_open_p(self):
         fname = QFileDialog.getOpenFileName()
         self.pfInput.setText(fname[0])
-        self.student.setPortfolio(fname[0])
+        Student.portfolio = fname[0]
 
 
     def show_file_open_i(self):
         fname = QFileDialog.getOpenFileName()
         self.introduceInput.setText(fname[0])
-        self.student.setIntroduce(fname[0])
+        Student.introduce = fname[0]
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

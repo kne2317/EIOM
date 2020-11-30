@@ -13,7 +13,6 @@ class JoinS(QWidget):
     def __init__(self):
         super().__init__()
         self.basicInfo = BasicInfo()
-        self.student = Student()
         self.w = QWidget(self)
         self.initUI()
         self.idOverlapChecked = False
@@ -82,11 +81,12 @@ class JoinS(QWidget):
             and len(self.mailInput.text()) > 0):
             if  self.idOverlapChecked:
 
-                self.student.setName(self.nameInput.text())
-                self.student.setID(self.idInput.text())
-                self.student.setPassword(self.pwInput.text())
-                self.student.setEmail(self.mailInput.text())
-                self.nextPage = JoinS2(self.student)
+                Student.name = self.nameInput.text()
+                Student.ID = self.idInput.text()
+                Student.password = self.pwInput.text()
+                Student.email = self.mailInput.text()
+
+                self.nextPage = JoinS2()
                 geo = self.geometry()
                 titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
                 self.nextPage.move(geo.x(), geo.y() - titlebar_height)
