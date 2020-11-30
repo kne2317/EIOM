@@ -3,7 +3,7 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore
 
-from BasicInfo import BasicInfo
+from BasicInfo import BasicInfo, BasicDB
 from student.JoinStudent2 import JoinS2
 from student.Student import Student
 
@@ -16,6 +16,7 @@ class JoinS(QWidget):
         self.student = Student()
         self.w = QWidget(self)
         self.initUI()
+        self.idOverlapChecked = False
 
     def initUI(self):
 
@@ -79,23 +80,46 @@ class JoinS(QWidget):
             and len(self.idInput.text()) > 0 \
             and len(self.pwInput.text()) > 0 \
             and len(self.mailInput.text()) > 0):
-            self.student.setName(self.nameInput.text())
-            self.student.setID(self.idInput.text())
-            self.student.setPassword(self.pwInput.text())
-            self.student.setEmail(self.mailInput.text())
-            self.nextPage = JoinS2(self.student)
-            geo = self.geometry()
-            titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
-            self.nextPage.move(geo.x(), geo.y() - titlebar_height)
-            self.hide()
+            if  self.idOverlapChecked:
 
-            self.nextPage.show()
+                self.student.setName(self.nameInput.text())
+                self.student.setID(self.idInput.text())
+                self.student.setPassword(self.pwInput.text())
+                self.student.setEmail(self.mailInput.text())
+                self.nextPage = JoinS2(self.student)
+                geo = self.geometry()
+                titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
+                self.nextPage.move(geo.x(), geo.y() - titlebar_height)
+                self.hide()
+
+                self.nextPage.show()
+            else:
+                print("아이디 중복 체크를 해주시기 바랍니다.")
         else:
             print("입력되지 않은 항목이 존재합니다")
 
 
     def idOverlapCheck(self):
-        print('중복 확인')
+
+        try:
+            basicDB = BasicDB()
+            conn = basicDB.conn
+            curs = conn.cursor()
+
+            sql = "select EXISTS (select * from student where id='"+self.idInput.text()+"') as success;"
+            curs.execute(sql)
+
+            result = curs.fetchall()
+            if result[0][0] == 1:
+                print("중복되는 아이디입니다.")
+                self.idOverlapChecked = False
+            elif result[0][0] == 0:
+                print("사용 가능한 아이디입니다.")
+                self.idOverlapChecked = True
+
+            conn.close()
+        except Exception as e:
+            print(e)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
