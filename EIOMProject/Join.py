@@ -105,7 +105,7 @@ def TeacherJoin(teacher):
 
 def CompanyJoin(company):
     try:
-        teacher.print()
+        company.print()
 
         basicDB = BasicDB()
         conn = basicDB.conn

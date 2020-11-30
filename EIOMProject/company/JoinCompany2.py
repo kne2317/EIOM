@@ -4,6 +4,7 @@ from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
+from Join import CompanyJoin
 from company.Company import Company
 
 
@@ -33,43 +34,65 @@ class JoinC2(QWidget):
         layout.addWidget(title)
         title.setGeometry(100, 45, 1000, 50)
 
-        addInput = QLineEdit(self.w)
-        addInput.setGeometry(350, 180, 500, 50)
-        addInput.setFont(QFont(self.basicInfo.font1, 12))
-        addInput.setPlaceholderText('주소 입력')
+        self.addInput = QLineEdit(self.w)
+        self.addInput.setGeometry(350, 180, 500, 50)
+        self.addInput.setFont(QFont(self.basicInfo.font1, 12))
+        self.addInput.setPlaceholderText('주소 입력')
 
-        annualSalesInput = QLineEdit(self.w)
-        annualSalesInput.setGeometry(350, 250, 500, 50)
-        annualSalesInput.setFont(QFont(self.basicInfo.font1, 12))
-        annualSalesInput.setPlaceholderText('연매출 입력')
+        self.annualSalesInput = QLineEdit(self.w)
+        self.annualSalesInput.setGeometry(350, 250, 500, 50)
+        self.annualSalesInput.setFont(QFont(self.basicInfo.font1, 12))
+        self.annualSalesInput.setPlaceholderText('연매출 입력')
 
-        webInput = QLineEdit(self.w)
-        webInput.setGeometry(350, 320, 500, 50)
-        webInput.setFont(QFont(self.basicInfo.font1, 12))
-        webInput.setPlaceholderText('웹사이트 주소 입력')
+        self.webInput = QLineEdit(self.w)
+        self.webInput.setGeometry(350, 320, 500, 50)
+        self.webInput.setFont(QFont(self.basicInfo.font1, 12))
+        self.webInput.setPlaceholderText('웹사이트 주소 입력')
 
-        nameInput = QLineEdit(self.w)
-        nameInput.setGeometry(350, 390, 500, 50)
-        nameInput.setFont(QFont(self.basicInfo.font1, 12))
-        nameInput.setPlaceholderText('담당자 이름 입력')
+        self.nameInput = QLineEdit(self.w)
+        self.nameInput.setGeometry(350, 390, 500, 50)
+        self.nameInput.setFont(QFont(self.basicInfo.font1, 12))
+        self.nameInput.setPlaceholderText('담당자 이름 입력')
 
-        mailInput = QLineEdit(self.w)
-        mailInput.setGeometry(350, 460, 500, 50)
-        mailInput.setFont(QFont(self.basicInfo.font1, 12))
-        mailInput.setPlaceholderText('담당자 e-mail 입력')
-
-        phInput = QLineEdit(self.w)
-        phInput.setGeometry(350, 530, 500, 50)
-        phInput.setFont(QFont(self.basicInfo.font1, 12))
-        phInput.setPlaceholderText('담당자 연락처 입력')
+        self.phInput = QLineEdit(self.w)
+        self.phInput.setGeometry(350, 460, 500, 50)
+        self.phInput.setFont(QFont(self.basicInfo.font1, 12))
+        self.phInput.setPlaceholderText('담당자 연락처 입력')
 
         joinBtn = QPushButton('JOIN', self.w)
         joinBtn.setFont(QFont(self.basicInfo.font1, 15))
-        joinBtn.setGeometry(350, 600, 500, 50)
+        joinBtn.setGeometry(350, 530, 500, 50)
+        joinBtn.clicked.connect(self.goNextPage)
 
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
+    def goNextPage(self):
+        # 위치 지정
+        if (len(self.addInput.text()) > 0 \
+                and len(self.annualSalesInput.text()) > 0 \
+                and len(self.webInput.text()) > 0 \
+                and len(self.nameInput.text()) > 0 \
+                and len(self.phInput.text()) > 0):
 
-    ex = JoinS()
-    sys.exit(app.exec_())
+
+            self.company.setAddress(self.addInput.text())
+            self.company.setAnnualsale(self.annualSalesInput.text())
+            self.company.setWeb(self.webInput.text())
+            self.company.setManager_name(self.nameInput.text())
+            self.company.setManager_ph(self.phInput.text())
+
+            if CompanyJoin(self.company):
+
+                print("회원가입에 성공하였습니다.")
+
+                self.nextPage = tRate()
+                geo = self.geometry()
+                titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
+                self.nextPage.move(geo.x(), geo.y() - titlebar_height)
+                self.hide()
+
+                self.nextPage.show()
+            else:
+                print("회원가입이 실패하였습니다.")
+
+        else:
+            print("입력되지 않은 항목이 존재합니다")
