@@ -13,7 +13,7 @@ class JoinC(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.company = Company()
+
         self.idOverlapChecked = False
         self.CompanyNameOverlapChecked = False
         self.basicInfo = BasicInfo()
@@ -84,11 +84,11 @@ class JoinC(QWidget):
                 if self.CompanyNameOverlapChecked:
 
 
-                    self.company.setCompanyname(self.nameInput.text())
-                    self.company.setID(self.idInput.text())
-                    self.company.setPassword(self.pwInput.text())
+                    Company.companyname = self.nameInput.text()
+                    Company.ID = self.idInput.text()
+                    Company.password = self.pwInput.text()
 
-                    self.nextPage = JoinC2(self.company)
+                    self.nextPage = JoinC2()
                     geo = self.geometry()
                     titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
                     self.nextPage.move(geo.x(), geo.y() - titlebar_height)

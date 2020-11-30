@@ -10,12 +10,11 @@ from company.Company import Company
 
 class JoinC2(QWidget):
 
-    def __init__(self, company=Company()):
+    def __init__(self):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
         self.initUI()
-        self.company = company
 
     def initUI(self):
 
@@ -80,14 +79,14 @@ class JoinC2(QWidget):
                 and len(self.phInput.text()) > 0):
 
 
-            self.company.setAddress(self.addInput.text())
-            self.company.setAnnualsale(self.annualSalesInput.text())
-            self.company.setWeb(self.webInput.text())
-            self.company.setManager_name(self.nameInput.text())
-            self.company.setEmail(self.emailInput.text())
-            self.company.setManager_ph(self.phInput.text())
+            Company.address = self.addInput.text()
+            Company.annualsale = self.annualSalesInput.text()
+            Company.web = self.webInput.text()
+            Company.manager_name = self.nameInput.text()
+            Company.email = self.emailInput.text()
+            Company.manager_ph = self.phInput.text()
 
-            if CompanyJoin(self.company):
+            if CompanyJoin():
 
                 print("회원가입에 성공하였습니다.")
 

@@ -105,12 +105,11 @@ def TeacherJoin(teacher):
 
 def CompanyJoin(company):
     try:
-
         basicDB = BasicDB()
         conn = basicDB.conn
         curs = conn.cursor()
 
-        sql = "INSERT INTO `eiom_db`.`company` (`companyname`, `id`, `password`, `address`, `annualsales`, `web`, `email`, `manager_name`, `manager_ph`) VALUES ('"+company.getCompanyname()+"', '"+company.getID()+"', '"+company.getPassword()+"', '"+company.getAddress()+"', '"+company.getAnnualsale()+"', '"+company.getWeb()+"', '"+company.getEmail()+"', '"+company.getManager_name()+"', '"+company.getManager_ph()+"');"
+        sql = "INSERT INTO `eiom_db`.`company` (`companyname`, `id`, `password`, `address`, `annualsales`, `web`, `email`, `manager_name`, `manager_ph`) VALUES ('"+Company.companyname()+"', '"+Company.ID()+"', '"+Company.getPassword()+"', '"+Company.getAddress()+"', '"+Company.getAnnualsale()+"', '"+Company.getWeb()+"', '"+Company.getEmail()+"', '"+Company.getManager_name()+"', '"+Company.getManager_ph()+"');"
 
         curs.execute(sql)
         conn.commit()
