@@ -3,6 +3,7 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore
 
+import student.NoticeContent
 from BasicInfo import BasicInfo, BasicDB
 from student.Notice import Notice
 
@@ -114,33 +115,213 @@ class noticeList(QWidget):
         self.title = []
         self.writer = []
         self.date = []
-        for i in range(self.list_len):
-            self.title.append('')
-            self.title[i] = QPushButton(self.notices[i].title, self.w)
-            self.title[i].setFont(QFont(self.basicInfo.font1, fontsize))
-            self.title[i].setGeometry(listX, listY+blankHeigth*(i+1), title_width+1, blankHeigth+1)
-            if i == self.list_len-1:
-                self.title[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; border-bottom:2px solid #ababab; text-align: left; padding-left:30px; ')
-            else:
-                self.title[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left:30px; ')
 
-            self.writer.append('')
-            self.writer[i] = QPushButton(self.notices[i].writer, self.w)
-            self.writer[i].setFont(QFont(self.basicInfo.font1, fontsize))
-            self.writer[i].setGeometry(listX + title_width, listY+blankHeigth*(i+1), writer_width+1, blankHeigth+1)
-            if i == self.list_len-1:
-                self.writer[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; border-bottom:2px solid #ababab; ')
-            else:
-                self.writer[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        #0
+        i=0
+        self.title.append('')
+        self.title[i] = QPushButton(self.notices[i].title, self.w)
+        self.title[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.title[i].setGeometry(listX, listY+blankHeigth*(i+1), title_width+1, blankHeigth+1)
+        self.title[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.title[i].clicked.connect(lambda v: self.func(0))
 
-            self.date.append('')
-            self.date[i] = QPushButton(str(self.notices[i].date), self.w)
-            self.date[i].setFont(QFont(self.basicInfo.font1, fontsize))
-            self.date[i].setGeometry(listX + title_width + writer_width, listY+blankHeigth*(i+1), date_width, blankHeigth+1)
-            if i == self.list_len-1:
-                self.date[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; border-bottom:2px solid #ababab; ')
-            else:
-                self.date[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.writer.append('')
+        self.writer[i] = QPushButton(self.notices[i].writer, self.w)
+        self.writer[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.writer[i].setGeometry(listX + title_width, listY+blankHeigth*(i+1), writer_width+1, blankHeigth+1)
+        self.writer[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.writer[i].clicked.connect(lambda v: self.func(0))
+
+        self.date.append('')
+        self.date[i] = QPushButton(str(self.notices[i].date), self.w)
+        self.date[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.date[i].setGeometry(listX + title_width + writer_width, listY+blankHeigth*(i+1), date_width, blankHeigth+1)
+        self.date[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.date[i].clicked.connect(lambda v: self.func(0))
+
+        #1
+        i+=1
+        self.title.append('')
+        self.title[i] = QPushButton(self.notices[i].title, self.w)
+        self.title[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.title[i].setGeometry(listX, listY + blankHeigth * (i + 1), title_width + 1, blankHeigth + 1)
+        self.title[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.title[i].clicked.connect(lambda v: self.func(1))
+
+        self.writer.append('')
+        self.writer[i] = QPushButton(self.notices[i].writer, self.w)
+        self.writer[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.writer[i].setGeometry(listX + title_width, listY + blankHeigth * (i + 1), writer_width + 1, blankHeigth + 1)
+        self.writer[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.writer[i].clicked.connect(lambda v: self.func(1))
+
+        self.date.append('')
+        self.date[i] = QPushButton(str(self.notices[i].date), self.w)
+        self.date[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.date[i].setGeometry(listX + title_width + writer_width, listY + blankHeigth * (i + 1), date_width, blankHeigth + 1)
+        self.date[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.date[i].clicked.connect(lambda v: self.func(1))
+
+        #2
+        i+=1
+        self.title.append('')
+        self.title[i] = QPushButton(self.notices[i].title, self.w)
+        self.title[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.title[i].setGeometry(listX, listY + blankHeigth * (i + 1), title_width + 1, blankHeigth + 1)
+        self.title[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.title[i].clicked.connect(lambda v: self.func(2))
+
+        self.writer.append('')
+        self.writer[i] = QPushButton(self.notices[i].writer, self.w)
+        self.writer[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.writer[i].setGeometry(listX + title_width, listY + blankHeigth * (i + 1), writer_width + 1, blankHeigth + 1)
+        self.writer[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.writer[i].clicked.connect(lambda v: self.func(2))
+
+        self.date.append('')
+        self.date[i] = QPushButton(str(self.notices[i].date), self.w)
+        self.date[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.date[i].setGeometry(listX + title_width + writer_width, listY + blankHeigth * (i + 1), date_width, blankHeigth + 1)
+        self.date[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.date[i].clicked.connect(lambda v: self.func(2))
+
+        #3
+        i+=1
+        self.title.append('')
+        self.title[i] = QPushButton(self.notices[i].title, self.w)
+        self.title[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.title[i].setGeometry(listX, listY + blankHeigth * (i + 1), title_width + 1, blankHeigth + 1)
+        self.title[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.title[i].clicked.connect(lambda v: self.func(3))
+
+        self.writer.append('')
+        self.writer[i] = QPushButton(self.notices[i].writer, self.w)
+        self.writer[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.writer[i].setGeometry(listX + title_width, listY + blankHeigth * (i + 1), writer_width + 1, blankHeigth + 1)
+        self.writer[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.writer[i].clicked.connect(lambda v: self.func(3))
+
+        self.date.append('')
+        self.date[i] = QPushButton(str(self.notices[i].date), self.w)
+        self.date[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.date[i].setGeometry(listX + title_width + writer_width, listY + blankHeigth * (i + 1), date_width, blankHeigth + 1)
+        self.date[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.date[i].clicked.connect(lambda v: self.func(3))
+
+        #4
+        i+=1
+        self.title.append('')
+        self.title[i] = QPushButton(self.notices[i].title, self.w)
+        self.title[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.title[i].setGeometry(listX, listY + blankHeigth * (i + 1), title_width + 1, blankHeigth + 1)
+        self.title[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.title[i].clicked.connect(lambda v: self.func(4))
+
+        self.writer.append('')
+        self.writer[i] = QPushButton(self.notices[i].writer, self.w)
+        self.writer[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.writer[i].setGeometry(listX + title_width, listY + blankHeigth * (i + 1), writer_width + 1, blankHeigth + 1)
+        self.writer[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.writer[i].clicked.connect(lambda v: self.func(4))
+
+        self.date.append('')
+        self.date[i] = QPushButton(str(self.notices[i].date), self.w)
+        self.date[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.date[i].setGeometry(listX + title_width + writer_width, listY + blankHeigth * (i + 1), date_width, blankHeigth + 1)
+        self.date[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.date[i].clicked.connect(lambda v: self.func(4))
+
+        #5
+        i+=1
+        self.title.append('')
+        self.title[i] = QPushButton(self.notices[i].title, self.w)
+        self.title[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.title[i].setGeometry(listX, listY + blankHeigth * (i + 1), title_width + 1, blankHeigth + 1)
+        self.title[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.title[i].clicked.connect(lambda v: self.func(5))
+
+        self.writer.append('')
+        self.writer[i] = QPushButton(self.notices[i].writer, self.w)
+        self.writer[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.writer[i].setGeometry(listX + title_width, listY + blankHeigth * (i + 1), writer_width + 1, blankHeigth + 1)
+        self.writer[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.writer[i].clicked.connect(lambda v: self.func(5))
+
+        self.date.append('')
+        self.date[i] = QPushButton(str(self.notices[i].date), self.w)
+        self.date[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.date[i].setGeometry(listX + title_width + writer_width, listY + blankHeigth * (i + 1), date_width, blankHeigth + 1)
+        self.date[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.date[i].clicked.connect(lambda v: self.func(5))
+
+        #6
+        i+=1
+        self.title.append('')
+        self.title[i] = QPushButton(self.notices[i].title, self.w)
+        self.title[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.title[i].setGeometry(listX, listY + blankHeigth * (i + 1), title_width + 1, blankHeigth + 1)
+        self.title[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.title[i].clicked.connect(lambda v: self.func(6))
+
+        self.writer.append('')
+        self.writer[i] = QPushButton(self.notices[i].writer, self.w)
+        self.writer[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.writer[i].setGeometry(listX + title_width, listY + blankHeigth * (i + 1), writer_width + 1, blankHeigth + 1)
+        self.writer[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.writer[i].clicked.connect(lambda v: self.func(6))
+
+        self.date.append('')
+        self.date[i] = QPushButton(str(self.notices[i].date), self.w)
+        self.date[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.date[i].setGeometry(listX + title_width + writer_width, listY + blankHeigth * (i + 1), date_width, blankHeigth + 1)
+        self.date[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.date[i].clicked.connect(lambda v: self.func(6))
+
+        #7
+        i+=1
+        self.title.append('')
+        self.title[i] = QPushButton(self.notices[i].title, self.w)
+        self.title[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.title[i].setGeometry(listX, listY + blankHeigth * (i + 1), title_width + 1, blankHeigth + 1)
+        self.title[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.title[i].clicked.connect(lambda v: self.func(7))
+
+        self.writer.append('')
+        self.writer[i] = QPushButton(self.notices[i].writer, self.w)
+        self.writer[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.writer[i].setGeometry(listX + title_width, listY + blankHeigth * (i + 1), writer_width + 1, blankHeigth + 1)
+        self.writer[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.writer[i].clicked.connect(lambda v: self.func(7))
+
+        self.date.append('')
+        self.date[i] = QPushButton(str(self.notices[i].date), self.w)
+        self.date[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.date[i].setGeometry(listX + title_width + writer_width, listY + blankHeigth * (i + 1), date_width, blankHeigth + 1)
+        self.date[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.date[i].clicked.connect(lambda v: self.func(7))
+
+        #8
+        i+=1
+        self.title.append('')
+        self.title[i] = QPushButton(self.notices[i].title, self.w)
+        self.title[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.title[i].setGeometry(listX, listY + blankHeigth * (i + 1), title_width + 1, blankHeigth + 1)
+        self.title[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.title[i].clicked.connect(lambda v: self.func(8))
+
+        self.writer.append('')
+        self.writer[i] = QPushButton(self.notices[i].writer, self.w)
+        self.writer[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.writer[i].setGeometry(listX + title_width, listY + blankHeigth * (i + 1), writer_width + 1, blankHeigth + 1)
+        self.writer[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.writer[i].clicked.connect(lambda v: self.func(8))
+
+        self.date.append('')
+        self.date[i] = QPushButton(str(self.notices[i].date), self.w)
+        self.date[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.date[i].setGeometry(listX + title_width + writer_width, listY + blankHeigth * (i + 1), date_width, blankHeigth + 1)
+        self.date[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; border-bottom:2px solid #ababab; ')
+        self.date[i].clicked.connect(lambda v: self.func(8))
 
 
 
@@ -271,7 +452,10 @@ class noticeList(QWidget):
 
         conn.close()
 
-
+    def func(self, noticeNum):
+        self.contentPage = student.NoticeContent.NoticeContent(self.notices[noticeNum])
+        self.contentPage.show()
+        self.hide()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
