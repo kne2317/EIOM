@@ -4,7 +4,9 @@ from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
-
+import teacher.Rate
+import teacher.MyPage
+import teacher.NoticeContent
 
 class NoticePost(QWidget):
 
@@ -24,7 +26,7 @@ class NoticePost(QWidget):
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
 
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/background.png")))
         self.setPalette(palette)
 
         self.w.setLayout(layout)
@@ -49,15 +51,15 @@ class NoticePost(QWidget):
         companyBtn.setGeometry(self.basicInfo.WindowWidth/5*2, 70, self.basicInfo.WindowWidth/5, 50)
         companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        postBtn = QPushButton('포트폴리오', self.w)
-        postBtn.setFont(QFont(self.basicInfo.font1, 13))
-        postBtn.setGeometry(self.basicInfo.WindowWidth/5*3, 70, self.basicInfo.WindowWidth/5, 50)
-        postBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        pfBtn = QPushButton('내 정보', self.w)
+        pfBtn = QPushButton('포트폴리오', self.w)
         pfBtn.setFont(QFont(self.basicInfo.font1, 13))
-        pfBtn.setGeometry(self.basicInfo.WindowWidth/5*4, 70, self.basicInfo.WindowWidth/5, 50)
+        pfBtn.setGeometry(self.basicInfo.WindowWidth/5*3, 70, self.basicInfo.WindowWidth/5, 50)
         pfBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+
+        infoBtn = QPushButton('내 정보', self.w)
+        infoBtn.setFont(QFont(self.basicInfo.font1, 13))
+        infoBtn.setGeometry(self.basicInfo.WindowWidth/5*4, 70, self.basicInfo.WindowWidth/5, 50)
+        infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
         titleInput = QLineEdit(self.w)
         titleInput.setFont(QFont(self.basicInfo.font1,13))
@@ -92,15 +94,30 @@ class NoticePost(QWidget):
         cancleBtn.setGeometry(630, 650, 110, 30)
         cancleBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
 
-        self.show()
+        stateBtn.clicked.connect(self.state)
+        noticeBtn.clicked.connect(self.notice)
+        companyBtn.clicked.connect(self.company)
+        pfBtn.clicked.connect(self.post)
+        infoBtn.clicked.connect(self.info)
 
+    def state(self):
+        self.s=teacher.Rate.tRate()
+        self.s.show()
+        self.hide()
+    def notice(self):
+        self.n = teacher.NoticeContent.noticeList()
+        self.n.show()
+        self.hide()
+    def company(self):
+        print('아직')
+    def post(self):
+        print('아직')
+    def info(self):
+        self.i=teacher.MyPage.MyPage()
+        self.i.show()
+        self.hide()
     def show_file_open(self):
         fname = QFileDialog.getOpenFileName()
         self.fileInput.setText(fname[0])
 
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = NoticePost()
-    ex.show()
-    app.exec_()

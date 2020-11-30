@@ -199,7 +199,6 @@ class Detail(QWidget):
         self.go_trate=teacher.Rate.tRate()
         self.go_trate.show()
         self.close()
-        #self.trate.show()
 
     def okay(self):
         self.y1['grade3']=self.s1_3.value()
@@ -232,6 +231,8 @@ class Detail(QWidget):
             msgBox.exec_()
         else:
             employmentRate.EmploymentRate.updateRate(self.y1,self.y2,self.y3)
+            self.go_trate = teacher.Rate.tRate()
+            self.go_trate.show()
             self.close()
 
 

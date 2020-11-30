@@ -13,7 +13,9 @@ from BasicInfo import BasicInfo
 from company.EmployeeRequestDB import orderByBestLang
 from employmentRate.EmploymentRate import eRateDB, employRate
 import teacher.EmploymentRateDetail
-
+import teacher.Rate
+import teacher.MyPage
+import teacher.NoticeContent
 
 class tRate(QWidget):
 
@@ -47,33 +49,6 @@ class tRate(QWidget):
         title.setFont(QFont(self.basicInfo.titleFont, 25))
         title.setAlignment(QtCore.Qt.AlignCenter)
         title.setGeometry(100, 10, 1000, 50)
-
-
-
-        stateBtn = QPushButton('통계', self.w)
-        stateBtn.setFont(QFont(self.basicInfo.font1, 13))
-        stateBtn.setGeometry(0, 70, self.basicInfo.WindowWidth / 5, 50)
-        stateBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        noticeBtn = QPushButton('공지', self.w)
-        noticeBtn.setFont(QFont(self.basicInfo.font1, 13))
-        noticeBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 1, 70, self.basicInfo.WindowWidth / 5, 50)
-        noticeBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        companyBtn = QPushButton('취업의뢰', self.w)
-        companyBtn.setFont(QFont(self.basicInfo.font1, 13))
-        companyBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 2, 70, self.basicInfo.WindowWidth / 5, 50)
-        companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        postBtn = QPushButton('포트폴리오', self.w)
-        postBtn.setFont(QFont(self.basicInfo.font1, 13))
-        postBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 3, 70, self.basicInfo.WindowWidth / 5, 50)
-        postBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        pfBtn = QPushButton('내 정보', self.w)
-        pfBtn.setFont(QFont(self.basicInfo.font1, 13))
-        pfBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 4, 70, self.basicInfo.WindowWidth / 5, 50)
-        pfBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
         contentLayout = QVBoxLayout()
 
@@ -213,6 +188,57 @@ class tRate(QWidget):
         basicLayout.addWidget(scroll)
         basicLayout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(basicLayout)
+        stateBtn = QPushButton('통계', self.w)
+        stateBtn.setFont(QFont(self.basicInfo.font1, 13))
+        stateBtn.setGeometry(0, 70, self.basicInfo.WindowWidth / 5, 50)
+        stateBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        stateBtn.clicked.connect(self.state)
+
+        noticeBtn = QPushButton('공지', self.w)
+        noticeBtn.setFont(QFont(self.basicInfo.font1, 13))
+        noticeBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 1, 70, self.basicInfo.WindowWidth / 5, 50)
+        noticeBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        noticeBtn.clicked.connect(self.notice)
+
+        companyBtn = QPushButton('취업의뢰', self.w)
+        companyBtn.setFont(QFont(self.basicInfo.font1, 13))
+        companyBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 2, 70, self.basicInfo.WindowWidth / 5, 50)
+        companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        companyBtn.clicked.connect(self.company)
+
+        pfBtn = QPushButton('포트폴리오', self.w)
+        pfBtn.setFont(QFont(self.basicInfo.font1, 13))
+        pfBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 3, 70, self.basicInfo.WindowWidth / 5, 50)
+        pfBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        pfBtn.clicked.connect(self.post)
+
+        infoBtn = QPushButton('내 정보', self.w)
+        infoBtn.setFont(QFont(self.basicInfo.font1, 13))
+        infoBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 4, 70, self.basicInfo.WindowWidth / 5, 50)
+        infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        infoBtn.clicked.connect(self.info)
+
+
+    def state(self):
+        self.s = teacher.Rate.tRate()
+        self.s.show()
+        self.hide()
+
+    def notice(self):
+        self.n = teacher.NoticeContent.noticeList()
+        self.n.show()
+        self.hide()
+
+    def company(self):
+        print('아직')
+
+    def post(self):
+        print('아직')
+
+    def info(self):
+        self.i = teacher.MyPage.MyPage()
+        self.i.show()
+        self.hide()
 
     def detail(self):
         self.de=teacher.EmploymentRateDetail.Detail()
