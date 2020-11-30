@@ -102,22 +102,26 @@ class JoinS(QWidget):
     def idOverlapCheck(self):
 
         try:
-            basicDB = BasicDB()
-            conn = basicDB.conn
-            curs = conn.cursor()
+            if len(self.idInput.text()) > 0:
+                basicDB = BasicDB()
+                conn = basicDB.conn
+                curs = conn.cursor()
 
-            sql = "select EXISTS (select * from student where id='"+self.idInput.text()+"') as success;"
-            curs.execute(sql)
+                sql = "select EXISTS (select * from student where id='"+self.idInput.text()+"') as success;"
+                curs.execute(sql)
 
-            result = curs.fetchall()
-            if result[0][0] == 1:
-                print("중복되는 아이디입니다.")
+                result = curs.fetchall()
+                if result[0][0] == 1:
+                    print("중복되는 아이디입니다.")
+                    self.idOverlapChecked = False
+                elif result[0][0] == 0:
+                    print("사용 가능한 아이디입니다.")
+                    self.idOverlapChecked = True
+
+                conn.close()
+            else:
+                print("아이디를 입력하십시오.")
                 self.idOverlapChecked = False
-            elif result[0][0] == 0:
-                print("사용 가능한 아이디입니다.")
-                self.idOverlapChecked = True
-
-            conn.close()
         except Exception as e:
             print(e)
 
