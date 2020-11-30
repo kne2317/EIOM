@@ -126,7 +126,7 @@ class Post(QWidget):
         useLang = QLineEdit(self.w)
         useLang.setFont(QFont(self.basicInfo.font1, 13))
         useLang.setGeometry(250, 570, 800, 40)
-        useLang.setPlaceholderText('ex) python, node.js')
+        useLang.setPlaceholderText('ex) python, node.js ( , 로 구분 )')
 
         la9 = QLabel('고용 형태', self.w)
         la9.setFont(QFont(self.basicInfo.font1, 12))

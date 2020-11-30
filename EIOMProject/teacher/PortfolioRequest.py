@@ -91,8 +91,6 @@ class PortfolioRequest(QWidget):
         backBtn.setGeometry(980, 630, 120, 40)
         backBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
 
-
-
         self.show()
 
 

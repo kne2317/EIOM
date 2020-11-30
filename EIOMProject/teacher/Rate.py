@@ -10,7 +10,9 @@ from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
+from company.EmployeeRequestDB import orderByBestLang
 from employmentRate.EmploymentRate import eRateDB, employRate
+
 
 
 class tRate(QWidget):
@@ -98,17 +100,17 @@ class tRate(QWidget):
         label_3.setGeometry(150 + 300 * 2, 230, 300, 51)
         label_3.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        label_4 = QPushButton(str(employRate(y3['grade3'], (y3['self'] + y3['eiom'] + y3['scene']))) + "%", self.w)
+        label_4 = QPushButton(str(round(employRate(y3['grade3'], (y3['self'] + y3['eiom'] + y3['scene'])),2)) + "%", self.w)
         label_4.setFont(QFont(self.basicInfo.font1, 13))
         label_4.setGeometry(150, 280, 301, 50)
         label_4.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        label_5 = QPushButton(str(employRate(y2['grade3'], (y2['self'] + y2['eiom'] + y2['scene']))) + "%", self.w)
+        label_5 = QPushButton(str(round(employRate(y2['grade3'], (y2['self'] + y2['eiom'] + y2['scene'])),2)) + "%", self.w)
         label_5.setFont(QFont(self.basicInfo.font1, 13))
         label_5.setGeometry(150 + 300 * 1, 280, 301, 50)
         label_5.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        label_6 = QPushButton(str(employRate(y1['grade3'], (y1['self'] + y1['eiom'] + y1['scene']))) + "%", self.w)
+        label_6 = QPushButton(str(round(employRate(y1['grade3'], (y1['self'] + y1['eiom'] + y1['scene'])),2)) + "%", self.w)
         label_6.setFont(QFont(self.basicInfo.font1, 13))
         label_6.setGeometry(150 + 300 * 2, 280, 300, 50)
         label_6.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
@@ -162,7 +164,25 @@ class tRate(QWidget):
         contentLayout.addWidget(emptyLabel)
 
         N = 4
-        value = (32, 15, 14, 14)
+
+        lang=orderByBestLang()
+
+        best4={}
+        for key,value in lang.items():
+            if len(best4)==N:
+                break
+            else :
+                best4[key]=value
+        b_lang=[]
+        for key in best4.keys():
+            b_lang.append(key)
+
+        b_value=[]
+        for value in best4.values():
+            b_value.append(value)
+        print(b_value)
+
+        value = b_value
         ind = np.arange(N)
         width = 0.2
         fig = plt.Figure()
@@ -170,7 +190,7 @@ class tRate(QWidget):
         ax = fig.add_subplot()
         ax.bar(ind, value, width, color='lightblue')
         ax.set_xticks(ind + width / 20)
-        ax.set_xticklabels(['Java', 'C', 'javascript', 'Spring'])
+        ax.set_xticklabels(b_lang)
 
         contentLayout.addWidget(canvas)
         emptyLabel = QLabel("\n\n\n\n\n\n")
