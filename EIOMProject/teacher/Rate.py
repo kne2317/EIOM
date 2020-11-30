@@ -1,5 +1,5 @@
+import importlib
 import sys
-from datetime import datetime
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -12,7 +12,7 @@ from PySide2 import QtCore
 from BasicInfo import BasicInfo
 from company.EmployeeRequestDB import orderByBestLang
 from employmentRate.EmploymentRate import eRateDB, employRate
-
+import teacher.EmploymentRateDetail
 
 
 class tRate(QWidget):
@@ -115,6 +115,12 @@ class tRate(QWidget):
         label_6.setGeometry(150 + 300 * 2, 280, 300, 50)
         label_6.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
+        detailBtn = QPushButton('상세보기',self.w)
+        detailBtn.setFont(QFont(self.basicInfo.font1,13))
+        detailBtn.setGeometry(950,350,100,40)
+        detailBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        detailBtn.clicked.connect(self.detail)
+
         label_employment_rate = QPushButton('취업 의뢰', self.w)
         label_employment_rate.setFont(QFont(self.basicInfo.font1, 18))
         label_employment_rate.setGeometry(50, 450, 200, 50)
@@ -197,8 +203,6 @@ class tRate(QWidget):
         contentLayout.addWidget(emptyLabel)
         mainLayout.addLayout(contentLayout)
 
-
-
         scroll = QScrollArea()
         scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -209,6 +213,11 @@ class tRate(QWidget):
         basicLayout.addWidget(scroll)
         basicLayout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(basicLayout)
+
+    def detail(self):
+        self.de=teacher.EmploymentRateDetail.Detail()
+        self.hide()
+        self.de.show()
 
 
 if __name__ == '__main__':
