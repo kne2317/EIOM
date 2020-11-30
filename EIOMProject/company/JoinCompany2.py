@@ -54,14 +54,19 @@ class JoinC2(QWidget):
         self.nameInput.setFont(QFont(self.basicInfo.font1, 12))
         self.nameInput.setPlaceholderText('담당자 이름 입력')
 
+        self.emailInput = QLineEdit(self.w)
+        self.emailInput.setGeometry(350, 460, 500, 50)
+        self.emailInput.setFont(QFont(self.basicInfo.font1, 12))
+        self.emailInput.setPlaceholderText('담당자 이메일 입력')
+
         self.phInput = QLineEdit(self.w)
-        self.phInput.setGeometry(350, 460, 500, 50)
+        self.phInput.setGeometry(350, 530, 500, 50)
         self.phInput.setFont(QFont(self.basicInfo.font1, 12))
         self.phInput.setPlaceholderText('담당자 연락처 입력')
 
         joinBtn = QPushButton('JOIN', self.w)
         joinBtn.setFont(QFont(self.basicInfo.font1, 15))
-        joinBtn.setGeometry(350, 530, 500, 50)
+        joinBtn.setGeometry(350, 600, 500, 50)
         joinBtn.clicked.connect(self.goNextPage)
 
 
@@ -71,6 +76,7 @@ class JoinC2(QWidget):
                 and len(self.annualSalesInput.text()) > 0 \
                 and len(self.webInput.text()) > 0 \
                 and len(self.nameInput.text()) > 0 \
+                and len(self.emailInput.text()) > 0 \
                 and len(self.phInput.text()) > 0):
 
 
@@ -78,6 +84,7 @@ class JoinC2(QWidget):
             self.company.setAnnualsale(self.annualSalesInput.text())
             self.company.setWeb(self.webInput.text())
             self.company.setManager_name(self.nameInput.text())
+            self.company.setEmail(self.emailInput.text())
             self.company.setManager_ph(self.phInput.text())
 
             if CompanyJoin(self.company):
