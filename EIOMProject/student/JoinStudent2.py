@@ -76,6 +76,7 @@ class JoinS2(QWidget):
         self.pfBtn.setGeometry(800, 350, 110, 50)
         self.pfBtn.clicked.connect(self.show_file_open_p)
 
+
         self.introduceL = QLabel('자기소개서', self.w)
         self.introduceL.setFont(QFont(self.basicInfo.font1, 15))
         self.introduceL.move(280, 450)
@@ -114,10 +115,13 @@ class JoinS2(QWidget):
     def show_file_open_p(self):
         fname = QFileDialog.getOpenFileName()
         self.pfInput.setText(fname[0])
+        self.student.setPortfolio(fname[0])
+
 
     def show_file_open_i(self):
         fname = QFileDialog.getOpenFileName()
         self.introduceInput.setText(fname[0])
+        self.student.setIntroduce(fname[0])
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
