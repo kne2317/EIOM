@@ -53,9 +53,9 @@ def teacherLogin(id,pw):
         print(rows)
         if rows[0][2] == pw:
             teacher.ID=rows[0][0]
-            teacher.namerows[0][1]
-            teacher.password[0][2]
-            teacher.email[0][3]
+            teacher.name=rows[0][1]
+            teacher.password=rows[0][2]
+            teacher.email=rows[0][3]
             return True
         else:
             return False

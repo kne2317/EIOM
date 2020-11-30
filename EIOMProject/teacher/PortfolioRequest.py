@@ -4,7 +4,9 @@ from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
-
+import teacher.Rate
+import teacher.MyPage
+import teacher.NoticeContent
 
 class PortfolioRequest(QWidget):
 
@@ -49,15 +51,15 @@ class PortfolioRequest(QWidget):
         companyBtn.setGeometry(self.basicInfo.WindowWidth/5*2, 70, self.basicInfo.WindowWidth/5, 50)
         companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        postBtn = QPushButton('포트폴리오', self.w)
-        postBtn.setFont(QFont(self.basicInfo.font1, 13))
-        postBtn.setGeometry(self.basicInfo.WindowWidth/5*3, 70, self.basicInfo.WindowWidth/5, 50)
-        postBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        pfBtn = QPushButton('내 정보', self.w)
+        pfBtn = QPushButton('포트폴리오', self.w)
         pfBtn.setFont(QFont(self.basicInfo.font1, 13))
-        pfBtn.setGeometry(self.basicInfo.WindowWidth/5*4, 70, self.basicInfo.WindowWidth/5, 50)
+        pfBtn.setGeometry(self.basicInfo.WindowWidth/5*3, 70, self.basicInfo.WindowWidth/5, 50)
         pfBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+
+        infoBtn = QPushButton('내 정보', self.w)
+        infoBtn.setFont(QFont(self.basicInfo.font1, 13))
+        infoBtn.setGeometry(self.basicInfo.WindowWidth/5*4, 70, self.basicInfo.WindowWidth/5, 50)
+        infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
         allowBtn = QPushButton('승인', self.w)
         allowBtn.setFont(QFont(self.basicInfo.font1, 12))
@@ -91,11 +93,29 @@ class PortfolioRequest(QWidget):
         backBtn.setGeometry(980, 630, 120, 40)
         backBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
 
-        self.show()
+        stateBtn.clicked.connect(self.state)
+        noticeBtn.clicked.connect(self.notice)
+        companyBtn.clicked.connect(self.company)
+        pfBtn.clicked.connect(self.post)
+        infoBtn.clicked.connect(self.info)
 
+    def state(self):
+        self.s = teacher.Rate.tRate()
+        self.s.show()
+        self.hide()
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
+    def notice(self):
+        self.n = teacher.NoticeContent.noticeList()
+        self.n.show()
+        self.hide()
 
-    ex = PortfolioRequest()
-    sys.exit(app.exec_())
+    def company(self):
+        print('아직')
+
+    def post(self):
+        print('아직')
+
+    def info(self):
+        self.i = teacher.MyPage.MyPage()
+        self.i.show()
+        self.hide()

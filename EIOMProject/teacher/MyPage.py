@@ -5,7 +5,8 @@ from PySide2 import QtCore
 
 from teacher.Teacher import Teacher
 from BasicInfo import BasicInfo
-
+import teacher.Rate
+import teacher.NoticeContent
 
 class MyPage(QWidget):
 
@@ -50,15 +51,15 @@ class MyPage(QWidget):
         companyBtn.setGeometry(self.basicInfo.WindowWidth/5*2, 70, self.basicInfo.WindowWidth/5, 50)
         companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        postBtn = QPushButton('포트폴리오', self.w)
-        postBtn.setFont(QFont(self.basicInfo.font1, 13))
-        postBtn.setGeometry(self.basicInfo.WindowWidth/5*3, 70, self.basicInfo.WindowWidth/5, 50)
-        postBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        pfBtn = QPushButton('내 정보', self.w)
+        pfBtn = QPushButton('포트폴리오', self.w)
         pfBtn.setFont(QFont(self.basicInfo.font1, 13))
-        pfBtn.setGeometry(self.basicInfo.WindowWidth/5*4, 70, self.basicInfo.WindowWidth/5, 50)
+        pfBtn.setGeometry(self.basicInfo.WindowWidth/5*3, 70, self.basicInfo.WindowWidth/5, 50)
         pfBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+
+        infoBtn = QPushButton('내 정보', self.w)
+        infoBtn.setFont(QFont(self.basicInfo.font1, 13))
+        infoBtn.setGeometry(self.basicInfo.WindowWidth/5*4, 70, self.basicInfo.WindowWidth/5, 50)
+        infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
 
 
@@ -88,3 +89,24 @@ class MyPage(QWidget):
         emailL2.setFont(QFont(self.basicInfo.font1, 15))
         emailL2.setGeometry(350, 220, 500, 50)
         emailL2.setText(self.teacher.email)
+
+        stateBtn.clicked.connect(self.state)
+        noticeBtn.clicked.connect(self.notice)
+        companyBtn.clicked.connect(self.company)
+        pfBtn.clicked.connect(self.post)
+        infoBtn.clicked.connect(self.info)
+
+    def state(self):
+        self.s=teacher.Rate.tRate()
+        self.s.show()
+        self.hide()
+    def notice(self):
+        self.n = teacher.NoticeContent.noticeList()
+        self.n.show()
+        self.hide()
+    def company(self):
+        print('아직')
+    def post(self):
+        print('아직')
+    def info(self):
+        self.show()
