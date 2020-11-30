@@ -1,5 +1,3 @@
-
-
 import sys
 from datetime import datetime
 
@@ -12,9 +10,9 @@ from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
-from employmentRate.EmploymentRate import eRateDB, employRate
+import employmentRate.EmploymentRate
 
-from company.EmployeeRequestDB import orderByBestLang
+import company.EmployeeRequestDB
 
 
 class sRate(QWidget):
@@ -27,9 +25,9 @@ class sRate(QWidget):
         self.initUI()
 
     def initUI(self):
-        y1 = eRateDB(1)
-        y2 = eRateDB(2)
-        y3 = eRateDB(3)
+        y1 = employmentRate.EmploymentRate.eRateDB(1)
+        y2 = employmentRate.EmploymentRate.eRateDB(2)
+        y3 = employmentRate.EmploymentRate.eRateDB(3)
 
         mainLayout = QVBoxLayout(self)
         self.w.setLayout(mainLayout)
@@ -106,17 +104,17 @@ class sRate(QWidget):
         label_3.setGeometry(150 + 300 * 2, 230, 300, 51)
         label_3.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        label_4 = QPushButton(str(round(employRate(y3['grade3'], (y3['self'] + y3['eiom'] + y3['scene'])),2)) + "%", self.w)
+        label_4 = QPushButton(str(round(employmentRate.EmploymentRate.employRate(y3['grade3'], (y3['self'] + y3['eiom'] + y3['scene'])),2)) + "%", self.w)
         label_4.setFont(QFont(self.basicInfo.font1, 13))
         label_4.setGeometry(150, 280, 301, 50)
         label_4.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        label_5 = QPushButton(str(round(employRate(y2['grade3'], (y2['self'] + y2['eiom'] + y2['scene'])),2)) + "%", self.w)
+        label_5 = QPushButton(str(round(employmentRate.EmploymentRate.employRate(y2['grade3'], (y2['self'] + y2['eiom'] + y2['scene'])),2)) + "%", self.w)
         label_5.setFont(QFont(self.basicInfo.font1, 13))
         label_5.setGeometry(150 + 300 * 1, 280, 301, 50)
         label_5.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        label_6 = QPushButton(str(round(employRate(y1['grade3'], (y1['self'] + y1['eiom'] + y1['scene'])),2)) + "%", self.w)
+        label_6 = QPushButton(str(round(employmentRate.EmploymentRate.employRate(y1['grade3'], (y1['self'] + y1['eiom'] + y1['scene'])),2)) + "%", self.w)
         label_6.setFont(QFont(self.basicInfo.font1, 13))
         label_6.setGeometry(150 + 300 * 2, 280, 300, 50)
         label_6.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
@@ -176,7 +174,7 @@ class sRate(QWidget):
 
         N = 4
 
-        lang = orderByBestLang()
+        lang = company.EmployeeRequestDB.orderByBestLang()
 
         best4 = {}
         for key, value in lang.items():
