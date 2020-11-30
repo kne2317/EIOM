@@ -11,7 +11,7 @@ import company.CompanyEmploymentRequest
 import company.CompanyInfo
 import company.NonePofol
 
-class CompanyInfo(QWidget):
+class ModifyInfo(QWidget):
 
     def __init__(self):
         super().__init__()
