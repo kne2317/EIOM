@@ -5,6 +5,11 @@ from PySide2 import QtCore
 import company.Post
 from BasicInfo import BasicInfo
 
+from company.Company import Company
+import company.NoneEmployementRequest
+import company.CompanyEmploymentRequest
+import company.CompanyInfo
+import company.NonePofol
 
 class NoneEmployementRequest(QWidget):
 
@@ -41,15 +46,15 @@ class NoneEmployementRequest(QWidget):
         stateBtn.setGeometry(0, 70, self.basicInfo.WindowWidth/3, 50)
         stateBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        noticeBtn = QPushButton('공지', self.w)
-        noticeBtn.setFont(QFont(self.basicInfo.font1, 13))
-        noticeBtn.setGeometry(self.basicInfo.WindowWidth/3*1, 70, self.basicInfo.WindowWidth/3, 50)
-        noticeBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        pfBtn = QPushButton('포트폴리오', self.w)
+        pfBtn.setFont(QFont(self.basicInfo.font1, 13))
+        pfBtn.setGeometry(self.basicInfo.WindowWidth/3*1, 70, self.basicInfo.WindowWidth/3, 50)
+        pfBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        companyBtn = QPushButton('회사', self.w)
-        companyBtn.setFont(QFont(self.basicInfo.font1, 13))
-        companyBtn.setGeometry(self.basicInfo.WindowWidth/3*2, 70, self.basicInfo.WindowWidth/3, 50)
-        companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        infoBtn = QPushButton('내정보', self.w)
+        infoBtn.setFont(QFont(self.basicInfo.font1, 13))
+        infoBtn.setGeometry(self.basicInfo.WindowWidth/3*2, 70, self.basicInfo.WindowWidth/3, 50)
+        infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
         noRequest = QLabel("귀하는 취업 의뢰 내역이 존재하지 않습니다.",self.w)
         noRequest.setFont(QFont(self.basicInfo.font1,13))
@@ -59,15 +64,36 @@ class NoneEmployementRequest(QWidget):
         requestBtn = QPushButton('취업 의뢰하기', self.w)
         requestBtn.setFont(QFont(self.basicInfo.font1, 15))
         requestBtn.setGeometry(100, 600, 1000, 50)
+
         requestBtn.clicked.connect(self.request)
+        stateBtn.clicked.connect(self.state)
+        pfBtn.clicked.connect(self.pf)
+        infoBtn.clicked.connect(self.info)
 
     def request(self):
         self.close()
         self.post.show()
 
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = NoneEmployementRequest()
-    ex.show()
-    app.exec_()
+    def state(self):
+        if Company.request_authority == 0:
+            self.ncr = company.NoneEmployementRequest.NoneEmployementRequest()
+            self.ncr.show()
+            self.hide()
+        else:
+            self.cr = company.CompanyEmploymentRequest.CompanyEmploymentRequest()
+            self.cr.show()
+            self.hide()
+
+    def pf(self):
+        if Company.pfauthority == 0:
+            self.np = company.NonePofol.NonePofol()
+            self.np.show()
+            self.hide()
+        else:
+            print('아직')
+
+    def info(self):
+        self.ci = company.CompanyInfo.CompanyInfo()
+        self.ci.show()
+        self.hide()

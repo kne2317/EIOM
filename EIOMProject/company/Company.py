@@ -5,7 +5,7 @@ class Company:
     companyname = ''
     email = ''
     address = ''
-    annualsale = -1
+    annualsale = ''
     web = ''
     manager_name = ''
     manager_ph = ''
@@ -14,3 +14,23 @@ class Company:
     pfauthority = ''
     pfperiod = ''
     request_authority = -1
+    employees_num=0
+
+class Request:
+    id=-1
+    company_id=''
+    recruit=''
+    hopeperson=-1
+    apply=''
+    royalty=''
+    document=''
+    uselang=''
+    employment=''
+    work=''
+    money=''
+    worktime=''
+    benefit=''
+    period=''
+    pmoney=''
+    manager_email=''
+    manager_ph=''

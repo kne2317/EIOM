@@ -4,7 +4,11 @@ from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
-
+from company.Company import Company
+import company.NoneEmployementRequest
+import company.CompanyEmploymentRequest
+import company.CompanyInfo
+import company.NonePofol
 
 class CompanyInfo(QWidget):
 
@@ -24,7 +28,7 @@ class CompanyInfo(QWidget):
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
 
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/background.png")))
         self.setPalette(palette)
 
         self.w.setLayout(layout)
@@ -39,15 +43,15 @@ class CompanyInfo(QWidget):
         stateBtn.setGeometry(0, 70, self.basicInfo.WindowWidth / 3, 50)
         stateBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        noticeBtn = QPushButton('공지', self.w)
-        noticeBtn.setFont(QFont(self.basicInfo.font1, 13))
-        noticeBtn.setGeometry(self.basicInfo.WindowWidth / 3 * 1, 70, self.basicInfo.WindowWidth / 3, 50)
-        noticeBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        pfBtn = QPushButton('포트폴리오', self.w)
+        pfBtn.setFont(QFont(self.basicInfo.font1, 13))
+        pfBtn.setGeometry(self.basicInfo.WindowWidth / 3 * 1, 70, self.basicInfo.WindowWidth / 3, 50)
+        pfBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        companyBtn = QPushButton('회사', self.w)
-        companyBtn.setFont(QFont(self.basicInfo.font1, 13))
-        companyBtn.setGeometry(self.basicInfo.WindowWidth / 3 * 2, 70, self.basicInfo.WindowWidth / 3, 50)
-        companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        infoBtn = QPushButton('내정보', self.w)
+        infoBtn.setFont(QFont(self.basicInfo.font1, 13))
+        infoBtn.setGeometry(self.basicInfo.WindowWidth / 3 * 2, 70, self.basicInfo.WindowWidth / 3, 50)
+        infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
         cNameL1=QLabel("기업명",self.w)
         cNameL1.setFont(QFont(self.basicInfo.font1,15))
@@ -111,12 +115,29 @@ class CompanyInfo(QWidget):
         modifyBtn.setGeometry(950, 630, 120, 40)
         modifyBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
 
+        stateBtn.clicked.connect(self.state)
+        pfBtn.clicked.connect(self.pf)
+        infoBtn.clicked.connect(self.info)
 
-        self.show()
+    def state(self):
+        if Company.request_authority == 0:
+            self.ncr = company.NoneEmployementRequest.NoneEmployementRequest()
+            self.ncr.show()
+            self.hide()
+        else:
+            self.cr = company.CompanyEmploymentRequest.CompanyEmploymentRequest()
+            self.cr.show()
+            self.hide()
 
+    def pf(self):
+        if Company.pfauthority == 0:
+            self.np = company.NonePofol.NonePofol()
+            self.np.show()
+            self.hide()
+        else:
+            print('아직')
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-
-    ex = CompanyInfo()
-    sys.exit(app.exec_())
+    def info(self):
+        self.ci = company.CompanyInfo.CompanyInfo()
+        self.ci.show()
+        self.hide()

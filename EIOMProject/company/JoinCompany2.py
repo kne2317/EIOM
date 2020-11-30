@@ -8,6 +8,7 @@ from Join import CompanyJoin
 from company.Company import Company
 import main
 
+
 class JoinC2(QWidget):
 
     def __init__(self):

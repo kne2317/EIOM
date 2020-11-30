@@ -6,6 +6,8 @@ from student.Student import Student
 from company.Company import Company
 from teacher.Teacher import Teacher
 
+import company.EmployeeRequestDB
+
 def studentLogin(id,pw):
 
     basicDB = BasicDB()
@@ -67,7 +69,6 @@ def companyLogin(id,pw):
     conn = basicDB.conn
     curs = conn.cursor()
 
-
     sql = "select * from company where id = '" + id + "';"
     curs.execute(sql)
 
@@ -88,6 +89,9 @@ def companyLogin(id,pw):
             Company.pfauthority=row[0][11]
             Company.pfperiod=row[0][12]
             Company.request_authority=row[0][13]
+            Company.employees_num=row[0][14]
+            company.EmployeeRequestDB.callRequest()
+
             return True
         else:
             return False

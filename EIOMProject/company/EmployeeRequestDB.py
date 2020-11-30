@@ -1,6 +1,6 @@
 from BasicInfo import BasicDB
 from company.Company import Company
-import operator
+from company.Company import Request
 
 
 def insertRequest(cid, recruit, hopeperson, apply, royalty, document, uselang, employemnt, work, money, worktime,
@@ -9,33 +9,65 @@ def insertRequest(cid, recruit, hopeperson, apply, royalty, document, uselang, e
     conn = basicDB.conn
     curs = conn.cursor()
 
-    c = Company()
-    c.request_authority = 1
-
-    sql = "insert into employment_request (company_id,recruit, hopeperson, apply, royalty, " \
-          "document,uselang, employment,work,money,worktime," \
+    sql = "insert into employment_request (company_id,recruit, hopeperson, apply, royalty, "+ \
+          "document,uselang, employment,work,money,worktime,"+ \
           "benefit,period,pmoney,manager_email,manager_ph) values ('" + cid + "','" + \
           recruit + "','" + hopeperson + "','" + apply + "','" + royalty + "','" + document + "','" + uselang + "','" + employemnt + "','" + work + "','" + money \
-          + "','" + worktime + "','" + benefit + "','" + period + "','" + pmoney + "','" + manager_email + "','" + manager_ph + "','" + hopeperson + "');"
+          + "','" + worktime + "','" + benefit + "','" + period + "','" + pmoney + "','" + manager_email + "','" + manager_ph + "');"
 
     curs.execute(sql)
-
+    conn.commit()
     BestLang(uselang)
 
+    Company.request_authority=1
 
-def saveRequest():
+    callRequest()
+
+
+def saveRequest(cid, recruit, hopeperson, apply, royalty, document, uselang, employemnt, work, money, worktime,
+                  benefit, period, pmoney, manager_email, manager_ph):
     basicDB = BasicDB()
     conn = basicDB.conn
     curs = conn.cursor()
 
 
-def BestLang(str):
+
+def callRequest():
     basicDB = BasicDB()
     conn = basicDB.conn
     curs = conn.cursor()
 
-    str = str.replace(' ', '')
-    list = str.split(',')
+    sql = "select *  from employment_request where company_id='"+Company.ID+"';"
+    curs.execute(sql)
+    row=curs.fetchall()
+    if len(row)>0:
+        Request.id = row[0][0]
+        Request.company_id = row[0][1]
+        Request.recruit = row[0][2]
+        Request.hopeperson = row[0][3]
+        Request.apply = row[0][4]
+        Request.royalty = row[0][5]
+        Request.document = row[0][6]
+        Request.uselang = row[0][7]
+        Request.employment = row[0][8]
+        Request.work = row[0][9]
+        Request.money = row[0][10]
+        Request.worktime = row[0][11]
+        Request.benefit = row[0][12]
+        Request.period = row[0][13]
+        Request.pmoney = row[0][14]
+        Request.manager_email = row[0][15]
+        Request.manager_ph = row[0][16]
+
+
+
+def BestLang(k):
+    basicDB = BasicDB()
+    conn = basicDB.conn
+    curs = conn.cursor()
+
+    k = k.replace(' ', '')
+    list = k.split(',')
 
     for i in range(0, len(list)):
         list[i] = list[i].upper()
@@ -103,9 +135,12 @@ def BestLang(str):
         elif list[i] == 'KOTLIN' or list[i] == '코틀린':
             kotlin += 1
 
-    sql = 'update best_lang set java=' + java + ', c=' + c + ', cpp=' + cpp + ',cs=' + cs + ', javascript=' + javascript + ', jquery=' + jquery + \
-          ', nodejs=' + nodejs + ', react=' + react + ', python=' + python + ', php=' + php + ', jsp=' + jsp + ', msql=' + mysql + ', servlet=' + servlet + \
-          ', android=' + android + ', linux=' + linux + ', oracle= ' + oracle + ', spring=' + spring + ', kotlin=' + kotlin;
+    sql = 'update best_lang set java=' + str(java) + ', c=' + str(c) + ', cpp=' + str(cpp) + \
+          ',cs=' + str(cs) + ', javascript=' + str(javascript) + ', jquery=' + str(jquery) + \
+          ', nodejs=' + str(nodejs) + ', react=' + str(react) + ', python=' + str(python) + \
+          ', php=' + str(php) + ', jsp=' + str(jsp) + ', msql=' + str(mysql) + ', servlet=' + str(servlet) + \
+          ', android=' + str(android) + ', linux=' + str(linux) + ', oracle= ' + str(oracle) +\
+          ', spring=' + str(spring) + ', kotlin=' + str(kotlin);
     curs.execute(sql)
     conn.commit()
 

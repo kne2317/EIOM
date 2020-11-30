@@ -5,9 +5,8 @@ from PySide2 import QtCore
 from BasicInfo import BasicInfo, BasicDB
 import company.NoneEmployementRequest
 import company.Company
-import company.EmployeeRequestDB
 import company.CompanyEmploymentRequest
-
+import company.EmployeeRequestDB as db
 class Post(QWidget):
 
     def __init__(self):
@@ -48,41 +47,41 @@ class Post(QWidget):
         l.setFont(QFont(self.basicInfo.font1, 15))
         l.setGeometry(640, 150, 500, 40)
 
-        year1 = QLineEdit(self.w)
-        year1.setPlaceholderText('연도')
-        year1.setFont(QFont(self.basicInfo.font1, 13))
-        year1.setGeometry(250, 150, 100, 40)
+        self.year1 = QLineEdit(self.w)
+        self.year1.setPlaceholderText('연도')
+        self.year1.setFont(QFont(self.basicInfo.font1, 13))
+        self.year1.setGeometry(250, 150, 100, 40)
 
-        month1 = QComboBox(self.w)
-        month1.setFont(QFont(self.basicInfo.font1, 13))
-        month1.setGeometry(380, 150, 100, 40)
+        self.month1 = QComboBox(self.w)
+        self.month1.setFont(QFont(self.basicInfo.font1, 13))
+        self.month1.setGeometry(380, 150, 100, 40)
         for i in range(0, 12):
-            month1.addItem(str(i + 1) + "월")
+            self.month1.addItem(str(i + 1) + "월")
 
-        day1 = QComboBox(self.w)
-        day1.setFont(QFont(self.basicInfo.font1, 13))
-        day1.setGeometry(510, 150, 100, 40)
+        self.day1 = QComboBox(self.w)
+        self.day1.setFont(QFont(self.basicInfo.font1, 13))
+        self.day1.setGeometry(510, 150, 100, 40)
         for i in range(0, 30):
-            day1.addItem(str(i + 1) + "일")
+            self.day1.addItem(str(i + 1) + "일")
 
-        year2 = QLineEdit(self.w)
-        year2.setPlaceholderText('연도')
-        year2.setFont(QFont(self.basicInfo.font1, 13))
-        year2.setGeometry(690, 150, 100, 40)
+        self.year2 = QLineEdit(self.w)
+        self.year2.setPlaceholderText('연도')
+        self.year2.setFont(QFont(self.basicInfo.font1, 13))
+        self.year2.setGeometry(690, 150, 100, 40)
 
-        month2 = QComboBox(self.w)
-        month2.setFont(QFont(self.basicInfo.font1, 13))
-        month2.setGeometry(820, 150, 100, 40)
+        self.month2 = QComboBox(self.w)
+        self.month2.setFont(QFont(self.basicInfo.font1, 13))
+        self.month2.setGeometry(820, 150, 100, 40)
         for i in range(0, 12):
-            month2.addItem(str(i + 1) + "월")
+            self.month2.addItem(str(i + 1) + "월")
 
-        day2 = QComboBox(self.w)
-        day2.setFont(QFont(self.basicInfo.font1, 13))
-        day2.setGeometry(950, 150, 100, 40)
+        self.day2 = QComboBox(self.w)
+        self.day2.setFont(QFont(self.basicInfo.font1, 13))
+        self.day2.setGeometry(950, 150, 100, 40)
         for i in range(0, 30):
-            day2.addItem(str(i + 1) + "일")
+            self.day2.addItem(str(i + 1) + "일")
 
-        self.recruit=year1.text()+"년"+month1.currentText()+day1.currentText()+" ~ "+year2.text()+"년"+month2.currentText()+day2.currentText();
+
 
         la3 = QLabel('희망 인원', self.w)
         la3.setFont(QFont(self.basicInfo.font1, 12))
@@ -226,6 +225,7 @@ class Post(QWidget):
         requestBtn.setFont(QFont(self.basicInfo.font1, 12))
         requestBtn.setGeometry(800, 1410, 120, 40)
         requestBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
+        requestBtn.clicked.connect(self.requestBtn)
 
         cancleBtn = QPushButton('취소', self.w)
         cancleBtn.setFont(QFont(self.basicInfo.font1, 12))
@@ -243,10 +243,14 @@ class Post(QWidget):
         vLayout.addWidget(scroll)
         vLayout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(vLayout)
+
     def requestBtn(self):
-        EmployeeRequestDB.insertRequest(company.Company.Company.ID, self.recruit, self.hopePerson, self.right, self.royalty,self.document,
-                   self.useLang,self.employment,self.work,self.money,self.workTime,self.benefit,self.period,
-                   self.pmoney,self.email,self.ph)
+        recruit = self.year1.text() + "년" + self.month1.currentText() + self.day1.currentText() + " ~ " + self.year2.text() + "년" + self.month2.currentText() + self.day2.currentText();
+        db.insertRequest(company.Company.Company.ID, recruit,
+                                        self.hopePerson.text(), self.right.text(), self.royalty.text(),self.document.text(),
+                                        self.useLang.text(),self.employment.text(),self.work.text(),
+                                        self.money.text(),self.workTime.text(),self.benefit.text(),self.period.text(),
+                                        self.pmoney.text(),self.email.text(),self.ph.text())
 
         self.c=company.CompanyEmploymentRequest.CompanyEmploymentRequest()
         self.c.show()
