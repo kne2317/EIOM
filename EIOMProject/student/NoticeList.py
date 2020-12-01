@@ -447,6 +447,14 @@ class noticeList(QWidget):
 
         conn.close()
 
+    def func(self, noticeNum):
+        try:
+            self.cp = student.NoticeContent.NoticeContent(self.notices[noticeNum])
+            self.cp.show()
+            self.hide()
+        except Exception as e:
+            print(e)
+
     def state(self):
         self.sr = student.Rate.sRate()
         self.sr.show()
