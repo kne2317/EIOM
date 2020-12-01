@@ -76,14 +76,6 @@ class noticeList(QWidget):
         infoBtn.setGeometry(1000, 70, 200, 50)
         infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-
-
-
-        contentLayout = QVBoxLayout()
-
-        emptyLabel = QLabel("\n\n\n\n\n\n\n\n\n\n\n\n")
-        contentLayout.addWidget(emptyLabel)
-
         title_width = 600
         writer_width = 200
         date_width = 200
@@ -306,14 +298,14 @@ class noticeList(QWidget):
         self.title[i] = QPushButton(self.notices[i].title, self.w)
         self.title[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.title[i].setGeometry(listX, listY + blankHeigth * (i + 1), title_width + 1, blankHeigth + 1)
-        self.title[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.title[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px;text-align: left; border-bottom:2px solid #ababab; padding-left: 30px; ')
         self.title[i].clicked.connect(lambda v: self.func(8))
 
         self.writer.append('')
         self.writer[i] = QPushButton(self.notices[i].writer, self.w)
         self.writer[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.writer[i].setGeometry(listX + title_width, listY + blankHeigth * (i + 1), writer_width + 1, blankHeigth + 1)
-        self.writer[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.writer[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; border-bottom:2px solid #ababab; ')
         self.writer[i].clicked.connect(lambda v: self.func(8))
 
         self.date.append('')
@@ -448,7 +440,7 @@ class noticeList(QWidget):
                 self.notices[i%9].title = ''
                 self.notices[i%9].content = ''
 
-        self.pageCount = len(rows) % 9 + 1
+        self.pageCount = len(rows) // 9 + 1
 
         conn.close()
 
