@@ -15,7 +15,7 @@ class NoticeContent(QWidget):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
-        self.notice = notice
+        self.noticeinfo = notice
         self.initUI()
 
     def initUI(self):
@@ -26,7 +26,7 @@ class NoticeContent(QWidget):
         self.move(self.basicInfo.WindowX, self.basicInfo.WindowY)
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/background.png")))
         self.setPalette(palette)
 
         title = QLabel("EIOM", self.w)
@@ -66,13 +66,13 @@ class NoticeContent(QWidget):
         postBtn.clicked.connect(self.post)
         infoBtn.clicked.connect(self.info)
 
-        contTitle=QLabel(self.notice.title+' \n',self.w)
+        contTitle=QLabel(self.noticeinfo.title+' \n',self.w)
         contTitle.setFont(QFont(self.basicInfo.font1,13))
         contTitle.setGeometry(100,150,1000,90)
         contTitle.setStyleSheet('border-top:1px solid black; border-bottom:1px solid black; ')
         contTitle.setAlignment(QtCore.Qt.AlignCenter)
 
-        writer=QLabel(self.notice.writer+' | '+str(self.notice.date),contTitle)
+        writer=QLabel(self.noticeinfo.writer+' | '+str(self.noticeinfo.date),contTitle)
         writer.setFont(QFont(self.basicInfo.font1, 10))
         writer.setGeometry(0,60,1000,20)
         writer.setStyleSheet('color:gray; border:0px;')
@@ -80,7 +80,7 @@ class NoticeContent(QWidget):
 
 
         content=QTextBrowser(self.w)
-        st = self.notice.content.split("\\n")
+        st = self.noticeinfo.content.split("\\n")
         for i in st:
             content.append(i)
         content.setFont(QFont(self.basicInfo.font1, 12))
