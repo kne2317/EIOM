@@ -6,13 +6,16 @@ from PySide2 import QtCore
 from BasicInfo import BasicInfo
 import teacher.Rate
 import teacher.MyPage
+from teacher.Notice import Notice
+
+
 class noticeList(QWidget):
 
-    def __init__(self):
+    def __init__(self, notideinfo=Notice()):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
-
+        self.noticeinfo = notideinfo
         self.initUI()
 
     def initUI(self):
@@ -57,22 +60,27 @@ class noticeList(QWidget):
         infoBtn.setGeometry(self.basicInfo.WindowWidth / 5 * 4, 70, self.basicInfo.WindowWidth / 5, 50)
         infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        contTitle=QLabel('제목 \n',self.w)
+        contTitle=QLabel(self.noticeinfo.title+' \n',self.w)
         contTitle.setFont(QFont(self.basicInfo.font1,13))
         contTitle.setGeometry(100,150,1000,90)
         contTitle.setStyleSheet('border-top:1px solid black; border-bottom:1px solid black; ')
         contTitle.setAlignment(QtCore.Qt.AlignCenter)
 
-        writer=QLabel('유병석 선생님 | 2020.12.01',contTitle)
+        writer=QLabel(self.noticeinfo.writer+' | '+str(self.noticeinfo.date),contTitle)
         writer.setFont(QFont(self.basicInfo.font1, 10))
         writer.setGeometry(0,60,1000,20)
         writer.setStyleSheet('color:gray; border:0px;')
         writer.setAlignment(QtCore.Qt.AlignCenter)
 
+
         content=QTextBrowser(self.w)
+        st = self.noticeinfo.content.split("\\n")
+        for i in st:
+            content.append(i)
         content.setFont(QFont(self.basicInfo.font1, 12))
         content.setGeometry(100, 240, 1000, 300)
-        content.setStyleSheet('border:0px;border-bottom:1px solid black; ')
+        content.setStyleSheet('border:0px;border-bottom:1px solid black; padding: 10px; ')
+
 
         file = QLabel('첨부파일',self.w)
         file.setFont(QFont(self.basicInfo.font1, 12))
@@ -83,6 +91,7 @@ class noticeList(QWidget):
         backBtn.setFont(QFont(self.basicInfo.font1, 12))
         backBtn.setGeometry(980, 630, 120, 40)
         backBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
+
 
         stateBtn.clicked.connect(self.state)
         noticeBtn.clicked.connect(self.notice)
