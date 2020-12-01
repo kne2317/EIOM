@@ -181,3 +181,14 @@ def orderByBestLang():
 
     sorted(lang.items(), key=lambda x: x[1], reverse=True)
     return lang
+
+def pofolRequestInsert(pfrequest,pfperiod):
+    basicDB = BasicDB()
+    conn = basicDB.conn
+    curs = conn.cursor()
+
+    sql = "insert into portfolio_request (com_id,company_name,pfrequest ,pfperiod ) values('"+\
+          Company.ID+"','"+Company.companyname+"','"+pfrequest+"','"+pfperiod+"');"
+
+    curs.execute(sql)
+    conn.commit()

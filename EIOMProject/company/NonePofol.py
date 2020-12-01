@@ -7,7 +7,7 @@ from company.Company import Company
 import company.NoneEmployementRequest
 import company.CompanyEmploymentRequest
 import company.CompanyInfo
-
+import company.RequestPortfolio
 from BasicInfo import BasicInfo
 
 
@@ -63,11 +63,15 @@ class NonePofol(QWidget):
         requestBtn = QPushButton('포트폴리오 열람 권한 신청하기', self.w)
         requestBtn.setFont(QFont(self.basicInfo.font1, 15))
         requestBtn.setGeometry(100, 600, 1000, 50)
+        requestBtn.clicked.connect(self.pofol)
 
         stateBtn.clicked.connect(self.state)
         pfBtn.clicked.connect(self.pf)
         infoBtn.clicked.connect(self.info)
-
+    def pofol(self):
+        self.pf=company.RequestPortfolio.RequestPortfolio()
+        self.pf.show()
+        self.hide()
     def state(self):
         if Company.request_authority==0:
             self.ncr=company.NoneEmployementRequest.NoneEmployementRequest()

@@ -4,7 +4,7 @@ from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
-
+import company.EmployeeRequestDB
 from company.Company import Company
 import company.NoneEmployementRequest
 import company.CompanyEmploymentRequest
@@ -62,58 +62,62 @@ class RequestPortfolio(QWidget):
         l.setFont(QFont(self.basicInfo.font1, 15))
         l.setGeometry(640, 180, 500, 50)
 
-        year1=QLineEdit(self.w)
-        year1.setPlaceholderText('연도')
-        year1.setFont(QFont(self.basicInfo.font1,13))
-        year1.setGeometry(250,190,100,40)
+        self.year1=QLineEdit(self.w)
+        self.year1.setPlaceholderText('연도')
+        self.year1.setFont(QFont(self.basicInfo.font1,13))
+        self.year1.setGeometry(250,190,100,40)
 
-        month1=QComboBox(self.w)
-        month1.setFont(QFont(self.basicInfo.font1, 13))
-        month1.setGeometry(380,190,100,40)
+        self.month1=QComboBox(self.w)
+        self.month1.setFont(QFont(self.basicInfo.font1, 13))
+        self.month1.setGeometry(380,190,100,40)
         for i in range (0,12):
-            month1.addItem(str(i+1)+"월")
+            self.month1.addItem(str(i+1)+"월")
 
-        day1 = QComboBox(self.w)
-        day1.setFont(QFont(self.basicInfo.font1, 13))
-        day1.setGeometry(510, 190, 100, 40)
+        self.day1 = QComboBox(self.w)
+        self.day1.setFont(QFont(self.basicInfo.font1, 13))
+        self.day1.setGeometry(510, 190, 100, 40)
         for i in range(0, 30):
-            day1.addItem(str(i + 1) + "일")
+            self.day1.addItem(str(i + 1) + "일")
 
-        year2 = QLineEdit(self.w)
-        year2.setPlaceholderText('연도')
-        year2.setFont(QFont(self.basicInfo.font1, 13))
-        year2.setGeometry(700, 190, 100, 40)
+        self.year2 = QLineEdit(self.w)
+        self.year2.setPlaceholderText('연도')
+        self.year2.setFont(QFont(self.basicInfo.font1, 13))
+        self.year2.setGeometry(700, 190, 100, 40)
 
-        month2 = QComboBox(self.w)
-        month2.setFont(QFont(self.basicInfo.font1, 13))
-        month2.setGeometry(830, 190, 100, 40)
+        self.month2 = QComboBox(self.w)
+        self.month2.setFont(QFont(self.basicInfo.font1, 13))
+        self.month2.setGeometry(830, 190, 100, 40)
         for i in range(0, 12):
-            month2.addItem(str(i + 1) + "월")
+            self.month2.addItem(str(i + 1) + "월")
 
-        day2 = QComboBox(self.w)
-        day2.setFont(QFont(self.basicInfo.font1, 13))
-        day2.setGeometry(960, 190, 100, 40)
+        self.day2 = QComboBox(self.w)
+        self.day2.setFont(QFont(self.basicInfo.font1, 13))
+        self.day2.setGeometry(960, 190, 100, 40)
         for i in range(0, 30):
-            day2.addItem(str(i + 1) + "일")
+            self.day2.addItem(str(i + 1) + "일")
 
         reasonL = QLabel('열람사유',self.w)
         reasonL.setFont(QFont(self.basicInfo.font1,15))
         reasonL.setGeometry(150,320,500,50)
 
-        reason = QTextBrowser(self.w)
-        reason.setFont(QFont(self.basicInfo.font1, 12))
-        reason.setGeometry(270, 330, 800, 130)
+        self.reason = QTextEdit(self.w)
+        self.reason.setFont(QFont(self.basicInfo.font1, 12))
+        self.reason.setGeometry(270, 330, 800, 130)
 
 
         requestBtn = QPushButton('신청', self.w)
         requestBtn.setFont(QFont(self.basicInfo.font1, 12))
         requestBtn.setGeometry(950, 630, 120, 40)
         requestBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
+        requestBtn.clicked.connect(self.request)
 
         stateBtn.clicked.connect(self.state)
         pfBtn.clicked.connect(self.pf)
         infoBtn.clicked.connect(self.info)
-
+    def request(self):
+        recruit = self.year1.text() + "년" + self.month1.currentText() + self.day1.currentText() + \
+                  " ~ " + self.year2.text() + "년" + self.month2.currentText() + self.day2.currentText();
+        company.EmployeeRequestDB.pofolRequestInsert(self.reason.toPlainText(),recruit)
     def state(self):
         if Company.request_authority == 0:
             self.ncr = company.NoneEmployementRequest.NoneEmployementRequest()
