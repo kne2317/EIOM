@@ -449,9 +449,10 @@ class noticeList(QWidget):
 
     def func(self, noticeNum):
         try:
-            self.cp = student.NoticeContent.NoticeContent(self.notices[noticeNum])
-            self.cp.show()
-            self.hide()
+            if len(self.notices[noticeNum].title) > 0 and self.notices[noticeNum].title != '':
+                self.cp = student.NoticeContent.NoticeContent(self.notices[noticeNum])
+                self.cp.show()
+                self.hide()
         except Exception as e:
             print(e)
 
