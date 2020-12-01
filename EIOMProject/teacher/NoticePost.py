@@ -1,12 +1,18 @@
+import os
 import sys
+from datetime import time
+
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore
+from pip._vendor.distlib._backport import shutil
 
-from BasicInfo import BasicInfo
+from BasicInfo import BasicInfo, BasicDB
 import teacher.Rate
 import teacher.MyPage
 import teacher.NoticeContent
+from teacher import Teacher
+
 
 class NoticePost(QWidget):
 
@@ -61,15 +67,15 @@ class NoticePost(QWidget):
         infoBtn.setGeometry(self.basicInfo.WindowWidth/5*4, 70, self.basicInfo.WindowWidth/5, 50)
         infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        titleInput = QLineEdit(self.w)
-        titleInput.setFont(QFont(self.basicInfo.font1,13))
-        titleInput.setPlaceholderText('제목을 입력하시오.')
-        titleInput.setGeometry(100,150,1000,40)
+        self.titleInput = QLineEdit(self.w)
+        self.titleInput.setFont(QFont(self.basicInfo.font1,13))
+        self.titleInput.setPlaceholderText('제목을 입력하시오.')
+        self.titleInput.setGeometry(100,150,1000,40)
 
-        contentInput = QTextEdit(self.w)
-        contentInput.setFont(QFont(self.basicInfo.font1,12))
-        contentInput.setPlaceholderText('내용을 입력하시오.')
-        contentInput.setGeometry(100,200,1000,380)
+        self.contentInput = QTextEdit(self.w)
+        self.contentInput.setFont(QFont(self.basicInfo.font1,12))
+        self.contentInput.setPlaceholderText('내용을 입력하시오.')
+        self.contentInput.setGeometry(100,200,1000,380)
 
         fileL = QLabel('첨부 파일', self.w)
         fileL.setFont(QFont(self.basicInfo.font1, 12))
@@ -88,6 +94,7 @@ class NoticePost(QWidget):
         okayBtn.setFont(QFont(self.basicInfo.font1, 12))
         okayBtn.setGeometry(480, 650, 110, 30)
         okayBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
+        okayBtn.clicked.connect(self.uploadPost)
 
         cancleBtn = QPushButton('취소', self.w)
         cancleBtn.setFont(QFont(self.basicInfo.font1, 12))
@@ -120,4 +127,31 @@ class NoticePost(QWidget):
         fname = QFileDialog.getOpenFileName()
         self.fileInput.setText(fname[0])
 
+    def uploadPost(self):
+        # 포스트 업로드
+        try:
+            basicDB = BasicDB()
+            conn = basicDB.conn
+            curs = conn.cursor()
+
+            # 자소서 추가
+            ifile_name = self.fileInput.split('/')[-1]
+            ioriginal_path = self.fileInput.replace('/' + ifile_name, '')
+            idestination_path = os.path.dirname(os.path.realpath(__file__)) + "\\notice"
+            shutil.copyfile(os.path.join(ioriginal_path, ifile_name),
+                            os.path.join(idestination_path, ifile_name))
+
+            sql = "INSERT INTO `eiom_db`.`notice` (`writer`, `date`, `title`, `content`, `file`) VALUES ('"+Teacher.name+"', '"+time.strftime('%Y-%m-%d', time.localtime(time.time()))+"', '"+self.titleInput.text()+"', '"+self.contentInput.text()+"', 'ㅁㅇㄴㄹ');"
+
+            curs.execute(sql)
+            conn.commit()
+
+            conn.close()
+
+            
+            r = teacher.Rate.tRate()
+            r.show()
+            self.hide()
+        except Exception as e:
+            print(e)
 
