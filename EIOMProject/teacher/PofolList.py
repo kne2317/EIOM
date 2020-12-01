@@ -23,6 +23,7 @@ class pofolList(QWidget):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
+        self.list_len = 9
         self.pofols = []
         self.pofols.append(PofolPost())
         self.pofols.append(PofolPost())
@@ -529,9 +530,10 @@ class pofolList(QWidget):
         self.pageBtn_4.setText(self.pageCount >= self.currentpage+2 and str(self.currentpage+2) or '')
 
         for i in range(self.list_len):
-            self.title[i].setText(self.notices[i].title)
-            self.writer[i].setText(self.notices[i].writer)
-            self.date[i].setText(str(self.notices[i].date))
+            self.name[i].setText(self.pofols[i].name)
+            self.pofol[i].setText(self.pofols[i].pofol)
+            self.hakbun[i].setText(str(self.pofols[i].hakbun))
+            self.request[i].setText(self.reque[i].companyname)
 
 
     def getNoticeData(self):
