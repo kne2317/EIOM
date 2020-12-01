@@ -1,3 +1,5 @@
+import os
+import shutil
 import sys
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
@@ -396,7 +398,7 @@ class pofolList(QWidget):
         conn = basicDB.conn
         curs = conn.cursor()
 
-        sql = "select exit (select * from student where portfolio);"
+        sql = "SELECT * FROM eiom_db.student where portfolio like '%';"
         curs.execute(sql)
 
         rows = curs.fetchall()
@@ -417,7 +419,14 @@ class pofolList(QWidget):
 
     def func(self, noticeNum):
         # 포폴다운
-        pass
+        try:
+            pfile_name = self.pofols[noticeNum].pofol
+            poriginal_path = os.path.dirname(os.path.realpath(__file__)) + "\\..\\portfolio"
+            pdestination_path = os.path.expanduser("~")+"/Downloads"
+            shutil.copyfile(os.path.join(poriginal_path, pfile_name), os.path.join(pdestination_path, pfile_name))
+            print("다운로드가 완료되었습니다.")
+        except Exception as e:
+            print(e)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
