@@ -425,7 +425,7 @@ class pofolList(QWidget):
             poriginal_path = os.path.dirname(os.path.realpath(__file__)) + "\\..\\portfolio"
             pdestination_path = os.path.expanduser("~")+"/Downloads"
             shutil.copyfile(os.path.join(poriginal_path, pfile_name), os.path.join(pdestination_path, pfile_name))
-            print("다운로드가 완료되었습니다.")
+            QMessageBox.about(self, "완료", "다운로드가 완료되었습니다")
         except Exception as e:
             print(e)
     def state(self):
