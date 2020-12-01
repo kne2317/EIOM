@@ -16,7 +16,6 @@ class JoinT(QWidget):
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
         self.initUI()
-        self.teacher = Teacher()
         self.idOverlapChecked = False
 
     def initUI(self):
@@ -90,13 +89,12 @@ class JoinT(QWidget):
 
                 if self.codeInput.text() == self.basicInfo.managerCode:
 
-                    self.teacher.setName(self.nameInput.text())
-                    self.teacher.setID(self.idInput.text())
-                    self.teacher.setPassword(self.pwInput.text())
-                    self.teacher.setEmail(self.mailInput.text())
+                    Teacher.name = self.nameInput.text()
+                    Teacher.ID = self.idInput.text()
+                    Teacher.password = self.pwInput.text()
+                    Teacher.email = self.mailInput.text()
 
-                    print(self.teacher)
-                    if TeacherJoin(self.teacher):
+                    if TeacherJoin():
 
                         print("회원가입에 성공하였습니다.")
 
