@@ -49,37 +49,6 @@ class sRate(QWidget):
         title.setAlignment(QtCore.Qt.AlignCenter)
         title.setGeometry(100, 10, 1000, 50)
 
-        stateBtn = QPushButton('통계', self.w)
-        stateBtn.setFont(QFont(self.basicInfo.font1, 13))
-        stateBtn.setGeometry(0, 70, 240, 50)
-        stateBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        noticeBtn = QPushButton('공지', self.w)
-        noticeBtn.setFont(QFont(self.basicInfo.font1, 13))
-        noticeBtn.setGeometry(240, 70, 240, 50)
-        noticeBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        companyBtn = QPushButton('회사', self.w)
-        companyBtn.setFont(QFont(self.basicInfo.font1, 13))
-        companyBtn.setGeometry(480, 70, 240, 50)
-        companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        postBtn = QPushButton('취업의뢰', self.w)
-        postBtn.setFont(QFont(self.basicInfo.font1, 13))
-        postBtn.setGeometry(720, 70, 240, 50)
-        postBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        infoBtn = QPushButton('내 정보', self.w)
-        infoBtn.setFont(QFont(self.basicInfo.font1, 13))
-        infoBtn.setGeometry(960, 70, 240, 50)
-        infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        stateBtn.clicked.connect(self.state)
-        noticeBtn.clicked.connect(self.notice)
-        companyBtn.clicked.connect(self.company)
-        postBtn.clicked.connect(self.post)
-        infoBtn.clicked.connect(self.info)
-
         contentLayout = QVBoxLayout()
 
         emptyLabel = QLabel("\n\n\n\n\n\n\n\n\n\n\n\n")
@@ -219,6 +188,37 @@ class sRate(QWidget):
         basicLayout.addWidget(scroll)
         basicLayout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(basicLayout)
+
+        stateBtn = QPushButton('통계', self.w)
+        stateBtn.setFont(QFont(self.basicInfo.font1, 13))
+        stateBtn.setGeometry(0, 70, 240, 50)
+        stateBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+
+        noticeBtn = QPushButton('공지', self.w)
+        noticeBtn.setFont(QFont(self.basicInfo.font1, 13))
+        noticeBtn.setGeometry(240, 70, 240, 50)
+        noticeBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+
+        companyBtn = QPushButton('회사', self.w)
+        companyBtn.setFont(QFont(self.basicInfo.font1, 13))
+        companyBtn.setGeometry(480, 70, 240, 50)
+        companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+
+        postBtn = QPushButton('취업의뢰', self.w)
+        postBtn.setFont(QFont(self.basicInfo.font1, 13))
+        postBtn.setGeometry(720, 70, 240, 50)
+        postBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+
+        infoBtn = QPushButton('내 정보', self.w)
+        infoBtn.setFont(QFont(self.basicInfo.font1, 13))
+        infoBtn.setGeometry(960, 70, 240, 50)
+        infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+
+        stateBtn.clicked.connect(self.state)
+        noticeBtn.clicked.connect(self.notice)
+        companyBtn.clicked.connect(self.company)
+        postBtn.clicked.connect(self.post)
+        infoBtn.clicked.connect(self.info)
 
     def state(self):
         self.sr = student.Rate.sRate()

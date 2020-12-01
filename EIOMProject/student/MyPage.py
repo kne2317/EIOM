@@ -138,13 +138,9 @@ class MyPage(QWidget):
 
         modifyBtn=QPushButton('수정',self.w)
         modifyBtn.setFont(QFont(self.basicInfo.font1, 12))
-        modifyBtn.setGeometry(800,600,120,40)
+        modifyBtn.setGeometry(950,600,120,40)
         modifyBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
 
-        backBtn = QPushButton('뒤로가기', self.w)
-        backBtn.setFont(QFont(self.basicInfo.font1, 12))
-        backBtn.setGeometry(950, 600, 120, 40)
-        backBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
 
 
         self.show()
