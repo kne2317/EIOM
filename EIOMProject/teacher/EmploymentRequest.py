@@ -25,3 +25,4 @@ class EmploymentRequest:
         self.pmoney = ''                # 현장 실습 수당
         self.manager_email = ''         # 담당자 이메일
         self.manager_ph = ''            # 담당자 연락처
+        self.request_authority = ''     # 승인여부

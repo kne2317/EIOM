@@ -73,7 +73,7 @@ class noticeList(QWidget):
         recruit_width = 400
         emplayment_width = 100
         address_width = 100
-        hopePersonCount_width = 100
+        request_authority_width = 100
 
         listX = 100
         listY = 180
@@ -108,55 +108,55 @@ class noticeList(QWidget):
         address_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
         address_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
 
-        hopePersonCount_header = QPushButton("희망인원", self.w)
-        hopePersonCount_header.setFont(QFont(self.basicInfo.font1, fontsize))
-        hopePersonCount_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePersonCount_width+1, blankHeigth+1)
-        hopePersonCount_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+        request_authority_header = QPushButton("승인여부", self.w)
+        request_authority_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        request_authority_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), request_authority_width+1, blankHeigth+1)
+        request_authority_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
 
         self.companyName = []
         self.useLanquage = []
         self.recruit = []
         self.emplayment = []
         self.address = []
-        self.hopePersonCount = []
+        self.request_authority = []
 
         # 0
         i += 1
         self.companyName.append('')
-        companyName_header = QPushButton(self.reque[i].company_name, self.w)
-        companyName_header.setFont(QFont(self.basicInfo.font1, fontsize))
-        companyName_header.setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
-        companyName_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+        self.companyName[i] = QPushButton(self.reque[i].company_name, self.w)
+        self.companyName[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.companyName[i].setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
+        self.pofol[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
 
         self.useLanquage.append('')
-        useLanquage_header = QPushButton(self.reque[i].uselang, self.w)
-        useLanquage_header.setFont(QFont(self.basicInfo.font1, fontsize))
-        useLanquage_header.setGeometry(listX + companyName_width, listY+blankHeigth*(i+1), useLanquage_width+1, blankHeigth+1)
-        useLanquage_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+        self.useLanquage[i] = QPushButton(self.reque[i].uselang, self.w)
+        self.useLanquage[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.useLanquage[i].setGeometry(listX + companyName_width, listY+blankHeigth*(i+1), useLanquage_width+1, blankHeigth+1)
+        self.pofol[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
 
         self.recruit.append('')
-        recruit_header = QPushButton(self.reque[i].recruit, self.w)
-        recruit_header.setFont(QFont(self.basicInfo.font1, fontsize))
-        recruit_header.setGeometry(listX + companyName_width + useLanquage_width, listY+blankHeigth*(i+1), recruit_width+1, blankHeigth+1)
-        recruit_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+        self.recruit[i] = QPushButton(self.reque[i].recruit, self.w)
+        self.recruit[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.recruit[i].setGeometry(listX + companyName_width + useLanquage_width, listY+blankHeigth*(i+1), recruit_width+1, blankHeigth+1)
+        self.pofol[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
 
         self.emplayment.append('')
-        emplayment_header = QPushButton(self.reque[i].employment, self.w)
-        emplayment_header.setFont(QFont(self.basicInfo.font1, fontsize))
-        emplayment_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width, listY+blankHeigth*(i+1), emplayment_width+1, blankHeigth+1)
-        emplayment_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+        self.emplayment[i] = QPushButton(self.reque[i].employment, self.w)
+        self.emplayment[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.emplayment[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width, listY+blankHeigth*(i+1), emplayment_width+1, blankHeigth+1)
+        self.pofol[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
 
         self.address.append('')
-        address_header = QPushButton(self.reque[i].company_address, self.w)
-        address_header.setFont(QFont(self.basicInfo.font1, fontsize))
-        address_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
-        address_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+        self.address[i] = QPushButton(self.reque[i].company_address, self.w)
+        self.address[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.address[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
+        self.pofol[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
 
-        self.hopePersonCount.append('')
-        hopePersonCount_header = QPushButton(str(self.reque[i].hopeperson), self.w)
-        hopePersonCount_header.setFont(QFont(self.basicInfo.font1, fontsize))
-        hopePersonCount_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePersonCount_width+1, blankHeigth+1)
-        hopePersonCount_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+        self.request_authority.append('')
+        self.request_authority[i] = QPushButton(self.reque[i].request_authority==0 and '대기중' or self.reque[i].request_authority==1 and '승인' or '거절', self.w)
+        self.request_authority[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.request_authority[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), request_authority_width+1, blankHeigth+1)
+        self.pofol[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
 
 
         prevPageBtn = QPushButton("<", self.w)
@@ -299,6 +299,7 @@ class noticeList(QWidget):
                 self.reque[i%9].company_intro = rows2[0][9]
                 self.reque[i%9].company_major = rows2[0][10]
                 self.reque[i%9].company_employees_num = rows2[0][14]
+                self.reque[i%9].request_authority = rows2[0][13]
 
             else:
                 self.reque[i%9].id = ''
@@ -325,6 +326,7 @@ class noticeList(QWidget):
                 self.reque[i%9].company_intro = ''
                 self.reque[i%9].company_major = ''
                 self.reque[i%9].company_employees_num = ''
+                self.reque[i%9].request_authority = ''
 
         self.pageCount = len(rows) // 9 + 1
 
