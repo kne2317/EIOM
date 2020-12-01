@@ -127,7 +127,7 @@ class noticeList(QWidget):
         self.companyName[i] = QPushButton(self.reque[i].company_name, self.w)
         self.companyName[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.companyName[i].setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
-        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; color: #3c78d8; padding-left:20px;padding-right:20px;')
+        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
         self.companyName[i].clicked.connect(lambda v: self.func(0))
 
         self.useLanquage.append('')
@@ -171,7 +171,7 @@ class noticeList(QWidget):
         self.companyName[i] = QPushButton(self.reque[i].company_name, self.w)
         self.companyName[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.companyName[i].setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
-        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; color: #3c78d8; padding-left:20px;padding-right:20px;')
+        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
         self.companyName[i].clicked.connect(lambda v: self.func(1))
 
         self.useLanquage.append('')
@@ -216,7 +216,7 @@ class noticeList(QWidget):
         self.companyName[i] = QPushButton(self.reque[i].company_name, self.w)
         self.companyName[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.companyName[i].setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
-        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; color: #3c78d8; padding-left:20px;padding-right:20px;')
+        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
         self.companyName[i].clicked.connect(lambda v: self.func(2))
 
         self.useLanquage.append('')
@@ -261,7 +261,7 @@ class noticeList(QWidget):
         self.companyName[i] = QPushButton(self.reque[i].company_name, self.w)
         self.companyName[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.companyName[i].setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
-        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; color: #3c78d8; padding-left:20px;padding-right:20px;')
+        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
         self.companyName[i].clicked.connect(lambda v: self.func(3))
 
         self.useLanquage.append('')
@@ -306,7 +306,7 @@ class noticeList(QWidget):
         self.companyName[i] = QPushButton(self.reque[i].company_name, self.w)
         self.companyName[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.companyName[i].setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
-        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; color: #3c78d8; padding-left:20px;padding-right:20px;')
+        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
         self.companyName[i].clicked.connect(lambda v: self.func(4))
 
         self.useLanquage.append('')
@@ -351,7 +351,7 @@ class noticeList(QWidget):
         self.companyName[i] = QPushButton(self.reque[i].company_name, self.w)
         self.companyName[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.companyName[i].setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
-        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; color: #3c78d8; padding-left:20px;padding-right:20px;')
+        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
         self.companyName[i].clicked.connect(lambda v: self.func(5))
 
         self.useLanquage.append('')
@@ -396,7 +396,7 @@ class noticeList(QWidget):
         self.companyName[i] = QPushButton(self.reque[i].company_name, self.w)
         self.companyName[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.companyName[i].setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
-        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; color: #3c78d8; padding-left:20px;padding-right:20px;')
+        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
         self.companyName[i].clicked.connect(lambda v: self.func(6))
 
         self.useLanquage.append('')
@@ -441,7 +441,7 @@ class noticeList(QWidget):
         self.companyName[i] = QPushButton(self.reque[i].company_name, self.w)
         self.companyName[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.companyName[i].setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
-        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; color: #3c78d8; padding-left:20px;padding-right:20px;')
+        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
         self.companyName[i].clicked.connect(lambda v: self.func(7))
 
         self.useLanquage.append('')
@@ -486,7 +486,7 @@ class noticeList(QWidget):
         self.companyName[i] = QPushButton(self.reque[i].company_name, self.w)
         self.companyName[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.companyName[i].setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
-        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; color: #3c78d8; padding-left:20px;padding-right:20px;')
+        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
         self.companyName[i].clicked.connect(lambda v: self.func(8))
 
         self.useLanquage.append('')
@@ -704,7 +704,7 @@ class noticeList(QWidget):
     def func(self, noticeNum):
         try:
             if len(self.reque[noticeNum].company_name) > 0 and self.reque[noticeNum].company_name != '':
-                self.cp = teacher.EmploymentRequestPost.EmploymentrequestPost(self.reque[noticeNum])
+                self.cp = teacher.EmploymentRequestPost.EmploymentRequestPost(self.reque[noticeNum])
                 self.cp.show()
                 self.hide()
         except Exception as e:

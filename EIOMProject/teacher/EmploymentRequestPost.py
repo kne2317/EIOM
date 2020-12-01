@@ -77,7 +77,7 @@ class EmploymentRequestPost(QWidget):
         contTitle.setStyleSheet('border-top:1px solid black; border-bottom:1px solid black; ')
         contTitle.setAlignment(QtCore.Qt.AlignCenter)
 
-        writer = QLabel('@@@ soft | 2020.12.01', contTitle)
+        writer = QLabel(self.reque.company_id, contTitle)
         writer.setFont(QFont(self.basicInfo.font1, 10))
         writer.setGeometry(0, 60, 1000, 20)
         writer.setStyleSheet('color:gray; border:0px;')
@@ -107,7 +107,7 @@ class EmploymentRequestPost(QWidget):
         cNameL1.setFont(QFont(self.basicInfo.font1, 13))
         cNameL1.setGeometry(130, 320, 500, 40)
 
-        cNameL2 = QLabel("연지 소프트", self.w)
+        cNameL2 = QLabel(self.reque.company_name, self.w)
         cNameL2.setFont(QFont(self.basicInfo.font1, 13))
         cNameL2.setGeometry(230, 320, 500, 40)
 
@@ -116,6 +116,9 @@ class EmploymentRequestPost(QWidget):
         cintroL.setGeometry(130, 370, 500, 40)
 
         cintro = QTextBrowser(self.w)
+        st = self.reque.company_intro.split("\\n")
+        for i in st:
+            cintro.append(i)
         cintro.setFont(QFont(self.basicInfo.font1, 12))
         cintro.setGeometry(130, 420, 400, 200)
 
@@ -123,7 +126,7 @@ class EmploymentRequestPost(QWidget):
         majorL1.setFont(QFont(self.basicInfo.font1, 13))
         majorL1.setGeometry(130, 630, 500, 40)
 
-        majorL2 = QLabel("개발", self.w)
+        majorL2 = QLabel(self.reque.company_major, self.w)
         majorL2.setFont(QFont(self.basicInfo.font1, 13))
         majorL2.setGeometry(230, 630, 500, 40)
 
@@ -131,7 +134,7 @@ class EmploymentRequestPost(QWidget):
         salesL1.setFont(QFont(self.basicInfo.font1, 13))
         salesL1.setGeometry(130, 680, 500, 40)
 
-        salesL2 = QLabel("10억", self.w)
+        salesL2 = QLabel(self.reque.company_annualsale, self.w)
         salesL2.setFont(QFont(self.basicInfo.font1, 13))
         salesL2.setGeometry(230, 680, 500, 40)
 
@@ -139,7 +142,7 @@ class EmploymentRequestPost(QWidget):
         employeeL1.setFont(QFont(self.basicInfo.font1, 13))
         employeeL1.setGeometry(130, 720, 500, 40)
 
-        employeeL2 = QLabel("10", self.w)
+        employeeL2 = QLabel(self.reque.company_employees_num, self.w)
         employeeL2.setFont(QFont(self.basicInfo.font1, 13))
         employeeL2.setGeometry(230, 720, 500, 40)
 
@@ -147,7 +150,7 @@ class EmploymentRequestPost(QWidget):
         addressL1.setFont(QFont(self.basicInfo.font1, 13))
         addressL1.setGeometry(130, 770, 500, 40)
 
-        addressL2 = QLabel("남양주시 화도읍", self.w)
+        addressL2 = QLabel(self.reque.company_address, self.w)
         addressL2.setFont(QFont(self.basicInfo.font1, 13))
         addressL2.setGeometry(230, 770, 500, 40)
 
@@ -155,7 +158,7 @@ class EmploymentRequestPost(QWidget):
         webL1.setFont(QFont(self.basicInfo.font1, 13))
         webL1.setGeometry(130, 830, 500, 40)
 
-        webL2 = QLabel("www.yj310.com", self.w)
+        webL2 = QLabel(self.reque.company_web, self.w)
         webL2.setFont(QFont(self.basicInfo.font1, 13))
         webL2.setGeometry(230, 830, 500, 40)
 
@@ -163,7 +166,7 @@ class EmploymentRequestPost(QWidget):
         personEL1.setFont(QFont(self.basicInfo.font1, 13))
         personEL1.setGeometry(630, 320, 500, 40)
 
-        personEL2 = QLabel("s2019s17@e-mirim.hs.kr", self.w)
+        personEL2 = QLabel(self.reque.manager_email, self.w)
         personEL2.setFont(QFont(self.basicInfo.font1, 13))
         personEL2.setGeometry(750, 320, 500, 40)
 
@@ -171,7 +174,7 @@ class EmploymentRequestPost(QWidget):
         personPL1.setFont(QFont(self.basicInfo.font1, 13))
         personPL1.setGeometry(630, 370, 500, 40)
 
-        personPL2 = QLabel("010-5037-2292", self.w)
+        personPL2 = QLabel(self.reque.manager_ph, self.w)
         personPL2.setFont(QFont(self.basicInfo.font1, 13))
         personPL2.setGeometry(750, 370, 500, 40)
 
@@ -179,7 +182,7 @@ class EmploymentRequestPost(QWidget):
         periodL1.setFont(QFont(self.basicInfo.font1, 13))
         periodL1.setGeometry(630, 520, 500, 40)
 
-        periodL2 = QLabel("2개월", self.w)
+        periodL2 = QLabel(self.reque.period, self.w)
         periodL2.setFont(QFont(self.basicInfo.font1, 13))
         periodL2.setGeometry(780, 520, 500, 40)
 
@@ -187,7 +190,7 @@ class EmploymentRequestPost(QWidget):
         pmoneyL1.setFont(QFont(self.basicInfo.font1, 13))
         pmoneyL1.setGeometry(630, 570, 500, 40)
 
-        pmoneyL2 = QLabel("1500000", self.w)
+        pmoneyL2 = QLabel(self.reque.pmoney, self.w)
         pmoneyL2.setFont(QFont(self.basicInfo.font1, 13))
         pmoneyL2.setGeometry(780, 570, 500, 40)
 
@@ -195,7 +198,7 @@ class EmploymentRequestPost(QWidget):
         receiptL1.setFont(QFont(self.basicInfo.font1, 13))
         receiptL1.setGeometry(130, 950, 500, 40)
 
-        receiptL2 = QLabel("2020.11.10~2020.11.30", self.w)
+        receiptL2 = QLabel(self.reque.recruit, self.w)
         receiptL2.setFont(QFont(self.basicInfo.font1, 13))
         receiptL2.setGeometry(230, 950, 500, 40)
 
@@ -203,7 +206,7 @@ class EmploymentRequestPost(QWidget):
         hopeCountL1.setFont(QFont(self.basicInfo.font1, 13))
         hopeCountL1.setGeometry(130, 1000, 500, 40)
 
-        hopeCountL2 = QLabel("2", self.w)
+        hopeCountL2 = QLabel(self.reque.hopeperson, self.w)
         hopeCountL2.setFont(QFont(self.basicInfo.font1, 13))
         hopeCountL2.setGeometry(230, 1000, 500, 40)
 
@@ -211,7 +214,7 @@ class EmploymentRequestPost(QWidget):
         rightL1.setFont(QFont(self.basicInfo.font1, 13))
         rightL1.setGeometry(130, 1100, 500, 40)
 
-        rightL2 = QLabel("c++ 가능", self.w)
+        rightL2 = QLabel(self.reque.apply, self.w)
         rightL2.setFont(QFont(self.basicInfo.font1, 13))
         rightL2.setGeometry(230, 1100, 500, 40)
 
@@ -219,7 +222,7 @@ class EmploymentRequestPost(QWidget):
         royaltyL1.setFont(QFont(self.basicInfo.font1, 13))
         royaltyL1.setGeometry(130, 1050, 500, 40)
 
-        royaltyL2 = QLabel("cospro c++ 자격증 보유", self.w)
+        royaltyL2 = QLabel(self.reque.royalty, self.w)
         royaltyL2.setFont(QFont(self.basicInfo.font1, 13))
         royaltyL2.setGeometry(230, 1050, 500, 40)
 
@@ -227,7 +230,7 @@ class EmploymentRequestPost(QWidget):
         postL1.setFont(QFont(self.basicInfo.font1, 13))
         postL1.setGeometry(130, 1150, 500, 40)
 
-        postL2 = QLabel("이력서, 포트폴리오, 자기소개서", self.w)
+        postL2 = QLabel(self.reque.document, self.w)
         postL2.setFont(QFont(self.basicInfo.font1, 13))
         postL2.setGeometry(230, 1150, 500, 40)
 
@@ -235,7 +238,7 @@ class EmploymentRequestPost(QWidget):
         useLangL1.setFont(QFont(self.basicInfo.font1, 13))
         useLangL1.setGeometry(630, 700, 500, 40)
 
-        useLangL2 = QLabel("c / c++", self.w)
+        useLangL2 = QLabel(self.reque.uselang, self.w)
         useLangL2.setFont(QFont(self.basicInfo.font1, 13))
         useLangL2.setGeometry(730, 700, 500, 40)
 
@@ -243,7 +246,7 @@ class EmploymentRequestPost(QWidget):
         employmentL1.setFont(QFont(self.basicInfo.font1, 13))
         employmentL1.setGeometry(630, 750, 500, 40)
 
-        employmentL2 = QLabel("정규직", self.w)
+        employmentL2 = QLabel(self.reque.employment, self.w)
         employmentL2.setFont(QFont(self.basicInfo.font1, 13))
         employmentL2.setGeometry(730, 750, 500, 40)
 
@@ -251,7 +254,7 @@ class EmploymentRequestPost(QWidget):
         workL1.setFont(QFont(self.basicInfo.font1, 13))
         workL1.setGeometry(630, 800, 500, 40)
 
-        workL2 = QLabel("c++을 이용한 개발", self.w)
+        workL2 = QLabel(self.reque.work, self.w)
         workL2.setFont(QFont(self.basicInfo.font1, 13))
         workL2.setGeometry(730, 800, 500, 40)
 
@@ -259,7 +262,7 @@ class EmploymentRequestPost(QWidget):
         workTimeL1.setFont(QFont(self.basicInfo.font1, 13))
         workTimeL1.setGeometry(630, 850, 500, 40)
 
-        workTimeL2 = QLabel("일 주 40시간 근무", self.w)
+        workTimeL2 = QLabel(self.reque.worktime, self.w)
         workTimeL2.setFont(QFont(self.basicInfo.font1, 13))
         workTimeL2.setGeometry(730, 850, 500, 40)
 
@@ -267,7 +270,7 @@ class EmploymentRequestPost(QWidget):
         moneyL1.setFont(QFont(self.basicInfo.font1, 13))
         moneyL1.setGeometry(630, 900, 500, 40)
 
-        moneyL2 = QLabel("연 2400", self.w)
+        moneyL2 = QLabel(self.reque.money, self.w)
         moneyL2.setFont(QFont(self.basicInfo.font1, 13))
         moneyL2.setGeometry(730, 900, 500, 40)
 
@@ -276,6 +279,9 @@ class EmploymentRequestPost(QWidget):
         benefitL1.setGeometry(630, 950, 500, 40)
 
         benefitL2 = QTextBrowser(self.w)
+        st = self.reque.benefit.split("\\n")
+        for i in st:
+            benefitL2.append(i)
         benefitL2.setFont(QFont(self.basicInfo.font1, 12))
         benefitL2.setGeometry(630, 1000, 400, 200)
 
