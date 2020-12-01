@@ -74,7 +74,7 @@ class noticeList(QWidget):
         recruit_width = 350
         emplayment_width = 100
         address_width = 150
-        request_authority_width = 100
+        hopePerson_width = 100
 
         listX = 100
         listY = 180
@@ -109,17 +109,17 @@ class noticeList(QWidget):
         address_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
         address_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
 
-        request_authority_header = QPushButton("승인여부", self.w)
-        request_authority_header.setFont(QFont(self.basicInfo.font1, fontsize))
-        request_authority_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), request_authority_width+1, blankHeigth+1)
-        request_authority_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+        hopePerson_header = QPushButton("승인여부", self.w)
+        hopePerson_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        hopePerson_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePerson_width+1, blankHeigth+1)
+        hopePerson_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
 
         self.companyName = []
         self.useLanquage = []
         self.recruit = []
         self.emplayment = []
         self.address = []
-        self.request_authority = []
+        self.hopePerson = []
 
         # 0
         i += 1
@@ -158,12 +158,12 @@ class noticeList(QWidget):
         self.address[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px;padding-left:20px;padding-right:20px;')
         self.address[i].clicked.connect(lambda v: self.func(0))
 
-        self.request_authority.append('')
-        self.request_authority[i] = QPushButton(self.reque[i].request_authority==0 and '대기중' or self.reque[i].request_authority==1 and '승인' or self.reque[i].request_authority==2 and '거절' or '', self.w)
-        self.request_authority[i].setFont(QFont(self.basicInfo.font1, fontsize))
-        self.request_authority[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), request_authority_width+1, blankHeigth+1)
-        self.request_authority[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
-        self.request_authority[i].clicked.connect(lambda v: self.func(0))
+        self.hopePerson.append('')
+        self.hopePerson[i] = QPushButton(str(self.reque[i].hopeperson), self.w)
+        self.hopePerson[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.hopePerson[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePerson_width+1, blankHeigth+1)
+        self.hopePerson[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
+        self.hopePerson[i].clicked.connect(lambda v: self.func(0))
 
         # 1
         i += 1
@@ -202,12 +202,12 @@ class noticeList(QWidget):
         self.address[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px;padding-left:20px;padding-right:20px;')
         self.address[i].clicked.connect(lambda v: self.func(1))
 
-        self.request_authority.append('')
-        self.request_authority[i] = QPushButton(self.reque[i].request_authority==0 and '대기중' or self.reque[i].request_authority==1 and '승인' or self.reque[i].request_authority==2 and '거절' or '', self.w)
-        self.request_authority[i].setFont(QFont(self.basicInfo.font1, fontsize))
-        self.request_authority[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), request_authority_width+1, blankHeigth+1)
-        self.request_authority[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
-        self.request_authority[i].clicked.connect(lambda v: self.func(1))
+        self.hopePerson.append('')
+        self.hopePerson[i] = QPushButton(str(self.reque[i].hopeperson), self.w)
+        self.hopePerson[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.hopePerson[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePerson_width+1, blankHeigth+1)
+        self.hopePerson[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
+        self.hopePerson[i].clicked.connect(lambda v: self.func(1))
 
 
         # 2
@@ -247,12 +247,12 @@ class noticeList(QWidget):
         self.address[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px;padding-left:20px;padding-right:20px;')
         self.address[i].clicked.connect(lambda v: self.func(2))
 
-        self.request_authority.append('')
-        self.request_authority[i] = QPushButton(self.reque[i].request_authority==0 and '대기중' or self.reque[i].request_authority==1 and '승인' or self.reque[i].request_authority==2 and '거절' or '', self.w)
-        self.request_authority[i].setFont(QFont(self.basicInfo.font1, fontsize))
-        self.request_authority[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), request_authority_width+1, blankHeigth+1)
-        self.request_authority[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
-        self.request_authority[i].clicked.connect(lambda v: self.func(2))
+        self.hopePerson.append('')
+        self.hopePerson[i] = QPushButton(str(self.reque[i].hopeperson), self.w)
+        self.hopePerson[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.hopePerson[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePerson_width+1, blankHeigth+1)
+        self.hopePerson[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
+        self.hopePerson[i].clicked.connect(lambda v: self.func(2))
 
 
         # 3
@@ -292,12 +292,12 @@ class noticeList(QWidget):
         self.address[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px;padding-left:20px;padding-right:20px;')
         self.address[i].clicked.connect(lambda v: self.func(3))
 
-        self.request_authority.append('')
-        self.request_authority[i] = QPushButton(self.reque[i].request_authority==0 and '대기중' or self.reque[i].request_authority==1 and '승인' or self.reque[i].request_authority==2 and '거절' or '', self.w)
-        self.request_authority[i].setFont(QFont(self.basicInfo.font1, fontsize))
-        self.request_authority[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), request_authority_width+1, blankHeigth+1)
-        self.request_authority[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
-        self.request_authority[i].clicked.connect(lambda v: self.func(3))
+        self.hopePerson.append('')
+        self.hopePerson[i] = QPushButton(str(self.reque[i].hopeperson), self.w)
+        self.hopePerson[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.hopePerson[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePerson_width+1, blankHeigth+1)
+        self.hopePerson[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
+        self.hopePerson[i].clicked.connect(lambda v: self.func(3))
 
 
         # 4
@@ -337,12 +337,12 @@ class noticeList(QWidget):
         self.address[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px;padding-left:20px;padding-right:20px;')
         self.address[i].clicked.connect(lambda v: self.func(4))
 
-        self.request_authority.append('')
-        self.request_authority[i] = QPushButton(self.reque[i].request_authority==0 and '대기중' or self.reque[i].request_authority==1 and '승인' or self.reque[i].request_authority==2 and '거절' or '', self.w)
-        self.request_authority[i].setFont(QFont(self.basicInfo.font1, fontsize))
-        self.request_authority[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), request_authority_width+1, blankHeigth+1)
-        self.request_authority[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
-        self.request_authority[i].clicked.connect(lambda v: self.func(4))
+        self.hopePerson.append('')
+        self.hopePerson[i] = QPushButton(str(self.reque[i].hopeperson), self.w)
+        self.hopePerson[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.hopePerson[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePerson_width+1, blankHeigth+1)
+        self.hopePerson[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
+        self.hopePerson[i].clicked.connect(lambda v: self.func(4))
 
 
         # 5
@@ -382,12 +382,12 @@ class noticeList(QWidget):
         self.address[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px;padding-left:20px;padding-right:20px;')
         self.address[i].clicked.connect(lambda v: self.func(5))
 
-        self.request_authority.append('')
-        self.request_authority[i] = QPushButton(self.reque[i].request_authority==0 and '대기중' or self.reque[i].request_authority==1 and '승인' or self.reque[i].request_authority==2 and '거절' or '', self.w)
-        self.request_authority[i].setFont(QFont(self.basicInfo.font1, fontsize))
-        self.request_authority[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), request_authority_width+1, blankHeigth+1)
-        self.request_authority[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
-        self.request_authority[i].clicked.connect(lambda v: self.func(5))
+        self.hopePerson.append('')
+        self.hopePerson[i] = QPushButton(str(self.reque[i].hopeperson), self.w)
+        self.hopePerson[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.hopePerson[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePerson_width+1, blankHeigth+1)
+        self.hopePerson[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
+        self.hopePerson[i].clicked.connect(lambda v: self.func(5))
 
 
         # 6
@@ -427,12 +427,12 @@ class noticeList(QWidget):
         self.address[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px;padding-left:20px;padding-right:20px;')
         self.address[i].clicked.connect(lambda v: self.func(6))
 
-        self.request_authority.append('')
-        self.request_authority[i] = QPushButton(self.reque[i].request_authority==0 and '대기중' or self.reque[i].request_authority==1 and '승인' or self.reque[i].request_authority==2 and '거절' or '', self.w)
-        self.request_authority[i].setFont(QFont(self.basicInfo.font1, fontsize))
-        self.request_authority[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), request_authority_width+1, blankHeigth+1)
-        self.request_authority[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
-        self.request_authority[i].clicked.connect(lambda v: self.func(6))
+        self.hopePerson.append('')
+        self.hopePerson[i] = QPushButton(str(self.reque[i].hopeperson), self.w)
+        self.hopePerson[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.hopePerson[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePerson_width+1, blankHeigth+1)
+        self.hopePerson[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
+        self.hopePerson[i].clicked.connect(lambda v: self.func(6))
 
 
         # 7
@@ -472,12 +472,12 @@ class noticeList(QWidget):
         self.address[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px;padding-left:20px;padding-right:20px;')
         self.address[i].clicked.connect(lambda v: self.func(7))
 
-        self.request_authority.append('')
-        self.request_authority[i] = QPushButton(self.reque[i].request_authority==0 and '대기중' or self.reque[i].request_authority==1 and '승인' or self.reque[i].request_authority==2 and '거절' or '', self.w)
-        self.request_authority[i].setFont(QFont(self.basicInfo.font1, fontsize))
-        self.request_authority[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), request_authority_width+1, blankHeigth+1)
-        self.request_authority[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
-        self.request_authority[i].clicked.connect(lambda v: self.func(7))
+        self.hopePerson.append('')
+        self.hopePerson[i] = QPushButton(str(self.reque[i].hopeperson), self.w)
+        self.hopePerson[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.hopePerson[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePerson_width+1, blankHeigth+1)
+        self.hopePerson[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
+        self.hopePerson[i].clicked.connect(lambda v: self.func(7))
 
 
         # 8
@@ -517,12 +517,12 @@ class noticeList(QWidget):
         self.address[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px;padding-left:20px;padding-right:20px;')
         self.address[i].clicked.connect(lambda v: self.func(8))
 
-        self.request_authority.append('')
-        self.request_authority[i] = QPushButton(self.reque[i].request_authority==0 and '대기중' or self.reque[i].request_authority==1 and '승인' or self.reque[i].request_authority==2 and '거절' or '', self.w)
-        self.request_authority[i].setFont(QFont(self.basicInfo.font1, fontsize))
-        self.request_authority[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), request_authority_width+1, blankHeigth+1)
-        self.request_authority[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
-        self.request_authority[i].clicked.connect(lambda v: self.func(8))
+        self.hopePerson.append('')
+        self.hopePerson[i] = QPushButton(str(self.reque[i].hopeperson), self.w)
+        self.hopePerson[i].setFont(QFont(self.basicInfo.font1, fontsize))
+        self.hopePerson[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePerson_width+1, blankHeigth+1)
+        self.hopePerson[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; padding-left:20px;padding-right:20px;')
+        self.hopePerson[i].clicked.connect(lambda v: self.func(8))
 
 
 
@@ -627,7 +627,7 @@ class noticeList(QWidget):
             self.recruit[i].setText(self.reque[i].recruit)
             self.emplayment[i].setText(self.reque[i].employment)
             self.address[i].setText(self.reque[i].company_address)
-            self.request_authority[i].setText(self.reque[i].request_authority)
+            self.hopePerson[i].setText(self.reque[i].hopeperson)
 
 
     def getNoticeData(self):
