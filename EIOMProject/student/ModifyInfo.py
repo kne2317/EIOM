@@ -24,7 +24,7 @@ class ModifyInfo(QWidget):
         self.setFixedSize(self.basicInfo.WindowWidth, 700)
 
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/background.png")))
         self.w.setPalette(palette)
 
         self.w.setLayout(layout)
@@ -229,7 +229,6 @@ class ModifyInfo(QWidget):
     def show_file_open_i(self):
         fname = QFileDialog.getOpenFileName()
         self.introduceInput.setText(fname[0])
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

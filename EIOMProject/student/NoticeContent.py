@@ -5,7 +5,9 @@ from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
 from student.Notice import Notice
-
+import student.Rate
+import student.NoticeList
+import student.MyPage
 
 class NoticeContent(QWidget):
 
@@ -35,33 +37,34 @@ class NoticeContent(QWidget):
 
         stateBtn = QPushButton('통계', self.w)
         stateBtn.setFont(QFont(self.basicInfo.font1, 13))
-        stateBtn.setGeometry(0, 70, 200, 50)
+        stateBtn.setGeometry(0, 70, 240, 50)
         stateBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
         noticeBtn = QPushButton('공지', self.w)
         noticeBtn.setFont(QFont(self.basicInfo.font1, 13))
-        noticeBtn.setGeometry(200, 70, 200, 50)
+        noticeBtn.setGeometry(240, 70, 240, 50)
         noticeBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
         companyBtn = QPushButton('회사', self.w)
         companyBtn.setFont(QFont(self.basicInfo.font1, 13))
-        companyBtn.setGeometry(400, 70, 200, 50)
+        companyBtn.setGeometry(480, 70, 240, 50)
         companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
         postBtn = QPushButton('취업의뢰', self.w)
         postBtn.setFont(QFont(self.basicInfo.font1, 13))
-        postBtn.setGeometry(600, 70, 200, 50)
+        postBtn.setGeometry(720, 70, 240, 50)
         postBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
-        pfBtn = QPushButton('포트폴리오', self.w)
-        pfBtn.setFont(QFont(self.basicInfo.font1, 13))
-        pfBtn.setGeometry(800, 70, 200, 50)
-        pfBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
         infoBtn = QPushButton('내 정보', self.w)
         infoBtn.setFont(QFont(self.basicInfo.font1, 13))
-        infoBtn.setGeometry(1000, 70, 200, 50)
+        infoBtn.setGeometry(960, 70, 240, 50)
         infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+
+        stateBtn.clicked.connect(self.state)
+        noticeBtn.clicked.connect(self.notice)
+        companyBtn.clicked.connect(self.company)
+        postBtn.clicked.connect(self.post)
+        infoBtn.clicked.connect(self.info)
 
         contTitle=QLabel(self.notice.title+' \n',self.w)
         contTitle.setFont(QFont(self.basicInfo.font1,13))
@@ -95,3 +98,23 @@ class NoticeContent(QWidget):
         backBtn.setGeometry(980, 630, 120, 40)
         backBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
 
+    def state(self):
+        self.sr = student.Rate.sRate()
+        self.sr.show()
+        self.hide()
+
+    def notice(self):
+        self.nl = student.NoticeList.noticeList()
+        self.nl.show()
+        self.hide()
+
+    def company(self):
+        print('아직')
+
+    def post(self):
+        print('아직')
+
+    def info(self):
+        self.mp = student.MyPage.MyPage()
+        self.mp.show()
+        self.hide()

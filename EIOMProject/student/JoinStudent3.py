@@ -7,7 +7,7 @@ from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
 from Join import StudentJoin
-from student.Rate import sRate
+import main
 from student.Student import Student, Languages
 
 
@@ -134,82 +134,77 @@ class JoinS3(QWidget):
         self.show()
 
     def Join(self):
-        languages = Languages()
         if self.c.isChecked():
-            languages.c = True
+            Languages.c = True
 
         if self.cpp.isChecked():
-            languages.cpp = True
+            Languages.cpp = True
 
         if self.cs.isChecked():
-            languages.cs = True
+            Languages.cs = True
 
         if self.py.isChecked():
-            languages.py = True
+            Languages.py = True
 
         if self.html.isChecked():
-            languages.html = True
+            Languages.html = True
 
         if self.css.isChecked():
-            languages.css = True
+            Languages.css = True
 
         if self.js.isChecked():
-            languages.js = True
+            Languages.js = True
 
         if self.jq.isChecked():
-            languages.jp = True
+            Languages.jp = True
 
         if self.jsp.isChecked():
-            languages.jsp = True
+            Languages.jsp = True
 
         if self.php.isChecked():
-            languages.php = True
+            Languages.php = True
 
         if self.node.isChecked():
-            languages.node = True
+            Languages.node = True
 
         if self.react.isChecked():
-            languages.react = True
+            Languages.react = True
 
         if self.java.isChecked():
-            languages.java = True
+            Languages.java = True
 
         if self.spring.isChecked():
-            languages.spring = True
+            Languages.spring = True
 
         if self.servlet.isChecked():
-            languages.servlet = True
+            Languages.servlet = True
 
         if self.kotlin.isChecked():
-            languages.kotlin = True
+            Languages.kotlin = True
 
         if self.android.isChecked():
-            languages.android = True
+            Languages.android = True
 
         if self.linux.isChecked():
-            languages.linux = True
+            Languages.linux = True
 
         if self.oracle.isChecked():
-            languages.oracle = True
+            Languages.oracle = True
 
         if self.mysql.isChecked():
-            languages.mysql = True
+            Languages.mysql = True
 
         if self.etc.isChecked():
-            languages.etc = self.etcInput.text()
+            Languages.etc = self.etcInput.text()
 
 
 
-        if StudentJoin(languages):
+        if StudentJoin():
             # 회원가입 성공
             print("회원가입에 성공하였습니다.")
 
             self.nextPage = main.Main()
-            geo = self.geometry()
-            titlebar_height = QApplication.style().pixelMetric(QStyle.PM_TitleBarHeight)
-            self.nextPage.move(geo.x(), geo.y() - titlebar_height)
             self.close()
-
             self.nextPage.show()
         else:
             print("회원가입이 실패하였습니다.")

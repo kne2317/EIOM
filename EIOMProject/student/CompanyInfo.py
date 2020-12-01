@@ -24,7 +24,7 @@ class CompanyInfo(QWidget):
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
 
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/background.png")))
         self.setPalette(palette)
 
         self.w.setLayout(layout)
@@ -102,7 +102,6 @@ class CompanyInfo(QWidget):
 
 
         self.show()
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
