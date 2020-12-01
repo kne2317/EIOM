@@ -9,7 +9,7 @@ import company.CompanyEmploymentRequest
 import company.CompanyInfo
 import company.RequestPortfolio
 from BasicInfo import BasicInfo
-
+import company.PofolList
 
 class NonePofol(QWidget):
 
@@ -72,24 +72,28 @@ class NonePofol(QWidget):
         self.pf=company.RequestPortfolio.RequestPortfolio()
         self.pf.show()
         self.hide()
+
     def state(self):
-        if Company.request_authority==0:
-            self.ncr=company.NoneEmployementRequest.NoneEmployementRequest()
+        if Company.request_authority == 0:
+            self.ncr = company.NoneEmployementRequest.NoneEmployementRequest()
             self.ncr.show()
             self.hide()
         else:
-            self.cr=company.CompanyEmploymentRequest.CompanyEmploymentRequest()
+            self.cr = company.CompanyEmploymentRequest.CompanyEmploymentRequest()
             self.cr.show()
             self.hide()
+
     def pf(self):
-        if Company.pfauthority==0:
-            self.np=company.NonePofol.NonePofol()
+        if Company.pfauthority == 0:
+            self.np = company.NonePofol.NonePofol()
             self.np.show()
             self.hide()
         else:
-            print('아직')
+            self.p = company.PofolList.pofolList()
+            self.p.show()
+            self.hide()
 
     def info(self):
-        self.ci=company.CompanyInfo.CompanyInfo()
+        self.ci = company.CompanyInfo.CompanyInfo()
         self.ci.show()
         self.hide()

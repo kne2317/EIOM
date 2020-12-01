@@ -10,7 +10,7 @@ import company.CompanyEmploymentRequest
 import company.CompanyInfo
 import company.NonePofol
 import company.ModifyInfo
-
+import company.PofolList
 class CompanyInfo(QWidget):
 
     def __init__(self):
@@ -132,6 +132,7 @@ class CompanyInfo(QWidget):
         self.mi=company.ModifyInfo.ModifyInfo()
         self.mi.show()
         self.hide()
+
     def state(self):
         if Company.request_authority == 0:
             self.ncr = company.NoneEmployementRequest.NoneEmployementRequest()
@@ -148,9 +149,12 @@ class CompanyInfo(QWidget):
             self.np.show()
             self.hide()
         else:
-            print('아직')
+            self.p = company.PofolList.pofolList()
+            self.p.show()
+            self.hide()
 
     def info(self):
         self.ci = company.CompanyInfo.CompanyInfo()
         self.ci.show()
         self.hide()
+

@@ -7,6 +7,7 @@ import company.NoneEmployementRequest
 import company.Company
 import company.CompanyEmploymentRequest
 import company.EmployeeRequestDB as db
+import company.PofolList
 class Post(QWidget):
 
     def __init__(self):
@@ -256,32 +257,7 @@ class Post(QWidget):
         self.c.show()
         self.close()
 
-
-
-        
     def cancle(self):
         self.none=company.NoneEmployementRequest.NoneEmployementRequest()
         self.none.show()
         self.hide()
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = Post()
-    ex.show()
-    app.exec_()
-'''
-def insertPost(company_id, recruit, hopeperson, apply, royalty, document,
-               uselang, employment, work, money, worktime, benefit,period,
-               pmoney, manager_email, manager_ph):
-    basicDB = BasicDB()
-    conn = basicDB.conn
-    curs = conn.cursor()
-
-    sql = "insert into employment_request ( company_id, recruit, hopeperson, apply, " \
-          "royalty, document, uselang, employment, work, money, worktime, benefit, " \
-          "period, pmoney, manager_email, manager_ph) values ( '"+company_id+"', '"+recruit+"', "+hopeperson+", '"+\
-          apply+"','"+royalty+"', '"+document+"', '"+uselang+"', '"+employment+"', '"+work+"', '"+money+"', '"+\
-          worktime+"', '"+benefit+"', '"+period+"','"+ pmoney+"', '"+manager_email+"', '"+manager_ph+"');"
-    curs.execute(sql)
-'''

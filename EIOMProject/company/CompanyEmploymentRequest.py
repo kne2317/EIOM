@@ -9,7 +9,7 @@ import company.NoneEmployementRequest
 import company.CompanyEmploymentRequest
 import company.CompanyInfo
 import company.NonePofol
-
+import company.PofolList
 class CompanyEmploymentRequest(QWidget):
 
     def __init__(self):
@@ -321,12 +321,15 @@ class CompanyEmploymentRequest(QWidget):
             self.np.show()
             self.hide()
         else:
-            print('아직')
+            self.p = company.PofolList.pofolList()
+            self.p.show()
+            self.hide()
 
     def info(self):
         self.ci = company.CompanyInfo.CompanyInfo()
         self.ci.show()
         self.hide()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

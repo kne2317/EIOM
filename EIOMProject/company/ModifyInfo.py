@@ -11,6 +11,7 @@ import company.CompanyEmploymentRequest
 import company.CompanyInfo
 import company.NonePofol
 import company.EmployeeRequestDB
+import company.PofolList
 
 class ModifyInfo(QWidget):
 
@@ -150,7 +151,9 @@ class ModifyInfo(QWidget):
             self.np.show()
             self.hide()
         else:
-            print('아직')
+            self.p=company.PofolList.pofolList()
+            self.p.show()
+            self.hide()
 
     def info(self):
         self.ci = company.CompanyInfo.CompanyInfo()

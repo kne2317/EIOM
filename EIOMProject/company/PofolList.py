@@ -11,6 +11,7 @@ import company.CompanyEmploymentRequest
 import company.CompanyInfo
 import company.RequestPortfolio
 from BasicInfo import BasicInfo, BasicDB
+import company.PofolList
 from company.PofolPost import PofolPost
 
 
@@ -43,7 +44,7 @@ class pofolList(QWidget):
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
 
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/background.png")))
         self.setPalette(palette)
 
         self.w.setLayout(layout)
@@ -69,7 +70,9 @@ class pofolList(QWidget):
         infoBtn.setGeometry(self.basicInfo.WindowWidth/3*2, 70, self.basicInfo.WindowWidth/3, 50)
         infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-
+        stateBtn.clicked.connect(self.state)
+        pfBtn.clicked.connect(self.pf)
+        infoBtn.clicked.connect(self.info)
 
         name_width = 200
         pofol_width = 600
@@ -337,8 +340,6 @@ class pofolList(QWidget):
         nextPageBtn.clicked.connect(self.nextPage)
 
 
-        self.show()
-
     def prevPage(self):
         if(self.currentpage-1 >= 1):
             self.currentpage -= 1
@@ -427,9 +428,27 @@ class pofolList(QWidget):
             print("다운로드가 완료되었습니다.")
         except Exception as e:
             print(e)
+    def state(self):
+        if Company.request_authority == 0:
+            self.ncr = company.NoneEmployementRequest.NoneEmployementRequest()
+            self.ncr.show()
+            self.hide()
+        else:
+            self.cr = company.CompanyEmploymentRequest.CompanyEmploymentRequest()
+            self.cr.show()
+            self.hide()
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
+    def pf(self):
+        if Company.pfauthority == 0:
+            self.np = company.NonePofol.NonePofol()
+            self.np.show()
+            self.hide()
+        else:
+            self.p=company.PofolList.pofolList()
+            self.p.show()
+            self.hide()
 
-    ex = pofolList()
-    sys.exit(app.exec_())
+    def info(self):
+        self.ci = company.CompanyInfo.CompanyInfo()
+        self.ci.show()
+        self.hide()
