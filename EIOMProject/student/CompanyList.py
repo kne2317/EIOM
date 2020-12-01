@@ -11,7 +11,7 @@ import student.Rate
 import student.NoticeList
 import student.MyPage
 from BasicInfo import BasicInfo, BasicDB
-from student.CompanyPost import CompanyPost
+import student.CompanyPost
 from student.Company import Company
 
 
@@ -115,7 +115,7 @@ class CompanyList(QWidget):
         # 0
         i = 0
         self.company.append('')
-        self.company[i] = QPushButton(self.companies[i].company, self.w)
+        self.company[i] = QPushButton(self.companies[i].companyname, self.w)
         self.company[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.company[i].setGeometry(listX, listY + blankHeigth * (i + 1), company_width + 1, blankHeigth + 1)
         self.company[i].setStyleSheet(
@@ -134,7 +134,7 @@ class CompanyList(QWidget):
         # 1
         i += 1
         self.company.append('')
-        self.company[i] = QPushButton(self.companies[i].company, self.w)
+        self.company[i] = QPushButton(self.companies[i].companyname, self.w)
         self.company[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.company[i].setGeometry(listX, listY + blankHeigth * (i + 1), company_width + 1, blankHeigth + 1)
         self.company[i].setStyleSheet(
@@ -153,7 +153,7 @@ class CompanyList(QWidget):
         # 2
         i += 1
         self.company.append('')
-        self.company[i] = QPushButton(self.companies[i].company, self.w)
+        self.company[i] = QPushButton(self.companies[i].companyname, self.w)
         self.company[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.company[i].setGeometry(listX, listY + blankHeigth * (i + 1), company_width + 1, blankHeigth + 1)
         self.company[i].setStyleSheet(
@@ -172,7 +172,7 @@ class CompanyList(QWidget):
         # 3
         i += 1
         self.company.append('')
-        self.company[i] = QPushButton(self.companies[i].company, self.w)
+        self.company[i] = QPushButton(self.companies[i].companyname, self.w)
         self.company[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.company[i].setGeometry(listX, listY + blankHeigth * (i + 1), company_width + 1, blankHeigth + 1)
         self.company[i].setStyleSheet(
@@ -191,7 +191,7 @@ class CompanyList(QWidget):
         # 4
         i += 1
         self.company.append('')
-        self.company[i] = QPushButton(self.companies[i].company, self.w)
+        self.company[i] = QPushButton(self.companies[i].companyname, self.w)
         self.company[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.company[i].setGeometry(listX, listY + blankHeigth * (i + 1), company_width + 1, blankHeigth + 1)
         self.company[i].setStyleSheet(
@@ -210,7 +210,7 @@ class CompanyList(QWidget):
         # 5
         i += 1
         self.company.append('')
-        self.company[i] = QPushButton(self.companies[i].company, self.w)
+        self.company[i] = QPushButton(self.companies[i].companyname, self.w)
         self.company[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.company[i].setGeometry(listX, listY + blankHeigth * (i + 1), company_width + 1, blankHeigth + 1)
         self.company[i].setStyleSheet(
@@ -229,7 +229,7 @@ class CompanyList(QWidget):
         # 6
         i += 1
         self.company.append('')
-        self.company[i] = QPushButton(self.companies[i].company, self.w)
+        self.company[i] = QPushButton(self.companies[i].companyname, self.w)
         self.company[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.company[i].setGeometry(listX, listY + blankHeigth * (i + 1), company_width + 1, blankHeigth + 1)
         self.company[i].setStyleSheet(
@@ -247,7 +247,7 @@ class CompanyList(QWidget):
         # 7
         i += 1
         self.company.append('')
-        self.company[i] = QPushButton(self.companies[i].company, self.w)
+        self.company[i] = QPushButton(self.companies[i].companyname, self.w)
         self.company[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.company[i].setGeometry(listX, listY + blankHeigth * (i + 1), company_width + 1, blankHeigth + 1)
         self.company[i].setStyleSheet(
@@ -266,7 +266,7 @@ class CompanyList(QWidget):
         # 8
         i += 1
         self.company.append('')
-        self.company[i] = QPushButton(self.companies[i].company, self.w)
+        self.company[i] = QPushButton(self.companies[i].companyname, self.w)
         self.company[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.company[i].setGeometry(listX, listY + blankHeigth * (i + 1), company_width + 1, blankHeigth + 1)
         self.company[i].setStyleSheet(
@@ -277,8 +277,7 @@ class CompanyList(QWidget):
         self.address[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.address[i].setGeometry(listX + company_width, listY + blankHeigth * (i + 1), address_width + 1,
                                     blankHeigth + 1)
-        self.address[i].setStyleSheet(
-            'background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; ')
+        self.address[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; border-bottom:2px solid #ababab;')
         self.address[i].clicked.connect(lambda v: self.func(8))
 
         prevPageBtn = QPushButton("<", self.w)
@@ -387,13 +386,23 @@ class CompanyList(QWidget):
 
         for i in range((self.currentpage - 1) * 9, self.currentpage * 9):
             if i < len(rows):
-                self.companies[i % 9].company = rows[i][0]
+                self.companies[i % 9].companyname = rows[i][0]
                 self.companies[i % 9].id = rows[i][1]
-                self.companies[i % 9].address = rows[i][3]
+                self.companies[i%9].address=rows[i][3]
+                self.companies[i % 9].annualsales = rows[i][4]
+                self.companies[i % 9].web = rows[i][5]
+                self.companies[i % 9].introduce = rows[i][9]
+                self.companies[i % 9].major = rows[i][10]
+                self.companies[i % 9].employees_num = rows[i][14]
             else:
-                self.companies[i % 9].company = ''
-                self.companies[i % 9].id = ''
+                self.companies[i % 9].companyname = ''
+                self.companies[i % 9].id =''
                 self.companies[i % 9].address = ''
+                self.companies[i % 9].annualsales = ''
+                self.companies[i % 9].web =''
+                self.companies[i % 9].introduce = ''
+                self.companies[i % 9].major = ''
+                self.companies[i % 9].employees_num =''
 
         self.pageCount = len(rows) // 9 + 1
 
@@ -422,7 +431,7 @@ class CompanyList(QWidget):
 
     def func(self, companyNum):
         try:
-            self.cp = student.NoticeContent.NoticeContent(self.notices[companyNum])
+            self.cp = student.CompanyPost.CompanyPost(self.companies[companyNum])
             self.cp.show()
             self.hide()
         except Exception as e:
