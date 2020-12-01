@@ -73,9 +73,9 @@ class PortfolioRequest(QWidget):
         refusalBtn.setGeometry(980, 150, 120, 40)
         refusalBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
 
-        contTitle = QLabel(self.requeInfo.companyname+'\n', self.w)
+        contTitle = QLabel(self.requeInfo.companyname, self.w)
         contTitle.setFont(QFont(self.basicInfo.font1, 13))
-        contTitle.setGeometry(100, 200, 1000, 90)
+        contTitle.setGeometry(100, 200, 1000, 50)
         contTitle.setStyleSheet('border-top:1px solid black; border-bottom:1px solid black; ')
         contTitle.setAlignment(QtCore.Qt.AlignCenter)
 
@@ -87,8 +87,8 @@ class PortfolioRequest(QWidget):
         for i in st:
             content.append(i)
         content.setFont(QFont(self.basicInfo.font1, 12))
-        content.setGeometry(100, 300, 1000, 300)
-        content.setStyleSheet('border:0px;border-bottom:1px solid black; ')
+        content.setGeometry(100, 260, 1000, 300)
+        content.setStyleSheet('border:0px;border-bottom:1px solid black; padding: 10px;')
 
         backBtn = QPushButton('뒤로가기', self.w)
         backBtn.setFont(QFont(self.basicInfo.font1, 12))
