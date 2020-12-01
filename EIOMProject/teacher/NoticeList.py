@@ -74,6 +74,12 @@ class noticeList(QWidget):
         infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
 
+        title_header = QPushButton("작성하기", self.w)
+        title_header.setFont(QFont(self.basicInfo.font1, 13))
+        title_header.setGeometry(900, 150, 200, 20)
+        title_header.clicked.connect(self.writePost)
+
+
         title_width = 600
         writer_width = 200
         date_width = 200
@@ -450,6 +456,9 @@ class noticeList(QWidget):
                 self.hide()
         except Exception as e:
             print(e)
+            
+    def writePost(self):
+        print("작성하기")
 
 
 if __name__ == '__main__':
