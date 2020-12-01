@@ -77,11 +77,10 @@ def uselang():
         lang['oracle'] = row[0][17]
         lang['spring'] = row[0][18]
         lang['kotlin'] = row[0][19]
+    li=[]
+    for key,value in lang.items():
+        if value==True:
+            li.append(key)
 
-    for key,values in lang.items():
-        if values==False:
-            del lang[key]
-
-    use=list(lang.keys())
-    u=', '.join(use)
+    u=', '.join(li)
     return u

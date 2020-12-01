@@ -118,7 +118,7 @@ class RequestPortfolio(QWidget):
         recruit = self.year1.text() + "년" + self.month1.currentText() + self.day1.currentText() + \
                   " ~ " + self.year2.text() + "년" + self.month2.currentText() + self.day2.currentText();
         company.EmployeeRequestDB.pofolRequestInsert(self.reason.toPlainText(),recruit)
-
+        self.pf()
     def state(self):
         if Company.request_authority == 0:
             self.ncr = company.NoneEmployementRequest.NoneEmployementRequest()

@@ -9,6 +9,7 @@ import student.Student
 import student.Rate
 import student.NoticeList
 import student.MyPage
+import student.ModifyInfo
 class MyPage(QWidget):
 
     def __init__(self):
@@ -140,11 +141,12 @@ class MyPage(QWidget):
         modifyBtn.setFont(QFont(self.basicInfo.font1, 12))
         modifyBtn.setGeometry(950,600,120,40)
         modifyBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
+        modifyBtn.clicked.connect(self.modify)
 
-
-
-        self.show()
-
+    def modify(self):
+        self.mo=student.ModifyInfo.ModifyInfo()
+        self.mo.show()
+        self.hide()
     def state(self):
         self.sr = student.Rate.sRate()
         self.sr.show()
@@ -165,9 +167,3 @@ class MyPage(QWidget):
         self.mp = student.MyPage.MyPage()
         self.mp.show()
         self.hide()
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-
-    ex = MyPage()
-    sys.exit(app.exec_())

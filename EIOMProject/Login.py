@@ -82,7 +82,7 @@ def saveStudentInfo():
     conn = basicDB.conn
     curs = conn.cursor()
 
-    sql = "select * from teacher where id = '" + Student.ID + "';"
+    sql = "select * from student where id = '" + Student.ID + "';"
     curs.execute(sql)
 
     rows = curs.fetchall()

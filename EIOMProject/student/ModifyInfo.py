@@ -4,7 +4,7 @@ from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
-
+from student.Student import Student
 
 class ModifyInfo(QWidget):
 
@@ -38,31 +38,36 @@ class ModifyInfo(QWidget):
         nameL.setFont(QFont(self.basicInfo.font1, 15))
         nameL.setGeometry(100, 150, 100, 40)
 
-        name = QLineEdit('김나은', self.w)
-        name.setFont(QFont(self.basicInfo.font1, 13))
-        name.setGeometry(250, 150, 250, 40)
+        self.name = QLineEdit('김나은', self.w)
+        self.name.setFont(QFont(self.basicInfo.font1, 13))
+        self.name.setGeometry(25 , 150, 250, 40)
+        self.name.setText(Student.name)
 
-        major = QComboBox(self.w)
-        major.move(100, 230)
-        major.setFixedHeight(50)
-        major.setFixedWidth(400)
-        major.setFont(QFont(self.basicInfo.font1, 13))
-        major.addItem('뉴미디어 소프트웨어과')
-        major.addItem('뉴미디어 웹솔루션과')
-        major.addItem('뉴미디어 디자인과')
+
+        self.major = QComboBox(self.w)
+        self.major.move(100, 230)
+        self.major.setFixedHeight(50)
+        self.major.setFixedWidth(400)
+        self.major.setFont(QFont(self.basicInfo.font1, 13))
+        self.major.addItem('뉴미디어 소프트웨어과')
+        self.major.addItem('뉴미디어 웹솔루션과')
+        self.major.addItem('뉴미디어 디자인과')
+        self.vmajor.setItemData(self.major.setItemData(Student.major))
+
 
         gradeL = QLabel("학년", self.w)
         gradeL.setFont(QFont(self.basicInfo.font1, 15))
         gradeL.setGeometry(730, 150, 100, 40)
 
-        grade = QComboBox(self.w)
-        grade.move(900, 150)
-        grade.setFixedHeight(50)
-        grade.setFixedWidth(130)
-        grade.setFont(QFont(self.basicInfo.font1, 13))
-        grade.addItem('1학년')
-        grade.addItem('2학년')
-        grade.addItem('3학년')
+        self.grade = QComboBox(self.w)
+        self.grade.move(900, 150)
+        self.grade.setFixedHeight(50)
+        self.grade.setFixedWidth(130)
+        self.grade.setFont(QFont(self.basicInfo.font1, 13))
+        self.grade.addItem('1학년')
+        self.grade.addItem('2학년')
+        self.grade.addItem('3학년')
+        self.grade.setItemData()
 
         banL = QLabel("반", self.w)
         banL.setFont(QFont(self.basicInfo.font1, 15))
