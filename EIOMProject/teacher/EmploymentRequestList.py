@@ -33,7 +33,7 @@ class noticeList(QWidget):
         self.move(self.basicInfo.WindowX, self.basicInfo.WindowY)
         self.setFixedSize(self.basicInfo.WindowWidth, self.basicInfo.WindowHeight)
         palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap("./img/background.png")))
+        palette.setBrush(QPalette.Background, QBrush(QPixmap("../img/background.png")))
         self.setPalette(palette)
 
         title = QLabel("EIOM", self.w)
@@ -68,12 +68,12 @@ class noticeList(QWidget):
         infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
 
-        companyName_width = 200
-        useLanquage_width = 200
+        companyName_width = 150
+        useLanquage_width = 150
         recruit_width = 400
-        emplayment_width = 150
-        address_width = 150
-        hopePersonCount_width = 150
+        emplayment_width = 100
+        address_width = 100
+        hopePersonCount_width = 100
 
         listX = 100
         listY = 180
@@ -83,40 +83,384 @@ class noticeList(QWidget):
 
         i = -1
 
+        companyName_header = QPushButton("회사명", self.w)
+        companyName_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        companyName_header.setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
+        companyName_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
 
-        title_header = QPushButton("회사명", self.w)
-        title_header.setFont(QFont(self.basicInfo.font1, fontsize))
-        title_header.setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
-        title_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+        useLanquage_header = QPushButton("사용언어", self.w)
+        useLanquage_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        useLanquage_header.setGeometry(listX + companyName_width, listY+blankHeigth*(i+1), useLanquage_width+1, blankHeigth+1)
+        useLanquage_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
 
-        writer_header = QPushButton("사용언어", self.w)
-        writer_header.setFont(QFont(self.basicInfo.font1, fontsize))
-        writer_header.setGeometry(listX + companyName_width, listY+blankHeigth*(i+1), useLanquage_width+1, blankHeigth+1)
-        writer_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+        recruit_header = QPushButton("기간", self.w)
+        recruit_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        recruit_header.setGeometry(listX + companyName_width + useLanquage_width, listY+blankHeigth*(i+1), recruit_width+1, blankHeigth+1)
+        recruit_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
 
-        date_header = QPushButton("기간", self.w)
-        date_header.setFont(QFont(self.basicInfo.font1, fontsize))
-        date_header.setGeometry(listX + companyName_width + useLanquage_width, listY+blankHeigth*(i+1), recruit_width+1, blankHeigth+1)
-        date_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+        emplayment_header = QPushButton("고용형태", self.w)
+        emplayment_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        emplayment_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width, listY+blankHeigth*(i+1), emplayment_width+1, blankHeigth+1)
+        emplayment_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
 
-        date_header = QPushButton("고용형태", self.w)
-        date_header.setFont(QFont(self.basicInfo.font1, fontsize))
-        date_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width, listY+blankHeigth*(i+1), emplayment_width+1, blankHeigth+1)
-        date_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+        address_header = QPushButton("위치", self.w)
+        address_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        address_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
+        address_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
 
-        date_header = QPushButton("위치", self.w)
-        date_header.setFont(QFont(self.basicInfo.font1, fontsize))
-        date_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
-        date_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+        hopePersonCount_header = QPushButton("희망인원", self.w)
+        hopePersonCount_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        hopePersonCount_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePersonCount_width+1, blankHeigth+1)
+        hopePersonCount_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
 
-        date_header = QPushButton("희망인원", self.w)
-        date_header.setFont(QFont(self.basicInfo.font1, fontsize))
-        date_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePersonCount_width+1, blankHeigth+1)
-        date_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+        self.companyName = []
+        self.useLanquage = []
+        self.recruit = []
+        self.emplayment = []
+        self.address = []
+        self.hopePersonCount = []
 
-        self.title = []
-        self.writer = []
-        self.date = []
+        # 0
+        i += 1
+        self.companyName.append('')
+        companyName_header = QPushButton(self.reque[i].company_name, self.w)
+        companyName_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        companyName_header.setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
+        companyName_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.useLanquage_header.append('')
+        useLanquage_header = QPushButton(self.reque[i].uselang, self.w)
+        useLanquage_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        useLanquage_header.setGeometry(listX + companyName_width, listY+blankHeigth*(i+1), useLanquage_width+1, blankHeigth+1)
+        useLanquage_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.recruit_header.append('')
+        recruit_header = QPushButton(self.reque[i].recruit, self.w)
+        recruit_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        recruit_header.setGeometry(listX + companyName_width + useLanquage_width, listY+blankHeigth*(i+1), recruit_width+1, blankHeigth+1)
+        recruit_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.emplayment_header.append('')
+        emplayment_header = QPushButton(self.reque[i].employment, self.w)
+        emplayment_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        emplayment_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width, listY+blankHeigth*(i+1), emplayment_width+1, blankHeigth+1)
+        emplayment_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.address_header.append('')
+        address_header = QPushButton(self.reque[i].company_address, self.w)
+        address_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        address_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
+        address_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.hopePersonCount_header.append('')
+        hopePersonCount_header = QPushButton(self.reque[i].hopeperson, self.w)
+        hopePersonCount_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        hopePersonCount_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePersonCount_width+1, blankHeigth+1)
+        hopePersonCount_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        # 1
+        i += 1
+        self.companyName.append('')
+        companyName_header = QPushButton(self.reque[i].company_name, self.w)
+        companyName_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        companyName_header.setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
+        companyName_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.useLanquage_header.append('')
+        useLanquage_header = QPushButton(self.reque[i].uselang, self.w)
+        useLanquage_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        useLanquage_header.setGeometry(listX + companyName_width, listY+blankHeigth*(i+1), useLanquage_width+1, blankHeigth+1)
+        useLanquage_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.recruit_header.append('')
+        recruit_header = QPushButton(self.reque[i].recruit, self.w)
+        recruit_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        recruit_header.setGeometry(listX + companyName_width + useLanquage_width, listY+blankHeigth*(i+1), recruit_width+1, blankHeigth+1)
+        recruit_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.emplayment_header.append('')
+        emplayment_header = QPushButton(self.reque[i].employment, self.w)
+        emplayment_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        emplayment_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width, listY+blankHeigth*(i+1), emplayment_width+1, blankHeigth+1)
+        emplayment_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.address_header.append('')
+        address_header = QPushButton(self.reque[i].company_address, self.w)
+        address_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        address_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
+        address_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.hopePersonCount_header.append('')
+        hopePersonCount_header = QPushButton(self.reque[i].hopeperson, self.w)
+        hopePersonCount_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        hopePersonCount_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePersonCount_width+1, blankHeigth+1)
+        hopePersonCount_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        # 2
+        i += 1
+        self.companyName.append('')
+        companyName_header = QPushButton(self.reque[i].company_name, self.w)
+        companyName_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        companyName_header.setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
+        companyName_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.useLanquage_header.append('')
+        useLanquage_header = QPushButton(self.reque[i].uselang, self.w)
+        useLanquage_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        useLanquage_header.setGeometry(listX + companyName_width, listY+blankHeigth*(i+1), useLanquage_width+1, blankHeigth+1)
+        useLanquage_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.recruit_header.append('')
+        recruit_header = QPushButton(self.reque[i].recruit, self.w)
+        recruit_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        recruit_header.setGeometry(listX + companyName_width + useLanquage_width, listY+blankHeigth*(i+1), recruit_width+1, blankHeigth+1)
+        recruit_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.emplayment_header.append('')
+        emplayment_header = QPushButton(self.reque[i].employment, self.w)
+        emplayment_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        emplayment_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width, listY+blankHeigth*(i+1), emplayment_width+1, blankHeigth+1)
+        emplayment_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.address_header.append('')
+        address_header = QPushButton(self.reque[i].company_address, self.w)
+        address_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        address_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
+        address_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.hopePersonCount_header.append('')
+        hopePersonCount_header = QPushButton(self.reque[i].hopeperson, self.w)
+        hopePersonCount_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        hopePersonCount_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePersonCount_width+1, blankHeigth+1)
+        hopePersonCount_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        # 3
+        i += 1
+        self.companyName.append('')
+        companyName_header = QPushButton(self.reque[i].company_name, self.w)
+        companyName_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        companyName_header.setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
+        companyName_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.useLanquage_header.append('')
+        useLanquage_header = QPushButton(self.reque[i].uselang, self.w)
+        useLanquage_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        useLanquage_header.setGeometry(listX + companyName_width, listY+blankHeigth*(i+1), useLanquage_width+1, blankHeigth+1)
+        useLanquage_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.recruit_header.append('')
+        recruit_header = QPushButton(self.reque[i].recruit, self.w)
+        recruit_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        recruit_header.setGeometry(listX + companyName_width + useLanquage_width, listY+blankHeigth*(i+1), recruit_width+1, blankHeigth+1)
+        recruit_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.emplayment_header.append('')
+        emplayment_header = QPushButton(self.reque[i].employment, self.w)
+        emplayment_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        emplayment_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width, listY+blankHeigth*(i+1), emplayment_width+1, blankHeigth+1)
+        emplayment_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.address_header.append('')
+        address_header = QPushButton(self.reque[i].company_address, self.w)
+        address_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        address_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
+        address_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.hopePersonCount_header.append('')
+        hopePersonCount_header = QPushButton(self.reque[i].hopeperson, self.w)
+        hopePersonCount_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        hopePersonCount_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePersonCount_width+1, blankHeigth+1)
+        hopePersonCount_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        # 4
+        i += 1
+        self.companyName.append('')
+        companyName_header = QPushButton(self.reque[i].company_name, self.w)
+        companyName_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        companyName_header.setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
+        companyName_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.useLanquage_header.append('')
+        useLanquage_header = QPushButton(self.reque[i].uselang, self.w)
+        useLanquage_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        useLanquage_header.setGeometry(listX + companyName_width, listY+blankHeigth*(i+1), useLanquage_width+1, blankHeigth+1)
+        useLanquage_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.recruit_header.append('')
+        recruit_header = QPushButton(self.reque[i].recruit, self.w)
+        recruit_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        recruit_header.setGeometry(listX + companyName_width + useLanquage_width, listY+blankHeigth*(i+1), recruit_width+1, blankHeigth+1)
+        recruit_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.emplayment_header.append('')
+        emplayment_header = QPushButton(self.reque[i].employment, self.w)
+        emplayment_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        emplayment_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width, listY+blankHeigth*(i+1), emplayment_width+1, blankHeigth+1)
+        emplayment_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.address_header.append('')
+        address_header = QPushButton(self.reque[i].company_address, self.w)
+        address_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        address_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
+        address_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.hopePersonCount_header.append('')
+        hopePersonCount_header = QPushButton(self.reque[i].hopeperson, self.w)
+        hopePersonCount_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        hopePersonCount_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePersonCount_width+1, blankHeigth+1)
+        hopePersonCount_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        # 5
+        i += 1
+        self.companyName.append('')
+        companyName_header = QPushButton(self.reque[i].company_name, self.w)
+        companyName_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        companyName_header.setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
+        companyName_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.useLanquage_header.append('')
+        useLanquage_header = QPushButton(self.reque[i].uselang, self.w)
+        useLanquage_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        useLanquage_header.setGeometry(listX + companyName_width, listY+blankHeigth*(i+1), useLanquage_width+1, blankHeigth+1)
+        useLanquage_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.recruit_header.append('')
+        recruit_header = QPushButton(self.reque[i].recruit, self.w)
+        recruit_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        recruit_header.setGeometry(listX + companyName_width + useLanquage_width, listY+blankHeigth*(i+1), recruit_width+1, blankHeigth+1)
+        recruit_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.emplayment_header.append('')
+        emplayment_header = QPushButton(self.reque[i].employment, self.w)
+        emplayment_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        emplayment_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width, listY+blankHeigth*(i+1), emplayment_width+1, blankHeigth+1)
+        emplayment_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.address_header.append('')
+        address_header = QPushButton(self.reque[i].company_address, self.w)
+        address_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        address_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
+        address_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.hopePersonCount_header.append('')
+        hopePersonCount_header = QPushButton(self.reque[i].hopeperson, self.w)
+        hopePersonCount_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        hopePersonCount_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePersonCount_width+1, blankHeigth+1)
+        hopePersonCount_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        # 6
+        i += 1
+        self.companyName.append('')
+        companyName_header = QPushButton(self.reque[i].company_name, self.w)
+        companyName_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        companyName_header.setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
+        companyName_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.useLanquage_header.append('')
+        useLanquage_header = QPushButton(self.reque[i].uselang, self.w)
+        useLanquage_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        useLanquage_header.setGeometry(listX + companyName_width, listY+blankHeigth*(i+1), useLanquage_width+1, blankHeigth+1)
+        useLanquage_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.recruit_header.append('')
+        recruit_header = QPushButton(self.reque[i].recruit, self.w)
+        recruit_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        recruit_header.setGeometry(listX + companyName_width + useLanquage_width, listY+blankHeigth*(i+1), recruit_width+1, blankHeigth+1)
+        recruit_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.emplayment_header.append('')
+        emplayment_header = QPushButton(self.reque[i].employment, self.w)
+        emplayment_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        emplayment_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width, listY+blankHeigth*(i+1), emplayment_width+1, blankHeigth+1)
+        emplayment_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.address_header.append('')
+        address_header = QPushButton(self.reque[i].company_address, self.w)
+        address_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        address_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
+        address_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.hopePersonCount_header.append('')
+        hopePersonCount_header = QPushButton(self.reque[i].hopeperson, self.w)
+        hopePersonCount_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        hopePersonCount_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePersonCount_width+1, blankHeigth+1)
+        hopePersonCount_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        # 7
+        i += 1
+        self.companyName.append('')
+        companyName_header = QPushButton(self.reque[i].company_name, self.w)
+        companyName_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        companyName_header.setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
+        companyName_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.useLanquage_header.append('')
+        useLanquage_header = QPushButton(self.reque[i].uselang, self.w)
+        useLanquage_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        useLanquage_header.setGeometry(listX + companyName_width, listY+blankHeigth*(i+1), useLanquage_width+1, blankHeigth+1)
+        useLanquage_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.recruit_header.append('')
+        recruit_header = QPushButton(self.reque[i].recruit, self.w)
+        recruit_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        recruit_header.setGeometry(listX + companyName_width + useLanquage_width, listY+blankHeigth*(i+1), recruit_width+1, blankHeigth+1)
+        recruit_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.emplayment_header.append('')
+        emplayment_header = QPushButton(self.reque[i].employment, self.w)
+        emplayment_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        emplayment_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width, listY+blankHeigth*(i+1), emplayment_width+1, blankHeigth+1)
+        emplayment_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.address_header.append('')
+        address_header = QPushButton(self.reque[i].company_address, self.w)
+        address_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        address_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
+        address_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.hopePersonCount_header.append('')
+        hopePersonCount_header = QPushButton(self.reque[i].hopeperson, self.w)
+        hopePersonCount_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        hopePersonCount_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePersonCount_width+1, blankHeigth+1)
+        hopePersonCount_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        # 8
+        i += 1
+        self.companyName.append('')
+        companyName_header = QPushButton(self.reque[i].company_name, self.w)
+        companyName_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        companyName_header.setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
+        companyName_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.useLanquage_header.append('')
+        useLanquage_header = QPushButton(self.reque[i].uselang, self.w)
+        useLanquage_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        useLanquage_header.setGeometry(listX + companyName_width, listY+blankHeigth*(i+1), useLanquage_width+1, blankHeigth+1)
+        useLanquage_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.recruit_header.append('')
+        recruit_header = QPushButton(self.reque[i].recruit, self.w)
+        recruit_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        recruit_header.setGeometry(listX + companyName_width + useLanquage_width, listY+blankHeigth*(i+1), recruit_width+1, blankHeigth+1)
+        recruit_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.emplayment_header.append('')
+        emplayment_header = QPushButton(self.reque[i].employment, self.w)
+        emplayment_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        emplayment_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width, listY+blankHeigth*(i+1), emplayment_width+1, blankHeigth+1)
+        emplayment_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.address_header.append('')
+        address_header = QPushButton(self.reque[i].company_address, self.w)
+        address_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        address_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
+        address_header.setStyleSheet('background-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
+
+        self.hopePersonCount_header.append('')
+        hopePersonCount_header = QPushButton(self.reque[i].hopeperson, self.w)
+        hopePersonCount_header.setFont(QFont(self.basicInfo.font1, fontsize))
+        hopePersonCount_header.setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), hopePersonCount_width+1, blankHeigth+1)
+        hopePersonCount_header.setStyleSheet('companyName_width-color: rgb(255,255,255); border-left: 0px; border-right: 0px; border-top: 2px solid #ababab; border-bottom: 2px solid #ababab; ')
 
 
 
@@ -252,7 +596,7 @@ class noticeList(QWidget):
                 curs2 = conn.cursor()
                 sql2 = "select * from company Where id='"+ self.reque[i%9].company_id +"';"
                 curs2.execute(sql2)
-                rows2 = curs.fetchall()
+                rows2 = curs2.fetchall()
                 self.reque[i%9].company_name = rows2[0][0]
                 self.reque[i%9].company_address = rows2[0][3]
                 self.reque[i%9].company_annualsale = rows2[0][4]
