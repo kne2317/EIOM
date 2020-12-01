@@ -388,6 +388,7 @@ class pofolList(QWidget):
         self.request[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.request[i].setGeometry(c_listX, c_listY+blankHeigth*(i+1), requestWidth, blankHeigth+1)
         self.request[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.request[i].clicked.connect(lambda v: self.func2(0))
 
         #1
         i+=1
@@ -396,6 +397,7 @@ class pofolList(QWidget):
         self.request[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.request[i].setGeometry(c_listX, c_listY + blankHeigth * (i + 1), requestWidth, blankHeigth + 1)
         self.request[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.request[i].clicked.connect(lambda v: self.func2(1))
 
         #2
         i+=1
@@ -404,6 +406,7 @@ class pofolList(QWidget):
         self.request[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.request[i].setGeometry(c_listX, c_listY + blankHeigth * (i + 1), requestWidth, blankHeigth + 1)
         self.request[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.request[i].clicked.connect(lambda v: self.func2(2))
 
         #3
         i+=1
@@ -412,6 +415,7 @@ class pofolList(QWidget):
         self.request[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.request[i].setGeometry(c_listX, c_listY + blankHeigth * (i + 1), requestWidth, blankHeigth + 1)
         self.request[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.request[i].clicked.connect(lambda v: self.func2(3))
 
         #4
         i+=1
@@ -420,6 +424,7 @@ class pofolList(QWidget):
         self.request[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.request[i].setGeometry(c_listX, c_listY + blankHeigth * (i + 1), requestWidth, blankHeigth + 1)
         self.request[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.request[i].clicked.connect(lambda v: self.func2(4))
 
         #5
         i+=1
@@ -428,6 +433,7 @@ class pofolList(QWidget):
         self.request[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.request[i].setGeometry(c_listX, c_listY + blankHeigth * (i + 1), requestWidth, blankHeigth + 1)
         self.request[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.request[i].clicked.connect(lambda v: self.func2(5))
 
         #6
         i+=1
@@ -436,6 +442,7 @@ class pofolList(QWidget):
         self.request[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.request[i].setGeometry(c_listX, c_listY + blankHeigth * (i + 1), requestWidth, blankHeigth + 1)
         self.request[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.request[i].clicked.connect(lambda v: self.func2(6))
 
         #7
         i+=1
@@ -444,6 +451,7 @@ class pofolList(QWidget):
         self.request[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.request[i].setGeometry(c_listX, c_listY + blankHeigth * (i + 1), requestWidth, blankHeigth + 1)
         self.request[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; padding-left: 30px;')
+        self.request[i].clicked.connect(lambda v: self.func2(7))
 
         #8
         i+=1
@@ -452,6 +460,7 @@ class pofolList(QWidget):
         self.request[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.request[i].setGeometry(c_listX, c_listY + blankHeigth * (i + 1), requestWidth, blankHeigth + 1)
         self.request[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px;text-align: left; border-bottom:2px solid #ababab; padding-left: 30px; ')
+        self.request[i].clicked.connect(lambda v: self.func2(8))
 
         firstBtnX = 1020
         c_prevPageBtn = QPushButton("<", self.w)
@@ -592,6 +601,16 @@ class pofolList(QWidget):
             QMessageBox.about(self, "완료", "다운로드가 완료되었습니다")
         except Exception as e:
             print(e)
+
+    def func2(self, noticeNum):
+        try:
+            print(self.reque[noticeNum].companyname)
+            #self.cp = student.NoticeContent.NoticeContent(self.reque[noticeNum])
+            #self.cp.show()
+            #self.hide()
+        except Exception as e:
+            print(e)
+
     def state(self):
         if Company.request_authority == 0:
             self.ncr = company.NoneEmployementRequest.NoneEmployementRequest()
