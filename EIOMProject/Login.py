@@ -18,19 +18,11 @@ def studentLogin(id,pw):
     curs.execute(sql)
 
     rows = curs.fetchall()
+
     if len(rows) > 0:
         if rows[0][1] == pw:
-            Student.ID=rows[0][0]
-            Student.password = rows[0][1]
-            Student.name = rows[0][2]
-            Student.major = rows[0][3]
-            Student.grade = rows[0][4]
-            Student.class_ = rows[0][5]
-            Student.portfolio = rows[0][6]
-            Student.introduce = rows[0][7]
-            Student.likeCompany = rows[0][8]
-            Student.email = rows[0][9]
-
+            Student.ID = rows[0][0]
+            saveStudentInfo()
             return True
         else:
             return False
@@ -85,6 +77,26 @@ def companyLogin(id,pw):
 
     conn.close()
 
+def saveStudentInfo():
+    basicDB = BasicDB()
+    conn = basicDB.conn
+    curs = conn.cursor()
+
+    sql = "select * from teacher where id = '" + Student.ID + "';"
+    curs.execute(sql)
+
+    rows = curs.fetchall()
+    if len(rows)>0:
+        Student.ID = rows[0][0]
+        Student.password = rows[0][1]
+        Student.name = rows[0][2]
+        Student.major = rows[0][3]
+        Student.grade = rows[0][4]
+        Student.class_ = rows[0][5]
+        Student.portfolio = rows[0][6]
+        Student.introduce = rows[0][7]
+        Student.likeCompany = rows[0][8]
+        Student.email = rows[0][9]
 
 def saveCompanyInfo():
     basicDB = BasicDB()

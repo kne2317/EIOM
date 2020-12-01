@@ -67,13 +67,13 @@ def StudentJoin( languages=Languages()):
         conn.commit()
 
         sql = "INSERT INTO `eiom_db`.`languages` (`id`, `java`, `c`, `cpp`, `cs`, `html`, `css`, `javascript`, `jquery`, `nodejs`, `react`, `python`, `php`, `jsp`, `msql`, `servlet`, `android`, `linux`, `oracle`, `spring`, `kotlin`, `etc`) VALUES ('" + Student.ID + "', " + getBool(
-            languages.java) + ", " + getBool(languages.c) + ", " + getBool(languages.cpp) + ", " + getBool(
-            languages.cs) + ", " + getBool(languages.html) + ", " + getBool(languages.css) + ", " + getBool(
-            languages.js) + ", " + getBool(languages.jq) + ", " + getBool(languages.node) + ", " + getBool(
-            languages.react) + ", " + getBool(languages.py) + ", " + getBool(languages.php) + ", " + getBool(
-            languages.jsp) + ", " + getBool(languages.mysql) + ", " + getBool(languages.servlet) + ", " + getBool(
-            languages.android) + ", " + getBool(languages.linux) + ", " + getBool(languages.oracle) + ", " + getBool(
-            languages.spring) + ", " + getBool(languages.kotlin) + ", '" + languages.etc + "');"
+            Languages.java) + ", " + getBool(Languages.c) + ", " + getBool(Languages.cpp) + ", " + getBool(
+            Languages.cs) + ", " + getBool(Languages.html) + ", " + getBool(Languages.css) + ", " + getBool(
+            Languages.js) + ", " + getBool(Languages.jq) + ", " + getBool(Languages.node) + ", " + getBool(
+            Languages.react) + ", " + getBool(Languages.py) + ", " + getBool(Languages.php) + ", " + getBool(
+            Languages.jsp) + ", " + getBool(Languages.mysql) + ", " + getBool(Languages.servlet) + ", " + getBool(
+            Languages.android) + ", " + getBool(Languages.linux) + ", " + getBool(Languages.oracle) + ", " + getBool(
+            Languages.spring) + ", " + getBool(Languages.kotlin) + ", '" + Languages.etc + "');"
 
         curs.execute(sql)
         conn.commit()
