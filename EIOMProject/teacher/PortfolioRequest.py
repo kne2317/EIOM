@@ -73,19 +73,19 @@ class PortfolioRequest(QWidget):
         refusalBtn.setGeometry(980, 150, 120, 40)
         refusalBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
 
-        contTitle = QLabel('제목 \n', self.w)
+        contTitle = QLabel(self.requeInfo.companyname+'\n', self.w)
         contTitle.setFont(QFont(self.basicInfo.font1, 13))
         contTitle.setGeometry(100, 200, 1000, 90)
         contTitle.setStyleSheet('border-top:1px solid black; border-bottom:1px solid black; ')
         contTitle.setAlignment(QtCore.Qt.AlignCenter)
 
-        writer = QLabel('유병석 선생님 | 2020.12.01', contTitle)
-        writer.setFont(QFont(self.basicInfo.font1, 10))
-        writer.setGeometry(0, 60, 1000, 20)
-        writer.setStyleSheet('color:gray; border:0px;')
-        writer.setAlignment(QtCore.Qt.AlignCenter)
 
         content = QTextBrowser(self.w)
+        content.append("기간 : " + self.requeInfo.pfperiod)
+        content.append("열람사유 : ")
+        st = self.requeInfo.pfrequest.split("\\n")
+        for i in st:
+            content.append(i)
         content.setFont(QFont(self.basicInfo.font1, 12))
         content.setGeometry(100, 300, 1000, 300)
         content.setStyleSheet('border:0px;border-bottom:1px solid black; ')
