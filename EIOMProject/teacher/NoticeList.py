@@ -458,7 +458,9 @@ class noticeList(QWidget):
             print(e)
             
     def writePost(self):
-        print("작성하기")
+        cp = teacher.NoticePost.NoticePost()
+        cp.show()
+        self.hide()
 
 
 if __name__ == '__main__':
