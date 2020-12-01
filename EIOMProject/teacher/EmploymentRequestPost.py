@@ -142,7 +142,7 @@ class EmploymentRequestPost(QWidget):
         employeeL1.setFont(QFont(self.basicInfo.font1, 13))
         employeeL1.setGeometry(130, 720, 500, 40)
 
-        employeeL2 = QLabel(self.reque.company_employees_num, self.w)
+        employeeL2 = QLabel(str(self.reque.company_employees_num), self.w)
         employeeL2.setFont(QFont(self.basicInfo.font1, 13))
         employeeL2.setGeometry(230, 720, 500, 40)
 
