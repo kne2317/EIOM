@@ -7,14 +7,16 @@ from BasicInfo import BasicInfo
 import teacher.Rate
 import teacher.MyPage
 import teacher.NoticeContent
+from teacher.PofolPost import PofolRequestPost
+
 
 class PortfolioRequest(QWidget):
 
-    def __init__(self):
+    def __init__(self, requeInfo=PofolRequestPost()):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
-
+        self.requeInfo = requeInfo
         self.initUI()
 
     def initUI(self):

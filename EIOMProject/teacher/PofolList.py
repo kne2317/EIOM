@@ -605,9 +605,9 @@ class pofolList(QWidget):
     def func2(self, noticeNum):
         try:
             print(self.reque[noticeNum].companyname)
-            #self.cp = student.NoticeContent.NoticeContent(self.reque[noticeNum])
-            #self.cp.show()
-            #self.hide()
+            cp = teacher.NoticeContent.NoticeContent(self.reque[noticeNum])
+            cp.show()
+            self.hide()
         except Exception as e:
             print(e)
 
