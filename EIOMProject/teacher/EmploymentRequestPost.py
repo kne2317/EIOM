@@ -206,7 +206,7 @@ class EmploymentRequestPost(QWidget):
         hopeCountL1.setFont(QFont(self.basicInfo.font1, 13))
         hopeCountL1.setGeometry(130, 1000, 500, 40)
 
-        hopeCountL2 = QLabel(self.reque.hopeperson, self.w)
+        hopeCountL2 = QLabel(str(self.reque.hopeperson), self.w)
         hopeCountL2.setFont(QFont(self.basicInfo.font1, 13))
         hopeCountL2.setGeometry(230, 1000, 500, 40)
 
