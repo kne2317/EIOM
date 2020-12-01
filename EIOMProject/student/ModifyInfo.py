@@ -4,8 +4,7 @@ from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
-from student.Student import Student
-
+from student.Student import Student,Languages
 class ModifyInfo(QWidget):
 
     def __init__(self):
@@ -52,7 +51,6 @@ class ModifyInfo(QWidget):
         self.major.addItem('뉴미디어 소프트웨어과')
         self.major.addItem('뉴미디어 웹솔루션과')
         self.major.addItem('뉴미디어 디자인과')
-        self.vmajor.setItemData(self.major.setItemData(Student.major))
 
 
         gradeL = QLabel("학년", self.w)
@@ -67,7 +65,6 @@ class ModifyInfo(QWidget):
         self.grade.addItem('1학년')
         self.grade.addItem('2학년')
         self.grade.addItem('3학년')
-        self.grade.setItemData()
 
         banL = QLabel("반", self.w)
         banL.setFont(QFont(self.basicInfo.font1, 15))
@@ -93,82 +90,102 @@ class ModifyInfo(QWidget):
         c = QCheckBox('c', self.w)
         c.setFont(QFont(self.basicInfo.font1, 15))
         c.setGeometry(120, 360, 150, 50)
+        if Languages.c==True : c.setChecked()
 
         cpp = QCheckBox('c++', self.w)
         cpp.setFont(QFont(self.basicInfo.font1, 15))
         cpp.setGeometry(400, 360, 150, 50)
+        if Languages.cpp == True: cpp.setChecked()
 
         cs = QCheckBox('c#', self.w)
         cs.setFont(QFont(self.basicInfo.font1, 15))
         cs.setGeometry(680, 360, 150, 50)
+        if Languages.cs==True:cs.setChecked()
 
         py = QCheckBox('python', self.w)
         py.setFont(QFont(self.basicInfo.font1, 15))
         py.setGeometry(960, 360, 150, 50)
+        if Languages.py == True: py.setChecked()
 
         html = QCheckBox('html', self.w)
         html.setFont(QFont(self.basicInfo.font1, 15))
         html.setGeometry(120, 430, 150, 50)
+        if Languages.html == True: html.setChecked()
 
         css = QCheckBox('css', self.w)
         css.setFont(QFont(self.basicInfo.font1, 15))
         css.setGeometry(400, 430, 150, 50)
+        if Languages.css == True: css.setChecked()
 
         js = QCheckBox('javascript', self.w)
         js.setFont(QFont(self.basicInfo.font1, 15))
         js.setGeometry(680, 430, 150, 50)
+        if Languages.js == True: js.setChecked()
 
         jq = QCheckBox('jQuery', self.w)
         jq.setFont(QFont(self.basicInfo.font1, 15))
         jq.setGeometry(960, 430, 150, 50)
+        if Languages.jq == True: jq.setChecked()
 
         jsp = QCheckBox('jsp', self.w)
         jsp.setFont(QFont(self.basicInfo.font1, 15))
         jsp.setGeometry(120, 510, 150, 50)
+        if Languages.jsp == True: jsp.setChecked()
 
         php = QCheckBox('php', self.w)
         php.setFont(QFont(self.basicInfo.font1, 15))
         php.setGeometry(400, 510, 150, 50)
+        if Languages.php == True: php.setChecked()
 
         node = QCheckBox('node.js', self.w)
         node.setFont(QFont(self.basicInfo.font1, 15))
         node.setGeometry(680, 510, 150, 50)
+        if Languages.node == True: node.setChecked()
 
         react = QCheckBox('react', self.w)
         react.setFont(QFont(self.basicInfo.font1, 15))
         react.setGeometry(960, 510, 150, 50)
+        if Languages.react == True: react.setChecked()
 
         java = QCheckBox('java', self.w)
         java.setFont(QFont(self.basicInfo.font1, 15))
         java.setGeometry(120, 580, 150, 50)
+        if Languages.java == True: java.setChecked()
 
         spring = QCheckBox('spring', self.w)
         spring.setFont(QFont(self.basicInfo.font1, 15))
         spring.setGeometry(400, 580, 150, 50)
+        if Languages.spring == True: spring.setChecked()
 
         servlet = QCheckBox('servlet', self.w)
         servlet.setFont(QFont(self.basicInfo.font1, 15))
         servlet.setGeometry(680, 580, 150, 50)
+        if Languages.servlet == True: servlet.setChecked()
 
         kotlin = QCheckBox('kotlin', self.w)
         kotlin.setFont(QFont(self.basicInfo.font1, 15))
         kotlin.setGeometry(960, 580, 150, 50)
+        if Languages.kotlin == True: kotlin.setChecked()
 
         android = QCheckBox('android', self.w)
         android.setFont(QFont(self.basicInfo.font1, 15))
         android.setGeometry(120, 650, 150, 50)
+        if Languages.android == True: android.setChecked()
 
         linux = QCheckBox('Linux', self.w)
         linux.setFont(QFont(self.basicInfo.font1, 15))
         linux.setGeometry(400, 650, 150, 50)
+        if Languages.linux == True: linux.setChecked()
 
         oracle = QCheckBox('oracle', self.w)
         oracle.setFont(QFont(self.basicInfo.font1, 15))
         oracle.setGeometry(680, 650, 150, 50)
+        if Languages.oracle == True: oracle.setChecked()
 
         mysql = QCheckBox('mySQL', self.w)
         mysql.setFont(QFont(self.basicInfo.font1, 15))
         mysql.setGeometry(960, 650, 150, 50)
+        if Languages.mysql == True: mysql.setChecked()
 
         etc = QCheckBox('etc', self.w)
         etc.setFont(QFont(self.basicInfo.font1, 15))
@@ -178,6 +195,9 @@ class ModifyInfo(QWidget):
         etcInput.move(130, 10)
         etcInput.resize(840, 40)
         etcInput.setFont(QFont(self.basicInfo.font1, 12))
+        if len(Languages.etc) > 0:
+            etc.setChecked()
+            etcInput.setText(Languages.etc)
 
         likeCompanyL = QLabel("관심 회사", self.w)
         likeCompanyL.setFont(QFont(self.basicInfo.font1, 15))
