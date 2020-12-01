@@ -704,7 +704,7 @@ class noticeList(QWidget):
     def func(self, noticeNum):
         try:
             if len(self.reque[noticeNum].company_name) > 0 and self.reque[noticeNum].company_name != '':
-                self.cp = teacher.EmploymentRequest.Employmentrequest(self.reque[noticeNum])
+                self.cp = teacher.EmploymentRequestPost.EmploymentrequestPost(self.reque[noticeNum])
                 self.cp.show()
                 self.hide()
         except Exception as e:
