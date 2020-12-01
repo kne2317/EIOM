@@ -1,3 +1,4 @@
+
 import sys
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
@@ -7,17 +8,19 @@ from BasicInfo import BasicInfo
 import student.Rate
 import student.NoticeList
 import student.MyPage
+from student.Company import Company
+
+
 class CompanyPost(QWidget):
 
-    def __init__(self):
+    def __init__(self, company=Company()):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
-
+        self.company = company
         self.initUI()
 
     def initUI(self):
-
         layout = QVBoxLayout(self)
 
         self.setWindowTitle('EIOM')
@@ -67,21 +70,21 @@ class CompanyPost(QWidget):
         postBtn.clicked.connect(self.post)
         infoBtn.clicked.connect(self.info)
 
-        contTitle=QLabel('@@@ soft \n',self.w)
-        contTitle.setFont(QFont(self.basicInfo.font1,13))
-        contTitle.setGeometry(100,150,1000,90)
+        contTitle = QLabel('@@@ soft \n', self.w)
+        contTitle.setFont(QFont(self.basicInfo.font1, 13))
+        contTitle.setGeometry(100, 150, 1000, 90)
         contTitle.setStyleSheet('border-top:1px solid black; border-bottom:1px solid black; ')
         contTitle.setAlignment(QtCore.Qt.AlignCenter)
 
-        writer=QLabel('@@@ soft | 2020.12.01',contTitle)
+        writer = QLabel('@@@ soft | 2020.12.01', contTitle)
         writer.setFont(QFont(self.basicInfo.font1, 10))
-        writer.setGeometry(0,60,1000,20)
+        writer.setGeometry(0, 60, 1000, 20)
         writer.setStyleSheet('color:gray; border:0px;')
         writer.setAlignment(QtCore.Qt.AlignCenter)
 
-        t1 = QLabel('회사 정보',self.w)
-        t1.setFont(QFont(self.basicInfo.font1,15))
-        t1.setGeometry(100,260,500,40)
+        t1 = QLabel('회사 정보', self.w)
+        t1.setFont(QFont(self.basicInfo.font1, 15))
+        t1.setGeometry(100, 260, 500, 40)
 
         t2 = QLabel('담당자 정보', self.w)
         t2.setFont(QFont(self.basicInfo.font1, 15))
@@ -155,9 +158,9 @@ class CompanyPost(QWidget):
         webL2.setFont(QFont(self.basicInfo.font1, 13))
         webL2.setGeometry(230, 830, 500, 40)
 
-        personEL1=QLabel("e-mail",self.w)
+        personEL1 = QLabel("e-mail", self.w)
         personEL1.setFont(QFont(self.basicInfo.font1, 13))
-        personEL1.setGeometry(630,320,500,40)
+        personEL1.setGeometry(630, 320, 500, 40)
 
         personEL2 = QLabel("s2019s17@e-mirim.hs.kr", self.w)
         personEL2.setFont(QFont(self.basicInfo.font1, 13))
@@ -235,7 +238,7 @@ class CompanyPost(QWidget):
         useLangL2.setFont(QFont(self.basicInfo.font1, 13))
         useLangL2.setGeometry(730, 700, 500, 40)
 
-        employmentL1= QLabel("고용 형태", self.w)
+        employmentL1 = QLabel("고용 형태", self.w)
         employmentL1.setFont(QFont(self.basicInfo.font1, 13))
         employmentL1.setGeometry(630, 750, 500, 40)
 
@@ -247,7 +250,7 @@ class CompanyPost(QWidget):
         workL1.setFont(QFont(self.basicInfo.font1, 13))
         workL1.setGeometry(630, 800, 500, 40)
 
-        workL2= QLabel("c++을 이용한 개발", self.w)
+        workL2 = QLabel("c++을 이용한 개발", self.w)
         workL2.setFont(QFont(self.basicInfo.font1, 13))
         workL2.setGeometry(730, 800, 500, 40)
 
@@ -289,23 +292,26 @@ class CompanyPost(QWidget):
         self.show()
 
     def state(self):
-        self.sr=student.Rate.sRate()
+        self.sr = student.Rate.sRate()
         self.sr.show()
         self.hide()
 
     def notice(self):
-        self.nl=student.NoticeList.noticeList()
+        self.nl = student.NoticeList.noticeList()
         self.nl.show()
         self.hide()
 
     def company(self):
         print('아직')
+
     def post(self):
         print('아직')
+
     def info(self):
-        self.mp=student.MyPage.MyPage()
+        self.mp = student.MyPage.MyPage()
         self.mp.show()
         self.hide()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

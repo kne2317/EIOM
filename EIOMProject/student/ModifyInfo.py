@@ -1,10 +1,14 @@
+
 import sys
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
-from student.Student import Student,Languages
+from student.Student import Student, Languages
+import student.MyPage
+
+
 class ModifyInfo(QWidget):
 
     def __init__(self):
@@ -39,9 +43,8 @@ class ModifyInfo(QWidget):
 
         self.name = QLineEdit('김나은', self.w)
         self.name.setFont(QFont(self.basicInfo.font1, 13))
-        self.name.setGeometry(25 , 150, 250, 40)
+        self.name.setGeometry(250, 150, 250, 40)
         self.name.setText(Student.name)
-
 
         self.major = QComboBox(self.w)
         self.major.move(100, 230)
@@ -51,7 +54,6 @@ class ModifyInfo(QWidget):
         self.major.addItem('뉴미디어 소프트웨어과')
         self.major.addItem('뉴미디어 웹솔루션과')
         self.major.addItem('뉴미디어 디자인과')
-
 
         gradeL = QLabel("학년", self.w)
         gradeL.setFont(QFont(self.basicInfo.font1, 15))
@@ -90,72 +92,72 @@ class ModifyInfo(QWidget):
         c = QCheckBox('c', self.w)
         c.setFont(QFont(self.basicInfo.font1, 15))
         c.setGeometry(120, 360, 150, 50)
-        if Languages.c==True : c.setChecked()
+        if Languages.c == True: c.setChecked(True)
 
         cpp = QCheckBox('c++', self.w)
         cpp.setFont(QFont(self.basicInfo.font1, 15))
         cpp.setGeometry(400, 360, 150, 50)
-        if Languages.cpp == True: cpp.setChecked()
+        if Languages.cpp == True: cpp.setChecked(True)
 
         cs = QCheckBox('c#', self.w)
         cs.setFont(QFont(self.basicInfo.font1, 15))
         cs.setGeometry(680, 360, 150, 50)
-        if Languages.cs==True:cs.setChecked()
+        if Languages.cs == True: cs.setChecked(True)
 
         py = QCheckBox('python', self.w)
         py.setFont(QFont(self.basicInfo.font1, 15))
         py.setGeometry(960, 360, 150, 50)
-        if Languages.py == True: py.setChecked()
+        if Languages.py == True: py.setChecked(True)
 
         html = QCheckBox('html', self.w)
         html.setFont(QFont(self.basicInfo.font1, 15))
         html.setGeometry(120, 430, 150, 50)
-        if Languages.html == True: html.setChecked()
+        if Languages.html == True: html.setChecked(True)
 
         css = QCheckBox('css', self.w)
         css.setFont(QFont(self.basicInfo.font1, 15))
         css.setGeometry(400, 430, 150, 50)
-        if Languages.css == True: css.setChecked()
+        if Languages.css == True: css.setChecked(True)
 
         js = QCheckBox('javascript', self.w)
         js.setFont(QFont(self.basicInfo.font1, 15))
         js.setGeometry(680, 430, 150, 50)
-        if Languages.js == True: js.setChecked()
+        if Languages.js == True: js.setChecked(True)
 
         jq = QCheckBox('jQuery', self.w)
         jq.setFont(QFont(self.basicInfo.font1, 15))
         jq.setGeometry(960, 430, 150, 50)
-        if Languages.jq == True: jq.setChecked()
+        if Languages.jq == True: jq.setChecked(True)
 
         jsp = QCheckBox('jsp', self.w)
         jsp.setFont(QFont(self.basicInfo.font1, 15))
         jsp.setGeometry(120, 510, 150, 50)
-        if Languages.jsp == True: jsp.setChecked()
+        if Languages.jsp == True: jsp.setChecked(True)
 
         php = QCheckBox('php', self.w)
         php.setFont(QFont(self.basicInfo.font1, 15))
         php.setGeometry(400, 510, 150, 50)
-        if Languages.php == True: php.setChecked()
+        if Languages.php == True: php.setChecked(True)
 
         node = QCheckBox('node.js', self.w)
         node.setFont(QFont(self.basicInfo.font1, 15))
         node.setGeometry(680, 510, 150, 50)
-        if Languages.node == True: node.setChecked()
+        if Languages.node == True: node.setChecked(True)
 
         react = QCheckBox('react', self.w)
         react.setFont(QFont(self.basicInfo.font1, 15))
         react.setGeometry(960, 510, 150, 50)
-        if Languages.react == True: react.setChecked()
+        if Languages.react == True: react.setChecked(True)
 
         java = QCheckBox('java', self.w)
         java.setFont(QFont(self.basicInfo.font1, 15))
         java.setGeometry(120, 580, 150, 50)
-        if Languages.java == True: java.setChecked()
+        if Languages.java == True: java.setChecked(True)
 
         spring = QCheckBox('spring', self.w)
         spring.setFont(QFont(self.basicInfo.font1, 15))
         spring.setGeometry(400, 580, 150, 50)
-        if Languages.spring == True: spring.setChecked()
+        if Languages.spring == True: spring.setChecked(True)
 
         servlet = QCheckBox('servlet', self.w)
         servlet.setFont(QFont(self.basicInfo.font1, 15))
@@ -165,27 +167,27 @@ class ModifyInfo(QWidget):
         kotlin = QCheckBox('kotlin', self.w)
         kotlin.setFont(QFont(self.basicInfo.font1, 15))
         kotlin.setGeometry(960, 580, 150, 50)
-        if Languages.kotlin == True: kotlin.setChecked()
+        if Languages.kotlin == True: kotlin.setChecked(True)
 
         android = QCheckBox('android', self.w)
         android.setFont(QFont(self.basicInfo.font1, 15))
         android.setGeometry(120, 650, 150, 50)
-        if Languages.android == True: android.setChecked()
+        if Languages.android == True: android.setChecked(True)
 
         linux = QCheckBox('Linux', self.w)
         linux.setFont(QFont(self.basicInfo.font1, 15))
         linux.setGeometry(400, 650, 150, 50)
-        if Languages.linux == True: linux.setChecked()
+        if Languages.linux == True: linux.setChecked(True)
 
         oracle = QCheckBox('oracle', self.w)
         oracle.setFont(QFont(self.basicInfo.font1, 15))
         oracle.setGeometry(680, 650, 150, 50)
-        if Languages.oracle == True: oracle.setChecked()
+        if Languages.oracle == True: oracle.setChecked(True)
 
         mysql = QCheckBox('mySQL', self.w)
         mysql.setFont(QFont(self.basicInfo.font1, 15))
         mysql.setGeometry(960, 650, 150, 50)
-        if Languages.mysql == True: mysql.setChecked()
+        if Languages.mysql == True: mysql.setChecked(True)
 
         etc = QCheckBox('etc', self.w)
         etc.setFont(QFont(self.basicInfo.font1, 15))
@@ -196,7 +198,7 @@ class ModifyInfo(QWidget):
         etcInput.resize(840, 40)
         etcInput.setFont(QFont(self.basicInfo.font1, 12))
         if len(Languages.etc) > 0:
-            etc.setChecked()
+            etc.setChecked(True)
             etcInput.setText(Languages.etc)
 
         likeCompanyL = QLabel("관심 회사", self.w)
@@ -210,6 +212,7 @@ class ModifyInfo(QWidget):
         self.pfInput = QLineEdit(self.w)
         self.pfInput.setFont(QFont(self.basicInfo.font1, 10))
         self.pfInput.setGeometry(100, 950, 820, 50)
+        self.pfInput.setText(Student.portfolio)
 
         pfBtn = QPushButton('Browse', self.w)
         pfBtn.setFont(QFont(self.basicInfo.font1, 12))
@@ -223,6 +226,7 @@ class ModifyInfo(QWidget):
         self.introduceInput = QLineEdit(self.w)
         self.introduceInput.setFont(QFont(self.basicInfo.font1, 10))
         self.introduceInput.setGeometry(100, 1100, 820, 50)
+        self.introduceInput.setText(Student.introduce)
 
         introduceBtn = QPushButton('Browse', self.w)
         introduceBtn.setFont(QFont(self.basicInfo.font1, 12))
@@ -231,8 +235,14 @@ class ModifyInfo(QWidget):
 
         modifyBtn = QPushButton('수정', self.w)
         modifyBtn.setFont(QFont(self.basicInfo.font1, 12))
-        modifyBtn.setGeometry(950, 1200, 130, 30)
+        modifyBtn.setGeometry(800, 1200, 130, 30)
         modifyBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
+
+        cancleBtn = QPushButton('취소', self.w)
+        cancleBtn.setFont(QFont(self.basicInfo.font1, 12))
+        cancleBtn.setGeometry(950, 1200, 130, 30)
+        cancleBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
+        cancleBtn.clicked.connect(self.cancle)
 
         scroll = QScrollArea()
         scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
@@ -245,7 +255,10 @@ class ModifyInfo(QWidget):
         vLayout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(vLayout)
 
-        self.show()
+    def cancle(self):
+        self.mp = student.MyPage.MyPage()
+        self.mp.show()
+        self.hide()
 
     def show_file_open_p(self):
         fname = QFileDialog.getOpenFileName()
@@ -255,8 +268,3 @@ class ModifyInfo(QWidget):
         fname = QFileDialog.getOpenFileName()
         self.introduceInput.setText(fname[0])
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-
-    ex = ModifyInfo()
-    sys.exit(app.exec_())

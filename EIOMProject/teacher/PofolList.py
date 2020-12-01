@@ -1,4 +1,5 @@
 import os
+
 import shutil
 import sys
 from PySide2.QtWidgets import *
@@ -12,7 +13,7 @@ import company.CompanyInfo
 import company.RequestPortfolio
 from BasicInfo import BasicInfo, BasicDB
 from teacher.PofolPost import PofolPost, PofolRequestPost
-
+import teacher.PortfolioRequest
 
 class pofolList(QWidget):
     currentpage = 1
@@ -605,8 +606,8 @@ class pofolList(QWidget):
     def func2(self, noticeNum):
         try:
             print(self.reque[noticeNum].companyname)
-            cp = teacher.NoticeContent.NoticeContent(self.reque[noticeNum])
-            cp.show()
+            self.cp = teacher.PortfolioRequest.PortfolioRequest(self.reque[noticeNum])
+            self.cp.show()
             self.hide()
         except Exception as e:
             print(e)

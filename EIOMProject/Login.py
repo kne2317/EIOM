@@ -1,8 +1,9 @@
 
+
 import pymysql
 
 from BasicInfo import BasicDB
-from student.Student import Student
+from student.Student import Student,Languages
 from company.Company import Company
 from teacher.Teacher import Teacher
 
@@ -76,6 +77,36 @@ def companyLogin(id,pw):
         return False
 
     conn.close()
+def saveLanguages():
+    basicDB = BasicDB()
+    conn = basicDB.conn
+    curs = conn.cursor()
+
+    sql = "select * from languages where id = '" + Student.ID + "';"
+    curs.execute(sql)
+    row=curs.fetchall()
+    Languages.java = row[0][1]
+    Languages.c = row[0][2]
+    Languages.cpp = row[0][3]
+    Languages.cs = row[0][4]
+    Languages.html = row[0][5]
+    Languages.css = row[0][6]
+    Languages.js = row[0][7]
+    Languages.jq = row[0][8]
+    Languages.node = row[0][9]
+    Languages.react = row[0][10]
+    Languages.py = row[0][11]
+    Languages.php = row[0][12]
+    Languages.jsp = row[0][13]
+    Languages.mysql = row[0][14]
+    Languages.servlet = row[0][15]
+    Languages.android = row[0][16]
+    Languages.linux = row[0][17]
+    Languages.oracle = row[0][18]
+    Languages.spring = row[0][19]
+    Languages.kotlin = row[0][20]
+    Languages.etc = row[0][21]
+
 
 def saveStudentInfo():
     basicDB = BasicDB()
@@ -97,6 +128,7 @@ def saveStudentInfo():
         Student.introduce = rows[0][7]
         Student.likeCompany = rows[0][8]
         Student.email = rows[0][9]
+        saveLanguages()
 
 def saveCompanyInfo():
     basicDB = BasicDB()

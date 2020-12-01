@@ -1,3 +1,4 @@
+
 import sys
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
@@ -34,9 +35,9 @@ class CompanyInfo(QWidget):
         title.setAlignment(QtCore.Qt.AlignCenter)
         title.setGeometry(100, 10, 1000, 50)
 
-        cNameL1=QLabel("기업명",self.w)
-        cNameL1.setFont(QFont(self.basicInfo.font1,15))
-        cNameL1.setGeometry(150,100,500,50)
+        cNameL1 = QLabel("기업명", self.w)
+        cNameL1.setFont(QFont(self.basicInfo.font1, 15))
+        cNameL1.setGeometry(150, 100, 500, 50)
 
         cNameL2 = QLabel("연지 소프트", self.w)
         cNameL2.setFont(QFont(self.basicInfo.font1, 15))
@@ -69,6 +70,7 @@ class CompanyInfo(QWidget):
         companyIntroL = QLabel("기업소개", self.w)
         companyIntroL.setFont(QFont(self.basicInfo.font1, 15))
         companyIntroL.setGeometry(150, 260, 500, 50)
+        companyIntroL.setStyleSheet('border:0px;')
 
         companyIntro = QTextBrowser(self.w)
         companyIntro.setFont(QFont(self.basicInfo.font1, 12))
@@ -90,9 +92,9 @@ class CompanyInfo(QWidget):
         addressL2.setFont(QFont(self.basicInfo.font1, 15))
         addressL2.setGeometry(350, 510, 1000, 50)
 
-        likeCompany=QPushButton('관심회사',self.w)
+        likeCompany = QPushButton('관심회사', self.w)
         likeCompany.setFont(QFont(self.basicInfo.font1, 12))
-        likeCompany.setGeometry(800,600,120,40)
+        likeCompany.setGeometry(800, 600, 120, 40)
         likeCompany.setStyleSheet('background-color: white; border:1px solid lightgray;')
 
         backBtn = QPushButton('뒤로가기', self.w)
@@ -100,8 +102,8 @@ class CompanyInfo(QWidget):
         backBtn.setGeometry(950, 600, 120, 40)
         backBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
 
-
         self.show()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
