@@ -45,29 +45,28 @@ class noticeList(QWidget):
 
         stateBtn = QPushButton('통계', self.w)
         stateBtn.setFont(QFont(self.basicInfo.font1, 13))
-        stateBtn.setGeometry(0, 70, self.basicInfo.WindowWidth/5, 50)
+        stateBtn.setGeometry(0, 70, 240, 50)
         stateBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
         noticeBtn = QPushButton('공지', self.w)
         noticeBtn.setFont(QFont(self.basicInfo.font1, 13))
-        noticeBtn.setGeometry(self.basicInfo.WindowWidth/5*1, 70, self.basicInfo.WindowWidth/5, 50)
+        noticeBtn.setGeometry(240, 70, 240, 50)
         noticeBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        companyBtn = QPushButton('취업의뢰', self.w)
+        companyBtn = QPushButton('회사', self.w)
         companyBtn.setFont(QFont(self.basicInfo.font1, 13))
-        companyBtn.setGeometry(self.basicInfo.WindowWidth/5*2, 70, self.basicInfo.WindowWidth/5, 50)
+        companyBtn.setGeometry(480, 70, 240, 50)
         companyBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        pfBtn = QPushButton('포트폴리오', self.w)
-        pfBtn.setFont(QFont(self.basicInfo.font1, 13))
-        pfBtn.setGeometry(self.basicInfo.WindowWidth/5*3, 70, self.basicInfo.WindowWidth/5, 50)
-        pfBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
+        postBtn = QPushButton('취업의뢰', self.w)
+        postBtn.setFont(QFont(self.basicInfo.font1, 13))
+        postBtn.setGeometry(720, 70, 240, 50)
+        postBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
         infoBtn = QPushButton('내 정보', self.w)
         infoBtn.setFont(QFont(self.basicInfo.font1, 13))
-        infoBtn.setGeometry(self.basicInfo.WindowWidth/5*4, 70, self.basicInfo.WindowWidth/5, 50)
+        infoBtn.setGeometry(960, 70, 240, 50)
         infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
-
 
         companyName_width = 150
         useLanquage_width = 150
