@@ -100,6 +100,7 @@ class NoticePost(QWidget):
         cancleBtn.setFont(QFont(self.basicInfo.font1, 12))
         cancleBtn.setGeometry(630, 650, 110, 30)
         cancleBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
+        cancleBtn.clicked.connect(self.cencle)
 
         stateBtn.clicked.connect(self.state)
         noticeBtn.clicked.connect(self.notice)
@@ -127,6 +128,11 @@ class NoticePost(QWidget):
         fname = QFileDialog.getOpenFileName()
         self.fileInput.setText(fname[0])
 
+    def cencle(self):
+        r = teacher.NoticeContent.noticeList()
+        r.show()
+        self.hide()
+
     def uploadPost(self):
         # 포스트 업로드
         try:
@@ -148,8 +154,8 @@ class NoticePost(QWidget):
 
             conn.close()
 
-            
-            r = teacher.Rate.tRate()
+
+            r = teacher.NoticeContent.noticeList()
             r.show()
             self.hide()
         except Exception as e:
