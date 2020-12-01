@@ -4,15 +4,16 @@ from PySide2.QtGui import *
 from PySide2 import QtCore
 
 from BasicInfo import BasicInfo
+from student.Notice import Notice
 
 
-class noticeList(QWidget):
+class NoticeContent(QWidget):
 
-    def __init__(self):
+    def __init__(self, notice=Notice()):
         super().__init__()
         self.basicInfo = BasicInfo()
         self.w = QWidget(self)
-
+        self.notice = notice
         self.initUI()
 
     def initUI(self):
@@ -62,22 +63,27 @@ class noticeList(QWidget):
         infoBtn.setGeometry(1000, 70, 200, 50)
         infoBtn.setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; ')
 
-        contTitle=QLabel('제목 \n',self.w)
+        contTitle=QLabel(self.notice.title+' \n',self.w)
         contTitle.setFont(QFont(self.basicInfo.font1,13))
         contTitle.setGeometry(100,150,1000,90)
         contTitle.setStyleSheet('border-top:1px solid black; border-bottom:1px solid black; ')
         contTitle.setAlignment(QtCore.Qt.AlignCenter)
 
-        writer=QLabel('유병석 선생님 | 2020.12.01',contTitle)
+        writer=QLabel(self.notice.writer+' | '+str(self.notice.date),contTitle)
         writer.setFont(QFont(self.basicInfo.font1, 10))
         writer.setGeometry(0,60,1000,20)
         writer.setStyleSheet('color:gray; border:0px;')
         writer.setAlignment(QtCore.Qt.AlignCenter)
 
+
         content=QTextBrowser(self.w)
+        st = self.notice.content.split("\\n")
+        for i in st:
+            content.append(i)
         content.setFont(QFont(self.basicInfo.font1, 12))
         content.setGeometry(100, 240, 1000, 300)
-        content.setStyleSheet('border:0px;border-bottom:1px solid black; ')
+        content.setStyleSheet('border:0px;border-bottom:1px solid black; padding: 10px; ')
+
 
         file = QLabel('첨부파일',self.w)
         file.setFont(QFont(self.basicInfo.font1, 12))
@@ -89,11 +95,3 @@ class noticeList(QWidget):
         backBtn.setGeometry(980, 630, 120, 40)
         backBtn.setStyleSheet('background-color: white; border:1px solid lightgray;')
 
-        self.show()
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-
-    ex = noticeList()
-    sys.exit(app.exec_())
