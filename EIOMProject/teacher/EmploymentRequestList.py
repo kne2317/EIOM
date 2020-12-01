@@ -126,37 +126,37 @@ class noticeList(QWidget):
         self.companyName[i] = QPushButton(self.reque[i].company_name, self.w)
         self.companyName[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.companyName[i].setGeometry(listX, listY+blankHeigth*(i+1), companyName_width+1, blankHeigth+1)
-        self.pofol[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
+        self.companyName[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
 
         self.useLanquage.append('')
         self.useLanquage[i] = QPushButton(self.reque[i].uselang, self.w)
         self.useLanquage[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.useLanquage[i].setGeometry(listX + companyName_width, listY+blankHeigth*(i+1), useLanquage_width+1, blankHeigth+1)
-        self.pofol[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
+        self.useLanquage[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
 
         self.recruit.append('')
         self.recruit[i] = QPushButton(self.reque[i].recruit, self.w)
         self.recruit[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.recruit[i].setGeometry(listX + companyName_width + useLanquage_width, listY+blankHeigth*(i+1), recruit_width+1, blankHeigth+1)
-        self.pofol[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
+        self.recruit[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
 
         self.emplayment.append('')
         self.emplayment[i] = QPushButton(self.reque[i].employment, self.w)
         self.emplayment[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.emplayment[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width, listY+blankHeigth*(i+1), emplayment_width+1, blankHeigth+1)
-        self.pofol[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
+        self.emplayment[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
 
         self.address.append('')
         self.address[i] = QPushButton(self.reque[i].company_address, self.w)
         self.address[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.address[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width + emplayment_width, listY+blankHeigth*(i+1), address_width+1, blankHeigth+1)
-        self.pofol[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
+        self.pofaddressol[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
 
         self.request_authority.append('')
         self.request_authority[i] = QPushButton(self.reque[i].request_authority==0 and '대기중' or self.reque[i].request_authority==1 and '승인' or '거절', self.w)
         self.request_authority[i].setFont(QFont(self.basicInfo.font1, fontsize))
         self.request_authority[i].setGeometry(listX + companyName_width + useLanquage_width + recruit_width+ emplayment_width + address_width, listY+blankHeigth*(i+1), request_authority_width+1, blankHeigth+1)
-        self.pofol[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
+        self.request_authority[i].setStyleSheet('background-color: rgb(255,255,255); border:1px solid lightgray; border-left: 0px;border-right: 0px; text-align: left; color: #3c78d8;')
 
 
         prevPageBtn = QPushButton("<", self.w)
