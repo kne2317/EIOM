@@ -8,8 +8,8 @@ from BasicInfo import BasicInfo, BasicDB
 import student.Rate
 import student.NoticeList
 import student.MyPage
-from teacher.EmploymentRequest import EmploymentRequest
-import teacher.EmploymentRequestPost
+from student.EmploymentRequest import EmploymentRequest
+import student.EmploymentRequestPost
 
 
 class noticeList(QWidget):
@@ -707,7 +707,7 @@ class noticeList(QWidget):
     def func(self, noticeNum):
         try:
             if len(self.reque[noticeNum].company_name) > 0 and self.reque[noticeNum].company_name != '':
-                self.cp = teacher.EmploymentRequestPost.EmploymentRequestPost(self.reque[noticeNum])
+                self.cp = student.EmploymentRequestPost.EmploymentRequestPost(self.reque[noticeNum])
                 self.cp.show()
                 self.hide()
         except Exception as e:
